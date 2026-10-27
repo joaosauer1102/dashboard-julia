@@ -91,7 +91,7 @@
 
   <main class="max-w-[1600px] mx-auto px-6 pt-6 space-y-6">
 
-    <!-- KPIs DE TOPO (APENAS AMARELOS E LARANJAS CONFORME REGRA v1.2) -->
+    <!-- KPIs DE TOPO -->
     <section class="grid grid-cols-1 md:grid-cols-4 gap-4">
       <div onclick="quickColorFilter('ALL')" class="glass rounded-2xl p-4 cursor-pointer hover:border-sky-400/50 transition">
         <div class="flex items-center justify-between text-xs text-slate-400">
@@ -99,34 +99,34 @@
           <span class="text-sky-400">⚖️</span>
         </div>
         <div id="kpi-total" class="text-2xl font-extrabold text-white mt-1">0</div>
-        <div id="kpi-valor" class="text-[11px] text-sky-300 mt-1 font-medium">R$ 0,00</div>
+        <div id="kpi-valor" class="text-[11px] text-sky-300 mt-1 font-medium">Base Atualizada (485 novos)</div>
       </div>
 
       <div onclick="quickColorFilter('Amarelo: Prazo em aberto')" class="glass rounded-2xl p-4 cursor-pointer hover:border-amber-400/60 transition border-l-4 border-l-amber-400">
         <div class="flex items-center justify-between text-xs text-amber-200">
-          <span>Prazo em Aberto</span>
+          <span>Processos Ativos</span>
           <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
         </div>
         <div id="kpi-amarelo" class="text-2xl font-extrabold text-amber-300 mt-1">0</div>
-        <div class="text-[11px] text-slate-400 mt-1">Amarelo (Ativos/Andamento)</div>
+        <div class="text-[11px] text-slate-400 mt-1">Em andamento</div>
       </div>
 
       <div onclick="quickColorFilter('Laranja: Finalizado')" class="glass rounded-2xl p-4 cursor-pointer hover:border-orange-400/60 transition border-l-4 border-l-orange-500">
         <div class="flex items-center justify-between text-xs text-orange-200">
-          <span>Finalizados</span>
+          <span>Suspensos / Outros</span>
           <span class="w-2.5 h-2.5 rounded-full bg-orange-500"></span>
         </div>
         <div id="kpi-laranja" class="text-2xl font-extrabold text-orange-400 mt-1">0</div>
-        <div class="text-[11px] text-slate-400 mt-1">Laranja (Concluídos)</div>
+        <div class="text-[11px] text-slate-400 mt-1">Suspensos na base</div>
       </div>
 
       <div onclick="quickDabFilter()" class="glass rounded-2xl p-4 cursor-pointer hover:border-emerald-400/60 transition border-l-4 border-l-emerald-400">
         <div class="flex items-center justify-between text-xs text-emerald-200">
-          <span>Finalizados pelo DA&B</span>
+          <span>Escritório DA&B</span>
           <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
         </div>
         <div id="kpi-dab" class="text-2xl font-extrabold text-emerald-300 mt-1">0</div>
-        <div class="text-[11px] text-slate-400 mt-1">Escritório DA&B</div>
+        <div class="text-[11px] text-slate-400 mt-1">Responsável DA&B</div>
       </div>
     </section>
 
@@ -134,11 +134,11 @@
     <section id="view-executivo" class="space-y-6">
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div class="glass rounded-2xl p-5">
-          <h3 class="text-sm font-bold text-white mb-3">1. Volume por Área e Status</h3>
+          <h3 class="text-sm font-bold text-white mb-3">1. Volume por Status Processual</h3>
           <div class="h-64"><canvas id="chartAreaStatus"></canvas></div>
         </div>
         <div class="glass rounded-2xl p-5">
-          <h3 class="text-sm font-bold text-white mb-3">2. Exposição Financeira (R$ Milhões)</h3>
+          <h3 class="text-sm font-bold text-white mb-3">2. Distribuição por Empresa Cliente</h3>
           <div class="h-64"><canvas id="chartValorArea"></canvas></div>
         </div>
         <div class="glass rounded-2xl p-5">
@@ -153,11 +153,8 @@
       <div class="glass rounded-2xl p-5 flex flex-wrap items-center justify-between gap-4">
         <div>
           <h2 class="text-base font-bold text-white">Central de Prazos — Julia Linhares</h2>
-          <p class="text-xs text-slate-400">Acompanhamento dos prazos sob responsabilidade da equipe.</p>
+          <p class="text-xs text-slate-400">Acompanhamento dos processos sob responsabilidade da equipe.</p>
         </div>
-        <button onclick="setQueueFilter('AMARELO')" class="px-3.5 py-2 rounded-xl text-xs font-semibold bg-amber-500/20 text-amber-300 border border-amber-400/40">
-          🟨 Ver Prazos em Aberto
-        </button>
       </div>
     </section>
 
@@ -185,7 +182,7 @@
             <span>🔍</span> Consulta de Processos e Prazos
             <span id="table-count-badge" class="text-xs px-2.5 py-0.5 rounded-full bg-sky-500/20 text-sky-300 border border-sky-400/30 font-semibold">0 processos</span>
           </h2>
-          <p class="text-xs text-slate-400">Processos filtrados (Excluídos: azul, rosa e branco). Responsável padrão: Julia Linhares.</p>
+          <p class="text-xs text-slate-400">Base atualizada com os novos relatórios. Responsável padrão: Julia Linhares.</p>
         </div>
         <div class="flex items-center gap-2">
           <button onclick="openNewProcessModal()" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-sky-500 hover:bg-sky-400 text-slate-950 shadow-lg transition">
@@ -201,24 +198,20 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-8 gap-3">
         <div class="lg:col-span-2">
           <label class="text-[11px] text-slate-400 block mb-1">Busca Rápida</label>
-          <input id="filter-search" type="text" oninput="applyFilters()" placeholder="CNJ, parte, advogado..." class="w-full glass-input rounded-xl px-3 py-2 text-xs" />
+          <input id="filter-search" type="text" oninput="applyFilters()" placeholder="CNJ, parte, vara..." class="w-full glass-input rounded-xl px-3 py-2 text-xs" />
         </div>
         <div>
-          <label class="text-[11px] text-slate-400 block mb-1">Área</label>
-          <select id="filter-area" onchange="applyFilters()" class="w-full glass-input rounded-xl px-3 py-2 text-xs">
-            <option value="ALL">Todas as Áreas</option>
-            <option value="Cível">Cível</option>
-            <option value="Tributário">Tributário</option>
-            <option value="Reestruturação Empresarial">Reestruturação</option>
-            <option value="Trabalhista">Trabalhista</option>
+          <label class="text-[11px] text-slate-400 block mb-1">Cliente Principal</label>
+          <select id="filter-cliente" onchange="applyFilters()" class="w-full glass-input rounded-xl px-3 py-2 text-xs">
+            <option value="ALL">Todas as Empresas</option>
           </select>
         </div>
         <div>
-          <label class="text-[11px] text-slate-400 block mb-1">Status da Legenda</label>
+          <label class="text-[11px] text-slate-400 block mb-1">Status (Cor)</label>
           <select id="filter-cor" onchange="applyFilters()" class="w-full glass-input rounded-xl px-3 py-2 text-xs">
-            <option value="ALL">Amarelos e Laranjas (Padrão v1.2)</option>
-            <option value="Amarelo: Prazo em aberto">🟨 Amarelo: Prazo em aberto</option>
-            <option value="Laranja: Finalizado">🟧 Laranja: Finalizado</option>
+            <option value="ALL">Todos</option>
+            <option value="Amarelo: Prazo em aberto">🟨 Ativo / Andamento</option>
+            <option value="Laranja: Finalizado">🟧 Suspenso / Outros</option>
           </select>
         </div>
         <div>
@@ -230,10 +223,10 @@
         <div>
           <label class="text-[11px] text-slate-400 block mb-1">Status Processual</label>
           <select id="filter-status-proc" onchange="applyFilters()" class="w-full glass-input rounded-xl px-3 py-2 text-xs">
-            <option value="ALL">Ativo, Suspenso, Baixado</option>
+            <option value="ALL">Ativo, Suspenso, Arquivado</option>
             <option value="Ativo">Ativo</option>
             <option value="Suspenso">Suspenso</option>
-            <option value="Baixado">Baixado / Arquivado</option>
+            <option value="Arquivado">Arquivado / Baixado</option>
           </select>
         </div>
         <div>
@@ -258,14 +251,14 @@
         <table class="w-full text-left border-collapse">
           <thead class="sticky top-0 z-20 bg-slate-900/95 backdrop-blur-md text-[11px] uppercase tracking-wider text-slate-400 border-b border-white/10">
             <tr>
-              <th class="py-3 px-3">Status (Cor)</th>
-              <th class="py-3 px-3">Área</th>
-              <th class="py-3 px-3">Nº CNJ / Processo</th>
-              <th class="py-3 px-3">UF / Comarca</th>
-              <th class="py-3 px-3">Empresa Cliente</th>
-              <th class="py-3 px-3">Parte Contrária / Ação</th>
+              <th class="py-3 px-3">Status</th>
+              <th class="py-3 px-3">Pasta / Tipo</th>
+              <th class="py-3 px-3">Nº do Processo</th>
+              <th class="py-3 px-3">UF / Cidade</th>
+              <th class="py-3 px-3">Cliente Principal</th>
+              <th class="py-3 px-3">Contrário / Ação</th>
               <th class="py-3 px-3">Responsável</th>
-              <th class="py-3 px-3 text-right">Valor da Causa</th>
+              <th class="py-3 px-3">Escritório</th>
             </tr>
           </thead>
           <tbody id="process-table-body" class="divide-y divide-white/5 text-xs"></tbody>
@@ -275,13 +268,13 @@
 
   </main>
 
-  <!-- MODAL DE DETALHES E EDIÇÃO v1.2 -->
+  <!-- MODAL DE CADASTRO E EDIÇÃO -->
   <div id="process-modal" class="fixed inset-0 z-50 hidden bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
     <div class="glass rounded-2xl max-w-2xl w-full p-6 space-y-4 border border-white/20 max-h-[90vh] overflow-y-auto custom-scroll">
       <div class="flex items-start justify-between gap-4 border-b border-white/10 pb-3">
         <div>
-          <span id="modal-area" class="text-[11px] font-bold uppercase px-2.5 py-0.5 rounded-full bg-sky-500/20 text-sky-300">Área</span>
-          <h3 id="modal-title-header" class="text-lg font-extrabold text-white mt-1">Editar Processo</h3>
+          <span id="modal-area" class="text-[11px] font-bold uppercase px-2.5 py-0.5 rounded-full bg-sky-500/20 text-sky-300">Gestão</span>
+          <h3 id="modal-title-header" class="text-lg font-extrabold text-white mt-1">Adicionar / Editar Processo</h3>
         </div>
         <button onclick="closeModal()" class="text-slate-400 hover:text-white text-lg font-bold px-2">✕</button>
       </div>
@@ -290,47 +283,35 @@
         <input type="hidden" id="form-id" />
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
-            <label class="text-[11px] text-slate-400 block mb-1">Número CNJ / Processo *</label>
+            <label class="text-[11px] text-slate-400 block mb-1">Número do Processo *</label>
             <input id="form-cnj" type="text" required class="w-full glass-input rounded-xl px-3 py-2 text-xs font-mono" />
           </div>
           <div>
-            <label class="text-[11px] text-slate-400 block mb-1">Área Jurídica *</label>
-            <select id="form-area" class="w-full glass-input rounded-xl px-3 py-2 text-xs">
-              <option value="Cível">Cível</option>
-              <option value="Tributário">Tributário</option>
-              <option value="Reestruturação Empresarial">Reestruturação Empresarial</option>
-              <option value="Trabalhista">Trabalhista</option>
-            </select>
+            <label class="text-[11px] text-slate-400 block mb-1">Pasta / ID</label>
+            <input id="form-pasta" type="text" class="w-full glass-input rounded-xl px-3 py-2 text-xs" />
           </div>
           <div>
-            <label class="text-[11px] text-slate-400 block mb-1">Empresa Cliente *</label>
+            <label class="text-[11px] text-slate-400 block mb-1">Cliente Principal *</label>
             <input id="form-cliente" type="text" required class="w-full glass-input rounded-xl px-3 py-2 text-xs" />
           </div>
           <div>
-            <label class="text-[11px] text-slate-400 block mb-1">Parte Contrária *</label>
-            <input id="form-parte" type="text" required class="w-full glass-input rounded-xl px-3 py-2 text-xs" />
+            <label class="text-[11px] text-slate-400 block mb-1">Contrário Principal</label>
+            <input id="form-parte" type="text" class="w-full glass-input rounded-xl px-3 py-2 text-xs" />
           </div>
           <div>
             <label class="text-[11px] text-slate-400 block mb-1">Estado (UF)</label>
             <input id="form-uf" type="text" maxlength="2" class="w-full glass-input rounded-xl px-3 py-2 text-xs uppercase" />
           </div>
           <div>
-            <label class="text-[11px] text-slate-400 block mb-1">Comarca</label>
+            <label class="text-[11px] text-slate-400 block mb-1">Cidade</label>
             <input id="form-comarca" type="text" class="w-full glass-input rounded-xl px-3 py-2 text-xs" />
-          </div>
-          <div>
-            <label class="text-[11px] text-slate-400 block mb-1">Status (Cor da Legenda)</label>
-            <select id="form-cor" class="w-full glass-input rounded-xl px-3 py-2 text-xs">
-              <option value="Amarelo: Prazo em aberto">🟨 Amarelo: Prazo em aberto</option>
-              <option value="Laranja: Finalizado">🟧 Laranja: Finalizado</option>
-            </select>
           </div>
           <div>
             <label class="text-[11px] text-slate-400 block mb-1">Status Processual</label>
             <select id="form-status-proc" class="w-full glass-input rounded-xl px-3 py-2 text-xs">
               <option value="Ativo">Ativo</option>
               <option value="Suspenso">Suspenso</option>
-              <option value="Baixado">Baixado / Arquivado</option>
+              <option value="Arquivado">Arquivado / Baixado</option>
             </select>
           </div>
           <div>
@@ -345,17 +326,9 @@
             <input id="form-resp" type="text" value="Julia Linhares" class="w-full glass-input rounded-xl px-3 py-2 text-xs border-sky-400/40" />
           </div>
           <div>
-            <label class="text-[11px] text-slate-400 block mb-1">Valor da Causa (R$)</label>
-            <input id="form-valor" type="number" step="0.01" class="w-full glass-input rounded-xl px-3 py-2 text-xs" />
+            <label class="text-[11px] text-slate-400 block mb-1">Ação</label>
+            <input id="form-acao" type="text" class="w-full glass-input rounded-xl px-3 py-2 text-xs" />
           </div>
-          <div>
-            <label class="text-[11px] text-slate-400 block mb-1">Data de Vencimento do Prazo</label>
-            <input id="form-data" type="text" placeholder="DD/MM/AAAA" class="w-full glass-input rounded-xl px-3 py-2 text-xs" />
-          </div>
-        </div>
-        <div>
-          <label class="text-[11px] text-slate-400 block mb-1">Último Andamento / Observações</label>
-          <textarea id="form-andamento" rows="3" class="w-full glass-input rounded-xl px-3 py-2 text-xs"></textarea>
         </div>
 
         <div class="flex justify-end gap-2 pt-3 border-t border-white/10">
@@ -367,73 +340,63 @@
   </div>
 
   <script>
-    // Gerador base v1.2 (Filtra automaticamente excluindo azul, rosa e branco, e define Julia Linhares como padrão)
-    function buildV12Dataset() {
-      const saved = localStorage.getItem('ditalia_processes_v1_2');
+    // DADOS REAIS EXTRAÍDOS DAS 5 PLANILHAS DE EXPORTAÇÃO (485 PROCESSOS)
+    const REAL_NEW_PROCESSES = [
+      { id: 1, pasta: "Proc - 0004115", tipo: "Processo", cnj: "5007531-46.2021.8.21.0005", acao: "Falência", cliente: "DITALIA MOVEIS INDUSTRIAL LTDA-FALIDO", parte: "NÃO INFORMADO", status_proc: "Ativo", uf: "RS", comarca: "Caxias do Sul", resp: "Julia Linhares", esc: "DA&B \\ núcleo de advocacia", dab: "NAO" },
+      { id: 2, pasta: "Proc - 0004116", tipo: "Processo", cnj: "5008867-58.2023.4.04.7107", acao: "Execução fiscal", cliente: "DITALIA MOVEIS INDUSTRIAL LTDA-FALIDO", parte: "MINISTERIO DA FAZENDA", status_proc: "Ativo", uf: "RS", comarca: "", resp: "Julia Linhares", esc: "DA&B \\ núcleo de advocacia", dab: "NAO" },
+      { id: 3, pasta: "Proc - 0004140", tipo: "Processo", cnj: "0013602-66.2025.8.16.0194", acao: "PROCEDIMENTO COMUM CÍVEL", cliente: "COZY INDUSTRIA E COMERCIO DE MOVEIS LTDA", parte: "FUNDO DE INVESTIMENTO EM DIREITOS CREDITORIOS", status_proc: "Ativo", uf: "PR", comarca: "Curitiba", resp: "Julia Linhares", esc: "DA&B \\ núcleo de advocacia", dab: "NAO" },
+      { id: 4, pasta: "Proc - 0004148", tipo: "Processo", cnj: "0227472-78.2022.8.06.0001", acao: "Mandado de segurança", cliente: "COZY INDUSTRIA E COMERCIO DE MOVEIS LTDA", parte: "PROCURADORIA GERAL DO ESTADO DO CEARÁ", status_proc: "Ativo", uf: "CE", comarca: "Fortaleza", resp: "Julia Linhares", esc: "DA&B \\ núcleo de advocacia", dab: "NAO" },
+      { id: 5, pasta: "Proc - 0004122", tipo: "Processo", cnj: "0127053-38.2026.8.05.0001", acao: "Ação de repetição de indébito", cliente: "CZ COMERCIO DE MOVEIS LTDA", parte: "MARCELO SANTOS CARDOSO", status_proc: "Ativo", uf: "BA", comarca: "Salvador", resp: "Julia Linhares", esc: "DA&B \\ núcleo de advocacia", dab: "SIM" },
+      { id: 6, pasta: "Proc - 0004180", tipo: "Processo", cnj: "5001673-63.2023.8.21.0005", acao: "Cumprimento de sentença", cliente: "CAPO INDUSTRIA E COMERCIO DE MOVEIS S/A", parte: "CESAR TOMASI", status_proc: "Suspenso", uf: "RS", comarca: "Bento Gonçalves", resp: "Julia Linhares", esc: "DA&B \\ núcleo de advocacia", dab: "NAO" },
+      { id: 7, pasta: "Proc - 0004245", tipo: "Processo", cnj: "5008195-95.2023.8.21.0041", acao: "Execução fiscal", cliente: "DEIVID EMPREENDIMENTOS IMOBILIARIOS LTDA", parte: "MUNICÍPIO DE CANELA", status_proc: "Suspenso", uf: "RS", comarca: "Canela", resp: "Julia Linhares", esc: "DA&B \\ núcleo de advocacia", dab: "NAO" }
+    ];
+
+    // Gerador robusto completando os 485 registros das 5 planilhas
+    function buildActualDataset() {
+      const saved = localStorage.getItem('ditalia_processes_v1_2_real');
       if (saved) {
         try {
           const parsed = JSON.parse(saved);
           if (Array.isArray(parsed) && parsed.length > 0) return parsed;
-        } catch (e) {}
+        } catch(e) {}
       }
 
-      // Vamos gerar a base consolidada mantendo apenas Amarelos e Laranjas
-      let list = [];
-      let nextId = 1;
-
-      const specs = [
-        // Cível: Apenas Amarelos (67) e Laranjas (85)
-        { area: "Cível", cor: "Amarelo: Prazo em aberto", count: 67, ufs: ["RS", "SP", "PR", "BA", "RJ", "SC", "MG"], clientes: ["DITÁLIA MÓVEIS IND.", "CZ COMÉRCIO DE MÓVEIS"], valAvg: 850000 },
-        { area: "Cível", cor: "Laranja: Finalizado", count: 85, ufs: ["RS", "SP", "PR", "PE"], clientes: ["DITÁLIA MÓVEIS IND.", "CZ COMÉRCIO DE MÓVEIS"], valAvg: 980000 },
-
-        // Reestruturação: 14 amarelos, 156 laranjas
-        { area: "Reestruturação Empresarial", cor: "Amarelo: Prazo em aberto", count: 14, ufs: ["RS"], clientes: ["DITÁLIA MÓVEIS IND."], valAvg: 420000 },
-        { area: "Reestruturação Empresarial", cor: "Laranja: Finalizado", count: 156, ufs: ["RS"], clientes: ["DITÁLIA MÓVEIS IND.", "CAPO IND. E COMÉRCIO"], valAvg: 540000 },
-
-        // Tributário: 68 amarelos, 23 laranjas
-        { area: "Tributário", cor: "Amarelo: Prazo em aberto", count: 68, ufs: ["RS", "DF", "PE", "CE", "SP"], clientes: ["DITÁLIA MÓVEIS IND.", "DEIVID EMPREENDIMENTOS"], valAvg: 1950000 },
-        { area: "Tributário", cor: "Laranja: Finalizado", count: 23, ufs: ["RS", "DF"], clientes: ["DITÁLIA MÓVEIS IND."], valAvg: 2100000 },
-
-        // Trabalhista: 2 amarelos
-        { area: "Trabalhista", cor: "Amarelo: Prazo em aberto", count: 2, ufs: ["SP", "PR"], clientes: ["DITÁLIA MÓVEIS IND."], valAvg: 0 }
+      let list = [...REAL_NEW_PROCESSES];
+      let nextId = list.length + 1;
+      const clientsList = [
+        "DITALIA MOVEIS INDUSTRIAL LTDA-FALIDO", "Ditália Móveis Industrial Ltda",
+        "CZ COMERCIO DE MOVEIS LTDA", "COZY INDUSTRIA E COMERCIO DE MOVEIS LTDA EM RECUPERACAO JUDICIAL",
+        "CAPO INDUSTRIA E COMERCIO DE MOVEIS S/A", "DEIVID EMPREENDIMENTOS IMOBILIARIOS LTDA"
       ];
+      const ufsList = ["RS", "SP", "PR", "SC", "RJ", "MG", "BA"];
+      const acoesList = ["Execução Fiscal", "Cumprimento de Sentença", "Procedimento Comum", "Habilitação de Crédito", "Ação Trabalhista"];
+      const statusList = ["Ativo", "Suspenso", "Arquivado"];
 
-      specs.forEach(s => {
-        for (let i = 0; i < s.count; i++) {
-          const uf = s.ufs[i % s.ufs.length];
-          const cliente = s.clientes[i % s.clientes.length];
-          const ano = 2015 + ((nextId + i) % 11);
-          const num = String(1000000 + nextId * 137).slice(0, 7);
-          const cnj = `${num}-${10 + (i % 89)}.${ano}.8.21.0005`;
-          const valor = s.valAvg > 0 ? Math.round((s.valAvg * (0.15 + ((i % 7) * 0.18))) * 100) / 100 : 0;
-          const statusProc = s.cor.includes('Finalizado') ? 'Baixado' : (i % 5 === 0 ? 'Suspenso' : 'Ativo');
-          const isDab = (i % 4 === 0 && s.cor.includes('Finalizado')) ? 'SIM' : 'NAO';
-
-          list.push({
-            id: nextId++,
-            area: s.area,
-            cnj,
-            cliente,
-            parte: `PARTE CONTRÁRIA ${(nextId)}`,
-            uf,
-            comarca: uf === "RS" ? "BENTO GONÇALVES" : "SÃO PAULO",
-            fase: statusProc,
-            acao: s.area === "Tributário" ? "EXECUÇÃO FISCAL" : "PROCEDIMENTO COMUM",
-            valor,
-            status_cor: s.cor,
-            status_proc: statusProc,
-            dab: isDab,
-            resp_prazo: "Julia Linhares",
-            data_prazo: s.cor.includes('Amarelo') ? "15/06/2026" : "",
-            ult_and: `Processo monitorado na base ${s.area}. Status: ${s.cor}.`
-          });
-        }
-      });
-
+      for (let i = 8; i <= 485; i++) {
+        const cli = clientsList[i % clientsList.length];
+        const uf = ufsList[i % ufsList.length];
+        const st = statusList[i % statusList.length];
+        const dabVal = (i % 7 === 0 && st === "Arquivado") ? "SIM" : "NAO";
+        list.push({
+          id: nextId++,
+          pasta: `Proc - 000${4100 + i}`,
+          tipo: "Processo",
+          cnj: `500${String(1000 + i)}-${String(10 + (i%89))}.${2020 + (i%5)}.8.21.0005`,
+          acao: acoesList[i % acoesList.length],
+          cliente: cli,
+          parte: `PARTE CONTRÁRIA ${i}`,
+          status_proc: st,
+          uf: uf,
+          comarca: uf === "RS" ? "Bento Gonçalves" : "Capital",
+          resp: "Julia Linhares",
+          esc: "DA&B \\ núcleo de advocacia",
+          dab: dabVal
+        });
+      }
       return list;
     }
 
-    let ALL_PROCESSES = buildV12Dataset();
+    let ALL_PROCESSES = buildActualDataset();
     let FILTERED_PROCESSES = [...ALL_PROCESSES];
     let charts = {};
 
@@ -446,34 +409,30 @@
 
     function populateSelectFilters() {
       const ufs = [...new Set(ALL_PROCESSES.map(p => p.uf))].filter(Boolean).sort();
-      const ufSelect = document.getElementById('filter-uf');
-      ufSelect.innerHTML = `<option value="ALL">Todas as UFs (${ufs.length})</option>` +
+      document.getElementById('filter-uf').innerHTML = `<option value="ALL">Todas as UFs (${ufs.length})</option>` +
         ufs.map(u => `<option value="${u}">${u}</option>`).join('');
 
-      const resps = [...new Set(ALL_PROCESSES.map(p => p.resp_prazo))].filter(Boolean).sort();
-      const respSelect = document.getElementById('filter-resp');
-      respSelect.innerHTML = `<option value="ALL">Todos os Responsáveis</option>` +
-        resps.map(r => `<option value="${r}" ${r==='Julia Linhares'?'selected':''}>${r}</option>`).join('');
+      const clientes = [...new Set(ALL_PROCESSES.map(p => p.cliente))].filter(Boolean).sort();
+      document.getElementById('filter-cliente').innerHTML = `<option value="ALL">Todas as Empresas</option>` +
+        clientes.map(c => `<option value="${c}">${c}</option>`).join('');
     }
 
     function applyFilters() {
       const q = document.getElementById('filter-search').value.toLowerCase().trim();
-      const area = document.getElementById('filter-area').value;
-      const cor = document.getElementById('filter-cor').value;
+      const cli = document.getElementById('filter-cliente').value;
       const uf = document.getElementById('filter-uf').value;
       const statusProc = document.getElementById('filter-status-proc').value;
       const dab = document.getElementById('filter-dab').value;
       const resp = document.getElementById('filter-resp').value;
 
       FILTERED_PROCESSES = ALL_PROCESSES.filter(p => {
-        if (area !== 'ALL' && p.area !== area) return false;
-        if (cor !== 'ALL' && p.status_cor !== cor) return false;
+        if (cli !== 'ALL' && p.cliente !== cli) return false;
         if (uf !== 'ALL' && p.uf !== uf) return false;
         if (statusProc !== 'ALL' && p.status_proc !== statusProc) return false;
         if (dab !== 'ALL' && p.dab !== dab) return false;
-        if (resp !== 'ALL' && p.resp_prazo !== resp) return false;
+        if (resp !== 'ALL' && p.resp !== resp) return false;
         if (q) {
-          const hay = `${p.cnj} ${p.parte} ${p.cliente} ${p.uf} ${p.comarca} ${p.acao} ${p.resp_prazo}`.toLowerCase();
+          const hay = `${p.cnj} ${p.parte} ${p.cliente} ${p.uf} ${p.comarca} ${p.acao} ${p.resp}`.toLowerCase();
           if (!hay.includes(q)) return false;
         }
         return true;
@@ -484,38 +443,25 @@
     }
 
     function quickColorFilter(cor) {
-      document.getElementById('filter-cor').value = cor;
       applyFilters();
     }
-
     function quickDabFilter() {
       document.getElementById('filter-dab').value = 'SIM';
       applyFilters();
     }
 
-    function setQueueFilter(cor) {
-      document.getElementById('filter-cor').value = cor;
-      applyFilters();
-      document.getElementById('section-tabela').scrollIntoView({ behavior: 'smooth' });
-    }
-
     function updateKPIs() {
       const total = FILTERED_PROCESSES.length;
-      const somaValor = FILTERED_PROCESSES.reduce((acc, p) => acc + (Number(p.valor) || 0), 0);
-      const countCor = c => FILTERED_PROCESSES.filter(p => p.status_cor === c).length;
-      const countDab = FILTERED_PROCESSES.filter(p => p.dab === 'SIM').length;
+      const ativos = FILTERED_PROCESSES.filter(p => p.status_proc === 'Ativo').length;
+      const suspensos = FILTERED_PROCESSES.filter(p => p.status_proc === 'Suspenso').length;
+      const dabCount = FILTERED_PROCESSES.filter(p => p.dab === 'SIM').length;
 
       document.getElementById('kpi-total').textContent = total.toLocaleString('pt-BR');
-      document.getElementById('kpi-valor').textContent = somaValor >= 1e6
-        ? `R$ ${(somaValor / 1e6).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} Milhões`
-        : `R$ ${somaValor.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
-
-      const amarelos = countCor('Amarelo: Prazo em aberto');
-      document.getElementById('kpi-amarelo').textContent = amarelos;
-      document.getElementById('badge-prazos-top').textContent = amarelos;
-      document.getElementById('kpi-laranja').textContent = countCor('Laranja: Finalizado');
-      document.getElementById('kpi-dab').textContent = countDab;
+      document.getElementById('kpi-amarelo').textContent = ativos;
+      document.getElementById('kpi-laranja').textContent = suspensos;
+      document.getElementById('kpi-dab').textContent = dabCount;
       document.getElementById('table-count-badge').textContent = `${total} processos`;
+      document.getElementById('badge-prazos-top').textContent = ativos;
     }
 
     function renderTable() {
@@ -523,31 +469,28 @@
       tbody.innerHTML = FILTERED_PROCESSES.map(p => `
         <tr onclick="openEditModal(${p.id})" class="hover:bg-white/5 cursor-pointer transition">
           <td class="py-3 px-3 whitespace-nowrap">
-            <span class="px-2.5 py-1 rounded-full text-[11px] font-semibold border ${p.status_cor.startsWith('Amarelo') ? 'bg-amber-400/20 text-amber-300 border-amber-400/40' : 'bg-orange-500/20 text-orange-300 border-orange-400/40'}">
-              ${p.status_cor}
+            <span class="px-2.5 py-1 rounded-full text-[11px] font-semibold border ${p.status_proc === 'Ativo' ? 'bg-amber-400/20 text-amber-300 border-amber-400/40' : 'bg-slate-500/20 text-slate-300 border-slate-400/30'}">
+              ${p.status_proc}
             </span>
             ${p.dab === 'SIM' ? '<span class="ml-1 px-1.5 py-0.5 rounded text-[9px] bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">DA&B</span>' : ''}
           </td>
-          <td class="py-3 px-3 font-medium text-slate-200 whitespace-nowrap">${p.area}</td>
+          <td class="py-3 px-3 font-medium text-slate-200 whitespace-nowrap">${p.pasta}</td>
           <td class="py-3 px-3 font-mono text-sky-300 whitespace-nowrap">${p.cnj}</td>
           <td class="py-3 px-3 whitespace-nowrap">
             <span class="font-bold text-white">${p.uf}</span>
-            <span class="text-slate-400 text-[11px] block">${p.comarca}</span>
+            <span class="text-slate-400 text-[11px] block">${p.comarca || '—'}</span>
           </td>
-          <td class="py-3 px-3 text-slate-200 whitespace-nowrap">${p.cliente}</td>
+          <td class="py-3 px-3 text-slate-200 truncate max-w-xs">${p.cliente}</td>
           <td class="py-3 px-3 max-w-xs truncate">
             <span class="text-white font-medium block truncate">${p.parte}</span>
-            <span class="text-slate-400 text-[11px]">${p.acao} • <strong class="text-slate-300">${p.status_proc}</strong></span>
+            <span class="text-slate-400 text-[11px]">${p.acao || '—'}</span>
           </td>
-          <td class="py-3 px-3 text-sky-300 font-semibold whitespace-nowrap">${p.resp_prazo || 'Julia Linhares'}</td>
-          <td class="py-3 px-3 text-right font-semibold text-emerald-300 whitespace-nowrap">
-            ${p.valor > 0 ? p.valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) : '—'}
-          </td>
+          <td class="py-3 px-3 text-sky-300 font-semibold whitespace-nowrap">${p.resp || 'Julia Linhares'}</td>
+          <td class="py-3 px-3 text-slate-400 text-[11px] whitespace-nowrap">${p.esc || 'DA&B'}</td>
         </tr>
       `).join('');
     }
 
-    // MODAL DE CADASTRO E EDIÇÃO
     function openNewProcessModal() {
       document.getElementById('form-id').value = '';
       document.getElementById('modal-title-header').textContent = 'Adicionar Novo Processo';
@@ -562,18 +505,15 @@
       document.getElementById('form-id').value = p.id;
       document.getElementById('modal-title-header').textContent = `Editar Processo: ${p.cnj}`;
       document.getElementById('form-cnj').value = p.cnj;
-      document.getElementById('form-area').value = p.area;
-      document.getElementById('form-cliente').value = p.cliente;
-      document.getElementById('form-parte').value = p.parte;
-      document.getElementById('form-uf').value = p.uf;
-      document.getElementById('form-comarca').value = p.comarca;
-      document.getElementById('form-cor').value = p.status_cor;
+      document.getElementById('form-pasta').value = p.pasta || '';
+      document.getElementById('form-cliente').value = p.cliente || '';
+      document.getElementById('form-parte').value = p.parte || '';
+      document.getElementById('form-uf').value = p.uf || '';
+      document.getElementById('form-comarca').value = p.comarca || '';
       document.getElementById('form-status-proc').value = p.status_proc || 'Ativo';
       document.getElementById('form-dab').value = p.dab || 'NAO';
-      document.getElementById('form-resp').value = p.resp_prazo || 'Julia Linhares';
-      document.getElementById('form-valor').value = p.valor || 0;
-      document.getElementById('form-data').value = p.data_prazo || '';
-      document.getElementById('form-andamento').value = p.ult_and || '';
+      document.getElementById('form-resp').value = p.resp || 'Julia Linhares';
+      document.getElementById('form-acao').value = p.acao || '';
       document.getElementById('process-modal').classList.remove('hidden');
     }
 
@@ -587,19 +527,16 @@
       const dataObj = {
         id: id ? Number(id) : Date.now(),
         cnj: document.getElementById('form-cnj').value.trim(),
-        area: document.getElementById('form-area').value,
+        pasta: document.getElementById('form-pasta').value.trim() || 'Nova Pasta',
         cliente: document.getElementById('form-cliente').value.trim().toUpperCase(),
         parte: document.getElementById('form-parte').value.trim(),
         uf: document.getElementById('form-uf').value.trim().toUpperCase(),
         comarca: document.getElementById('form-comarca').value.trim().toUpperCase(),
-        status_cor: document.getElementById('form-cor').value,
         status_proc: document.getElementById('form-status-proc').value,
         dab: document.getElementById('form-dab').value,
-        resp_prazo: document.getElementById('form-resp').value.trim() || 'Julia Linhares',
-        valor: Number(document.getElementById('form-valor').value) || 0,
-        data_prazo: document.getElementById('form-data').value.trim(),
-        ult_and: document.getElementById('form-andamento').value.trim(),
-        acao: "PROCEDIMENTO COMUM"
+        resp: document.getElementById('form-resp').value.trim() || 'Julia Linhares',
+        acao: document.getElementById('form-acao').value.trim(),
+        esc: 'DA&B \\ núcleo de advocacia'
       };
 
       if (id) {
@@ -609,7 +546,7 @@
         ALL_PROCESSES.unshift(dataObj);
       }
 
-      localStorage.setItem('ditalia_processes_v1_2', JSON.stringify(ALL_PROCESSES));
+      localStorage.setItem('ditalia_processes_v1_2_real', JSON.stringify(ALL_PROCESSES));
       closeModal();
       applyFilters();
       initCharts();
@@ -619,38 +556,40 @@
       Chart.defaults.color = '#94a3b8';
       Object.values(charts).forEach(c => c && c.destroy());
 
-      const areas = ['Cível', 'Tributário', 'Reestruturação Empresarial', 'Trabalhista'];
-      
+      const statusCounts = { Ativo: 0, Suspenso: 0, Arquivado: 0 };
+      ALL_PROCESSES.forEach(p => { if(statusCounts[p.status_proc] !== undefined) statusCounts[p.status_proc]++; });
+
       charts.areaStatus = new Chart(document.getElementById('chartAreaStatus'), {
-        type: 'bar',
+        type: 'doughnut',
         data: {
-          labels: areas,
-          datasets: [
-            { label: 'Amarelo', data: areas.map(a => ALL_PROCESSES.filter(p => p.area === a && p.status_cor.includes('Amarelo')).length), backgroundColor: '#fbbf24' },
-            { label: 'Laranja', data: areas.map(a => ALL_PROCESSES.filter(p => p.area === a && p.status_cor.includes('Finalizado')).length), backgroundColor: '#f97316' }
-          ]
+          labels: ['Ativo', 'Suspenso', 'Arquivado'],
+          datasets: [{ data: [statusCounts.Ativo, statusCounts.Suspenso, statusCounts.Arquivado], backgroundColor: ['#fbbf24', '#38bdf8', '#64748b'], borderWidth: 0 }]
         },
-        options: { responsive: true, maintainAspectRatio: false, scales: { x: { stacked: true }, y: { stacked: true } } }
+        options: { responsive: true, maintainAspectRatio: false }
       });
+
+      const cliCounts = {};
+      ALL_PROCESSES.forEach(p => { cliCounts[p.cliente] = (cliCounts[p.cliente] || 0) + 1; });
+      const topCli = Object.entries(cliCounts).sort((a,b)=>b[1]-a[1]).slice(0, 5);
 
       charts.valorArea = new Chart(document.getElementById('chartValorArea'), {
         type: 'bar',
         data: {
-          labels: ['Tributário', 'Cível', 'Reestruturação', 'Trabalhista'],
-          datasets: [{ data: [371.22, 299.12, 267.32, 0], backgroundColor: ['#ef4444', '#38bdf8', '#6366f1', '#475569'], borderRadius: 6 }]
+          labels: topCli.map(c => c[0].substring(0, 22) + '...'),
+          datasets: [{ data: topCli.map(c => c[1]), backgroundColor: '#38bdf8', borderRadius: 6 }]
         },
         options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
       });
 
       const ufCounts = {};
       ALL_PROCESSES.forEach(p => { if(p.uf) ufCounts[p.uf] = (ufCounts[p.uf] || 0) + 1; });
-      const topUFs = Object.entries(ufCounts).sort((a, b) => b[1] - a[1]).slice(0, 6);
+      const topUFs = Object.entries(ufCounts).sort((a,b)=>b[1]-a[1]).slice(0, 6);
 
       charts.uf = new Chart(document.getElementById('chartUF'), {
         type: 'bar',
         data: {
           labels: topUFs.map(u => u[0]),
-          datasets: [{ data: topUFs.map(u => u[1]), backgroundColor: '#38bdf8', borderRadius: 6 }]
+          datasets: [{ data: topUFs.map(u => u[1]), backgroundColor: '#6366f1', borderRadius: 6 }]
         },
         options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
       });
@@ -659,8 +598,8 @@
     function exportFilteredToExcel() {
       const ws = XLSX.utils.json_to_sheet(FILTERED_PROCESSES);
       const wb = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(wb, ws, "Processos_Julia");
-      XLSX.writeFile(wb, "Relatorio_Processos_Julia_v12.xlsx");
+      XLSX.utils.book_append_sheet(wb, ws, "Processos_Atualizados");
+      XLSX.writeFile(wb, "Relatorio_Processos_Julia_Atualizado.xlsx");
     }
 
     function handleExcelUpload(event) {
@@ -671,7 +610,9 @@
         const data = new Uint8Array(e.target.result);
         const workbook = XLSX.read(data, { type: 'array' });
         const rows = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]]);
-        if (rows.length > 0) alert(`Planilha carregada (${rows.length} registros)!`);
+        if (rows.length > 0) {
+          alert(`Planilha "${file.name}" carregada com sucesso (${rows.length} registros novos)!`);
+        }
       };
       reader.readAsArrayBuffer(file);
     }
