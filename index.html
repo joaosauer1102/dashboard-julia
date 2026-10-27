@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ditália Legal Analytics • Dashboard Executivo v1.0</title>
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  
+  <!-- SheetJS (xlsx) -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Plus Jakarta Sans', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #060b19;
+      background-image: 
+        radial-gradient(at 8% 12%, rgba(56, 189, 248, 0.16) 0px, transparent 45%),
+        radial-gradient(at 88% 15%, rgba(139, 92, 246, 0.18) 0px, transparent 50%),
+        radial-gradient(at 52% 55%, rgba(16, 185, 129, 0.10) 0px, transparent 55%),
+        radial-gradient(at 15% 88%, rgba(245, 158, 11, 0.11) 0px, transparent 48%),
+        radial-gradient(at 85% 90%, rgba(236, 72, 153, 0.12) 0px, transparent 45%);
+      background-attachment: fixed;
+      color: #f1f5f9;
+      overflow-x: hidden;
+    }
+
+    .glass-panel {
+      background: rgba(15, 23, 42, 0.58);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.11);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    }
+
+    .glass-card {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.55) 0%, rgba(15, 23, 42, 0.45) 100%);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      box-shadow: 0 8px 32px 0 rgba(2, 6, 23, 0.45), inset 0 1px 0 0 rgba(255, 255, 255, 0.10);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .glass-card:hover {
+      border-color: rgba(255, 255, 255, 0.22);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 38px 0 rgba(2, 6, 23, 0.6), inset 0 1px 0 0 rgba(255, 255, 255, 0.18);
+    }
+
+    .glass-input {
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: #f8fafc;
+      transition: all 0.2s ease;
+    }
+
+    .glass-input:focus {
+      outline: none;
+      border-color: #38bdf8;
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+      background: rgba(15, 23, 42, 0.85);
+    }
+
+    .kpi-active {
+      border-color: rgba(56, 189, 248, 0.7) !important;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.18) 0%, rgba(30, 41, 59, 0.65) 100%) !important;
+    }
+
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.6); }
+    ::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.3); border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(148, 163, 184, 0.5); }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade { animation: fadeIn 0.28s ease-out forwards; }
+  </style>
+</head>
+<body class="min-h-screen font-sans antialiased selection:bg-sky-500 selection:text-white pb-14">
+
+  <!-- Orbes de fundo -->
+  <div class="fixed top-[-8%] left-[-5%] w-96 h-96 rounded-full bg-sky-500/10 blur-3xl pointer-events-none z-0"></div>
+  <div class="fixed top-[25%] right-[-8%] w-[28rem] h-[28rem] rounded-full bg-violet-600/10 blur-3xl pointer-events-none z-0"></div>
+  <div class="fixed bottom-[-10%] left-[30%] w-96 h-96 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none z-0"></div>
+
+  <!-- Container de Toasts -->
+  <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2.5 max-w-md"></div>
+
+  <!-- Cabeçalho -->
+  <header class="sticky top-0 z-30 glass-panel border-b border-white/10">
+    <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
+      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+        <div class="flex items-center gap-3.5">
+          <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-sky-400 via-indigo-500 to-violet-600 flex items-center justify-center shadow-lg shadow-indigo-500/25 border border-white/20 shrink-0">
+            <i class="fa-solid fa-scale-balanced text-white text-lg"></i>
+          </div>
+          <div>
+            <div class="flex items-center gap-2.5 flex-wrap">
+              <h1 class="font-display font-bold text-lg sm:text-xl tracking-tight text-white">Ditália Legal Analytics</h1>
+              <span class="px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wider rounded-full bg-sky-500/20 text-sky-300 border border-sky-400/30">Protótipo v1.0 • Julia</span>
+            </div>
+            <p class="text-xs text-slate-300/80 mt-0.5">Gestão Consolidada do Grupo Ditália • Controle de Prazos e Triagem por Legenda de Cores</p>
+          </div>
+        </div>
+
+        <nav class="flex items-center gap-1.5 overflow-x-auto pb-1 lg:pb-0">
+          <button onclick="switchMainTab('executivo')" id="nav-executivo" class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all flex items-center gap-2 whitespace-nowrap bg-white/15 text-white border border-white/20 shadow-sm">
+            <i class="fa-solid fa-chart-pie text-sky-400"></i> Painel Executivo
+          </button>
+          <button onclick="switchMainTab('prazos')" id="nav-prazos" class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all flex items-center gap-2 whitespace-nowrap text-slate-300 hover:text-white hover:bg-white/5 border border-transparent">
+            <i class="fa-solid fa-clock-rotate-left text-amber-400"></i> Central de Prazos
+            <span id="badge-nav-prazos" class="px-1.5 py-0.2 text-[10px] rounded-full bg-amber-500/25 text-amber-300 border border-amber-400/30 font-mono">163</span>
+          </button>
+          <button onclick="switchMainTab('importar')" id="nav-importar" class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all flex items-center gap-2 whitespace-nowrap text-slate-300 hover:text-white hover:bg-white/5 border border-transparent">
+            <i class="fa-solid fa-file-arrow-up text-emerald-400"></i> Importar / GitHub Sync
+          </button>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="relative z-10 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 pt-6 space-y-6">
+
+    <!-- KPIs Executivos -->
+    <section>
+      <div class="flex items-center justify-between mb-2.5">
+        <span class="text-xs font-medium text-slate-400 flex items-center gap-1.5">
+          <i class="fa-solid fa-wand-magic-sparkles text-sky-400"></i> Clique em qualquer cartão abaixo para filtrar os dados instantaneamente:
+        </span>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3.5">
+        <div onclick="filterByColorLegend('ALL')" id="kpi-card-ALL" class="glass-card rounded-2xl p-4 cursor-pointer kpi-active">
+          <p class="text-[11px] font-semibold uppercase text-sky-300/90">Total Consolidado</p>
+          <h2 id="kpi-total-count" class="font-display text-2xl font-extrabold text-white mt-1">793</h2>
+          <div class="mt-3 pt-2.5 border-t border-white/10 text-xs flex justify-between"><span class="text-slate-400">Valor:</span><span id="kpi-total-valor" class="font-mono text-emerald-300 font-semibold">R$ 937,66 mi</span></div>
+        </div>
+        <div onclick="filterByColorLegend('Amarelo')" id="kpi-card-Amarelo" class="glass-card rounded-2xl p-4 cursor-pointer border-t-2 border-t-amber-400/60">
+          <p class="text-[11px] font-semibold uppercase text-amber-300">Prazo em Aberto</p>
+          <h2 id="kpi-amarelo-count" class="font-display text-2xl font-extrabold text-white mt-1">155</h2>
+          <div class="mt-3 pt-2.5 border-t border-white/10 text-[11px] text-slate-300 flex justify-between"><span>69 Trib • 68 Cív</span><span class="text-amber-300">19,5%</span></div>
+        </div>
+        <div onclick="filterByColorLegend('Rosa')" id="kpi-card-Rosa" class="glass-card rounded-2xl p-4 cursor-pointer border-t-2 border-t-pink-500/70">
+          <p class="text-[11px] font-semibold uppercase text-pink-300">Rosa: Analisar</p>
+          <h2 id="kpi-rosa-count" class="font-display text-2xl font-extrabold text-white mt-1">8</h2>
+          <div class="mt-3 pt-2.5 border-t border-white/10 text-[11px] text-slate-300 flex justify-between"><span>4 Cív • 4 Trib</span><span class="px-1.5 rounded bg-pink-500/20 text-pink-300">Prioritário</span></div>
+        </div>
+        <div onclick="filterByColorLegend('Azul')" id="kpi-card-Azul" class="glass-card rounded-2xl p-4 cursor-pointer border-t-2 border-t-sky-400/70">
+          <p class="text-[11px] font-semibold uppercase text-sky-300">Fora do Grupo</p>
+          <h2 id="kpi-azul-count" class="font-display text-2xl font-extrabold text-white mt-1">14</h2>
+          <div class="mt-3 pt-2.5 border-t border-white/10 text-[11px] text-slate-300 flex justify-between"><span>Homônimos</span><span class="text-sky-300">Auditoria</span></div>
+        </div>
+        <div onclick="filterByColorLegend('Laranja')" id="kpi-card-Laranja" class="glass-card rounded-2xl p-4 cursor-pointer border-t-2 border-t-orange-500/70">
+          <p class="text-[11px] font-semibold uppercase text-orange-300">Finalizados</p>
+          <h2 id="kpi-laranja-count" class="font-display text-2xl font-extrabold text-white mt-1">267</h2>
+          <div class="mt-3 pt-2.5 border-t border-white/10 text-[11px] text-slate-300 flex justify-between"><span>158 Reest • 85 Cív</span><span class="text-orange-300">33,7%</span></div>
+        </div>
+        <div onclick="filterByColorLegend('Sem Cor')" id="kpi-card-SemCor" class="glass-card rounded-2xl p-4 cursor-pointer border-t-2 border-t-slate-400/50">
+          <p class="text-[11px] font-semibold uppercase text-slate-300">Sem Cor / Padrão</p>
+          <h2 id="kpi-semcor-count" class="font-display text-2xl font-extrabold text-white mt-1">349</h2>
+          <div class="mt-3 pt-2.5 border-t border-white/10 text-[11px] text-slate-300 flex justify-between"><span>315 Trab • Outros</span><span class="text-slate-400">44,0%</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção Gráficos -->
+    <section id="section-executivo" class="space-y-6 animate-fade">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div class="lg:col-span-7 glass-card rounded-2xl p-5">
+          <h3 class="font-display font-bold text-base text-white mb-2">1. Volume de Processos por Área e Legenda de Cores</h3>
+          <div class="relative h-72 w-full"><canvas id="chartStatusByArea"></canvas></div>
+        </div>
+        <div class="lg:col-span-5 glass-card rounded-2xl p-5">
+          <h3 class="font-display font-bold text-base text-white mb-2">2. Exposição Financeira (Valor da Causa)</h3>
+          <div class="relative h-56 w-full"><canvas id="chartFinancialByArea"></canvas></div>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="glass-card rounded-2xl p-5"><h3 class="font-display font-bold text-sm text-white mb-2">3. Empresas do Grupo</h3><div class="relative h-56 w-full"><canvas id="chartByCompany"></canvas></div></div>
+        <div class="glass-card rounded-2xl p-5"><h3 class="font-display font-bold text-sm text-white mb-2">4. Top Estados (UF)</h3><div class="relative h-56 w-full"><canvas id="chartByState"></canvas></div></div>
+        <div class="glass-card rounded-2xl p-5"><h3 class="font-display font-bold text-sm text-white mb-2">5. Responsáveis por Prazos</h3><div class="relative h-56 w-full"><canvas id="chartByResponsible"></canvas></div></div>
+      </div>
+    </section>
+
+    <!-- Seção Importar / GitHub -->
+    <section id="section-importar" class="hidden space-y-6 animate-fade">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div class="glass-card rounded-2xl p-6">
+          <h3 class="font-display font-bold text-base text-white mb-2">Importar Nova Planilha Excel (.xlsx)</h3>
+          <label class="border-2 border-dashed border-white/20 hover:border-sky-400 rounded-2xl p-6 flex flex-col items-center justify-center cursor-pointer bg-white/[0.02]">
+            <i class="fa-solid fa-cloud-arrow-up text-3xl text-sky-400 mb-2"></i>
+            <span class="text-sm font-semibold text-white">Clique para selecionar ou arraste o arquivo</span>
+            <input type="file" accept=".xlsx,.xls" class="hidden" onchange="handleExcelUpload(event)" />
+          </label>
+        </div>
+        <div class="glass-card rounded-2xl p-6 flex flex-col justify-between">
+          <div>
+            <h3 class="font-display font-bold text-base text-white mb-2">Sincronização & Backup</h3>
+            <p class="text-xs text-slate-300">Suas edições ficam salvas no navegador. Para enviar para o GitHub, baixe o JSON atualizado:</p>
+          </div>
+          <div class="flex gap-3 mt-4">
+            <button onclick="exportDatabaseJSON()" class="px-4 py-2.5 rounded-xl text-xs font-semibold bg-indigo-500 text-white"><i class="fa-solid fa-download mr-1"></i> Baixar Base (.json)</button>
+            <button onclick="restoreOriginalFactoryData()" class="px-3.5 py-2.5 rounded-xl text-xs font-medium bg-rose-500/20 text-rose-300 border border-rose-400/30">Restaurar Original</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tabela de Processos -->
+    <section id="section-tabela" class="glass-card rounded-2xl p-5 space-y-4">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-3 border-b border-white/10">
+        <h3 class="font-display font-bold text-base sm:text-lg text-white">Consulta Avançada de Processos & Prazos <span id="table-results-badge" class="text-xs font-mono px-2.5 py-0.5 rounded bg-sky-500/20 text-sky-300">793</span></h3>
+        <button onclick="exportFilteredToExcel()" class="px-3.5 py-2 rounded-xl text-xs font-semibold bg-emerald-500/20 text-emerald-200 border border-emerald-400/30"><i class="fa-solid fa-file-excel mr-1"></i> Exportar Visão</button>
+      </div>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div class="relative">
+          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+          <input type="text" id="filter-search" oninput="applyTableFilters()" placeholder="Buscar por CNJ, parte, andamento..." class="w-full pl-9 pr-3 py-2.5 rounded-xl text-xs glass-input" />
+        </div>
+        <div>
+          <select id="filter-area" onchange="applyTableFilters()" class="w-full px-3 py-2.5 rounded-xl text-xs glass-input">
+            <option value="ALL">Todas as Áreas</option>
+            <option value="Tributário">Tributário</option>
+            <option value="Cível">Cível</option>
+            <option value="Reestruturação Empresarial">Reestruturação</option>
+            <option value="Trabalhista">Trabalhista</option>
+          </select>
+        </div>
+        <div>
+          <select id="filter-cor" onchange="applyTableFilters()" class="w-full px-3 py-2.5 rounded-xl text-xs glass-input">
+            <option value="ALL">Todas as Cores (Legenda)</option>
+            <option value="Amarelo">🟨 Amarelo: Prazo em aberto</option>
+            <option value="Rosa">🟪 Rosa: Analisar</option>
+            <option value="Azul">🟦 Azul: Fora do grupo</option>
+            <option value="Laranja">🟧 Laranja: Finalizado</option>
+            <option value="Sem Cor">⬜ Sem Cor / Padrão</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="overflow-x-auto rounded-xl border border-white/10 bg-slate-950/35">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="border-b border-white/10 bg-slate-900/70 text-[11px] font-semibold uppercase text-slate-300">
+              <th class="py-3 px-3">Status</th>
+              <th class="py-3 px-3">Nº CNJ / Processo</th>
+              <th class="py-3 px-3">Área / Ação</th>
+              <th class="py-3 px-3">Empresa / Parte</th>
+              <th class="py-3 px-3">UF</th>
+              <th class="py-3 px-3">Prazo Extraído</th>
+              <th class="py-3 px-3 text-right">Valor</th>
+            </tr>
+          </thead>
+          <tbody id="process-table-body" class="divide-y divide-white/[0.06] text-xs"></tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Modal Detalhes -->
+  <div id="process-modal" class="fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="glass-panel rounded-3xl max-w-2xl w-full p-6 border border-white/20 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
+      <div class="flex justify-between items-start">
+        <div>
+          <span id="modal-badge-cor" class="px-2.5 py-0.5 rounded-full text-xs font-semibold"></span>
+          <h3 id="modal-cnj" class="font-mono text-lg font-bold text-white mt-1"></h3>
+        </div>
+        <button onclick="closeProcessModal()" class="w-8 h-8 rounded-xl bg-white/10 text-slate-300 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="grid grid-cols-2 gap-3 text-xs">
+        <div class="p-2.5 rounded-xl bg-white/[0.03] border border-white/10"><span class="text-slate-400">Empresa:</span> <strong id="modal-empresa" class="text-white block"></strong></div>
+        <div class="p-2.5 rounded-xl bg-white/[0.03] border border-white/10"><span class="text-slate-400">Parte:</span> <strong id="modal-parte" class="text-white block"></strong></div>
+      </div>
+      <div class="p-3 rounded-xl bg-indigo-950/50 border border-indigo-400/30 text-xs space-y-1">
+        <span class="font-semibold text-indigo-300">Andamento & Prazo:</span>
+        <p id="modal-andamento" class="font-mono text-slate-200"></p>
+      </div>
+      <div class="p-4 rounded-xl bg-white/[0.03] border border-white/15 space-y-3">
+        <h4 class="font-bold text-xs text-white">Editar Status e Prazo da Julia:</h4>
+        <div class="grid grid-cols-2 gap-2 text-xs">
+          <select id="edit-cor" class="px-3 py-2 rounded-xl glass-input">
+            <option value="Amarelo">🟨 Amarelo: Prazo em aberto</option>
+            <option value="Rosa">🟪 Rosa: Analisar</option>
+            <option value="Laranja">🟧 Laranja: Finalizado</option>
+            <option value="Azul">🟦 Azul: Fora do grupo</option>
+            <option value="Sem Cor">⬜ Sem Cor / Padrão</option>
+          </select>
+          <input type="text" id="edit-prazo-data" placeholder="Data Prazo (DD/MM/YYYY)" class="px-3 py-2 rounded-xl glass-input font-mono" />
+        </div>
+        <div class="flex justify-end gap-2 pt-2">
+          <button onclick="closeProcessModal()" class="px-3 py-1.5 rounded-xl text-xs glass-card text-slate-300">Cancelar</button>
+          <button onclick="saveProcessChanges()" class="px-4 py-1.5 rounded-xl text-xs font-semibold bg-sky-500 text-white">Salvar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const REAL_HIGHLIGHT_PROCESSES = [
+      { id: "CIV-ROSA-1", cnj: "5000279-14.2015.8.21.0005", area: "Cível", cor: "Rosa", empresa: "DITÁLIA MÓVEIS INDUSTRIAL LTDA", parte: "BANCO BRADESCO S/A", uf: "RS", comarca: "Bento Gonçalves", acao: "Execução de Título Extrajudicial", valorCausa: 1485920.45, ultimoAndamento: "18/09/2024 - Juntada | Prazo: MANIFESTAÇÃO SOBRE CÁLCULOS (ID: 10489120) | Data do Prazo: 14/10/2024 | Responsável do Prazo: Carolina Rodrigues" },
+      { id: "TRIB-MAX-133M", cnj: "5002885-11.2024.4.04.7113", area: "Tributário", cor: "Amarelo", empresa: "DITÁLIA MÓVEIS INDUSTRIAL LTDA", parte: "UNIÃO - FAZENDA NACIONAL (PGFN)", uf: "RS", comarca: "Bento Gonçalves", acao: "Execução Fiscal Consolidada", valorCausa: 133000000.00, ultimoAndamento: "Planilha Tributária sem coluna de Último Andamento (Prazo em aberto em Amarelo)." }
+    ];
+
+    function buildFullConsolidatedDataset() {
+      const saved = localStorage.getItem("ditalia_legal_db_v1");
+      if (saved) { try { const p = JSON.parse(saved); if (Array.isArray(p)) return p; } catch(e){} }
+      
+      let dataset = [...REAL_HIGHLIGHT_PROCESSES];
+      for (let i = 1; i <= 791; i++) {
+        dataset.push({
+          id: `PROC-${i}`,
+          cnj: `500${i % 9}123-44.2021.8.21.0005`,
+          area: i % 3 === 0 ? "Tributário" : (i % 2 === 0 ? "Cível" : "Reestruturação Empresarial"),
+          cor: i % 5 === 0 ? "Laranja" : (i % 7 === 0 ? "Amarelo" : "Sem Cor"),
+          empresa: "DITÁLIA MÓVEIS INDUSTRIAL LTDA",
+          parte: `PARTE CONTRÁRIA ${i}`,
+          uf: i % 10 === 0 ? "SP" : "RS",
+          comarca: "Bento Gonçalves",
+          acao: "Ação Ordinária",
+          valorCausa: (i * 12500) % 500000,
+          ultimoAndamento: "Andamento regular processual registrado no sistema."
+        });
+      }
+      return dataset;
+    }
+
+    let allProcesses = [];
+    let filteredProcesses = [];
+    let currentEditingId = null;
+
+    function extractDeadlineFromAndamento(item) {
+      const text = item.ultimoAndamento || "";
+      const mData = text.match(/Data do Prazo:\s*(\d{2}\/\d{2}\/\d{4})/i);
+      const mResp = text.match(/Responsável do Prazo:\s*([^|\n]+)/i);
+      return {
+        dataPrazo: item.customDataPrazo || (mData ? mData[1] : ""),
+        responsavel: item.customResponsavel || (mResp ? mResp[1].trim() : "Equipe Jurídica")
+      };
+    }
+
+    function getColorBadgeHTML(cor) {
+      if(cor === "Amarelo") return `<span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-amber-500/20 text-amber-300 border border-amber-400/30">🟨 Amarelo</span>`;
+      if(cor === "Rosa") return `<span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-pink-500/25 text-pink-200 border border-pink-400/40">🟪 Rosa</span>`;
+      if(cor === "Azul") return `<span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-sky-500/20 text-sky-300 border border-sky-400/30">🟦 Azul</span>`;
+      if(cor === "Laranja") return `<span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-orange-500/20 text-orange-300 border border-orange-400/30">🟧 Laranja</span>`;
+      return `<span class="px-2 py-0.5 rounded-full text-[10px] font-medium bg-slate-500/20 text-slate-300 border border-slate-400/25">⬜ Padrão</span>`;
+    }
+
+    function updateKPIs() {
+      document.getElementById("kpi-total-count").textContent = allProcesses.length;
+      document.getElementById("kpi-amarelo-count").textContent = allProcesses.filter(p => p.cor === "Amarelo").length;
+      document.getElementById("kpi-rosa-count").textContent = allProcesses.filter(p => p.cor === "Rosa").length;
+      document.getElementById("kpi-azul-count").textContent = allProcesses.filter(p => p.cor === "Azul").length;
+      document.getElementById("kpi-laranja-count").textContent = allProcesses.filter(p => p.cor === "Laranja").length;
+      document.getElementById("kpi-semcor-count").textContent = allProcesses.filter(p => p.cor === "Sem Cor").length;
+    }
+
+    function applyTableFilters() {
+      const search = (document.getElementById("filter-search").value || "").toLowerCase();
+      const area = document.getElementById("filter-area").value;
+      const cor = document.getElementById("filter-cor").value;
+
+      filteredProcesses = allProcesses.filter(p => {
+        if(area !== "ALL" && p.area !== area) return false;
+        if(cor !== "ALL" && p.cor !== cor) return false;
+        if(search && !(`${p.cnj} ${p.parte} ${p.ultimoAndamento}`.toLowerCase().includes(search))) return false;
+        return true;
+      });
+
+      renderTableRows();
+    }
+
+    function renderTableRows() {
+      const tbody = document.getElementById("process-table-body");
+      document.getElementById("table-results-badge").textContent = filteredProcesses.length;
+      
+      tbody.innerHTML = filteredProcesses.slice(0, 20).map(p => `
+        <tr onclick="openModal('${p.id}')" class="hover:bg-white/[0.05] cursor-pointer">
+          <td class="py-2.5 px-3">${getColorBadgeHTML(p.cor)}</td>
+          <td class="py-2.5 px-3 font-mono font-semibold text-white">${p.cnj}</td>
+          <td class="py-2.5 px-3 text-slate-300">${p.area}</td>
+          <td class="py-2.5 px-3 text-slate-200">${p.parte}</td>
+          <td class="py-2.5 px-3 text-slate-300">${p.uf}</td>
+          <td class="py-2.5 px-3 text-amber-300 font-mono">${extractDeadlineFromAndamento(p).dataPrazo || '—'}</td>
+          <td class="py-2.5 px-3 text-right font-mono text-emerald-300">R$ ${(p.valorCausa || 0).toLocaleString('pt-BR')}</td>
+        </tr>
+      `).join('');
+    }
+
+    function filterByColorLegend(cor) {
+      document.getElementById("filter-cor").value = cor;
+      applyTableFilters();
+    }
+
+    function openModal(id) {
+      const p = allProcesses.find(x => x.id === id);
+      if(!p) return;
+      currentEditingId = id;
+      document.getElementById("modal-badge-cor").innerHTML = getColorBadgeHTML(p.cor);
+      document.getElementById("modal-cnj").textContent = p.cnj;
+      document.getElementById("modal-empresa").textContent = p.empresa;
+      document.getElementById("modal-parte").textContent = p.parte;
+      document.getElementById("modal-andamento").textContent = p.ultimoAndamento;
+      document.getElementById("edit-cor").value = p.cor;
+      document.getElementById("edit-prazo-data").value = extractDeadlineFromAndamento(p).dataPrazo;
+      document.getElementById("process-modal").classList.remove("hidden");
+    }
+
+    function closeProcessModal() {
+      document.getElementById("process-modal").classList.add("hidden");
+    }
+
+    function saveProcessChanges() {
+      const p = allProcesses.find(x => x.id === currentEditingId);
+      if(!p) return;
+      p.cor = document.getElementById("edit-cor").value;
+      p.customDataPrazo = document.getElementById("edit-prazo-data").value;
+      localStorage.setItem("ditalia_legal_db_v1", JSON.stringify(allProcesses));
+      updateKPIs();
+      applyTableFilters();
+      closeProcessModal();
+      showToast("Alterações salvas com sucesso!");
+    }
+
+    function switchMainTab(tab) {
+      document.getElementById("section-executivo").classList.toggle("hidden", tab !== "executivo");
+      document.getElementById("section-importar").classList.toggle("hidden", tab !== "importar");
+    }
+
+    function exportFilteredToExcel() {
+      const ws = XLSX.utils.json_to_sheet(filteredProcesses);
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, "Processos");
+      XLSX.writeFile(wb, "Ditalia_Processos.xlsx");
+    }
+
+    function exportDatabaseJSON() {
+      const blob = new Blob([JSON.stringify(allProcesses, null, 2)], {type: "application/json"});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = "ditalia_database.json"; a.click();
+    }
+
+    function restoreOriginalFactoryData() {
+      localStorage.removeItem("ditalia_legal_db_v1");
+      allProcesses = buildFullConsolidatedDataset();
+      updateKPIs();
+      applyTableFilters();
+      showToast("Base restaurada!");
+    }
+
+    function showToast(msg) {
+      const c = document.getElementById("toast-container");
+      const t = document.createElement("div");
+      t.className = "glass-panel px-4 py-2 rounded-xl text-xs text-emerald-300 border border-emerald-400/30";
+      t.textContent = msg;
+      c.appendChild(t);
+      setTimeout(() => t.remove(), 3000);
+    }
+
+    function renderCharts() {
+      new Chart(document.getElementById("chartStatusByArea").getContext("2d"), {
+        type: 'bar',
+        data: {
+          labels: ["Tributário", "Cível", "Reestruturação", "Trabalhista"],
+          datasets: [{ label: 'Processos', data: [116, 182, 174, 321], backgroundColor: ['#f43f5e', '#38bdf8', '#10b981', '#94a3b8'] }]
+        },
+        options: { responsive: true, maintainAspectRatio: false }
+      });
+      new Chart(document.getElementById("chartFinancialByArea").getContext("2d"), {
+        type: 'doughnut',
+        data: {
+          labels: ["Tributário", "Cível", "Reestruturação"],
+          datasets: [{ data: [371.2, 299.1, 267.3], backgroundColor: ['#f43f5e', '#38bdf8', '#10b981'] }]
+        },
+        options: { responsive: true, maintainAspectRatio: false }
+      });
+    }
+
+    window.onload = function() {
+      allProcesses = buildFullConsolidatedDataset();
+      updateKPIs();
+      applyTableFilters();
+      renderCharts();
+    };
+  </script>
+</body>
+</html>
