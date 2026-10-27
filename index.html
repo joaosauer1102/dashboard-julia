@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ditália Legal Analytics — Dashboard v1.2.3</title>
+  <title>Ditália Legal Analytics — Dashboard v1.3</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
@@ -55,6 +55,8 @@
     .custom-scroll::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.5); border-radius: 6px; }
     .custom-scroll::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.35); border-radius: 6px; }
     .custom-scroll::-webkit-scrollbar-thumb:hover { background: rgba(56, 189, 248, 0.6); }
+    th.sortable { cursor: pointer; user-select: none; }
+    th.sortable:hover { color: #38bdf8; background: rgba(56, 189, 248, 0.08); }
   </style>
 </head>
 <body class="min-h-screen pb-12">
@@ -69,7 +71,7 @@
         <div>
           <div class="flex items-center gap-2">
             <h1 class="text-lg font-bold tracking-tight text-white">Ditália Legal Analytics</h1>
-            <span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-300 border border-sky-400/30">v1.2.3</span>
+            <span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-300 border border-sky-400/30">v1.3</span>
           </div>
           <p class="text-xs text-slate-400">Painel de Processos e Prazos — Dra. Julia Linhares (Grupo Ditália)</p>
         </div>
@@ -91,7 +93,7 @@
 
   <main class="max-w-[1600px] mx-auto px-6 pt-6 space-y-6">
 
-    <!-- KPIs DE TOPO COM O NOVO CARD DE PRAZOS PARA ESTA SEMANA -->
+    <!-- KPIs DE TOPO -->
     <section class="grid grid-cols-1 md:grid-cols-5 gap-4">
       <div class="glass rounded-2xl p-4">
         <div class="flex items-center justify-between text-xs text-slate-400">
@@ -111,7 +113,6 @@
         <div class="text-[11px] text-slate-400 mt-1">Em andamento</div>
       </div>
 
-      <!-- NOVO CARD: PRAZOS PARA ESTA SEMANA -->
       <div onclick="filterWeekDeadlines()" class="glass rounded-2xl p-4 border-l-4 border-l-sky-400 cursor-pointer hover:border-sky-300 transition">
         <div class="flex items-center justify-between text-xs text-sky-200">
           <span>Prazos p/ Esta Semana</span>
@@ -182,7 +183,7 @@
       </div>
     </section>
 
-    <!-- SEÇÃO GLOBAL DE CONSULTA DE PROCESSOS COM FILTRO DE PRAZOS -->
+    <!-- SEÇÃO GLOBAL DE CONSULTA DE PROCESSOS -->
     <section id="section-tabela" class="glass rounded-2xl p-5 space-y-4">
       <div class="flex flex-wrap items-center justify-between gap-3">
         <div>
@@ -201,8 +202,8 @@
         </div>
       </div>
 
-      <!-- BARRA DE FILTROS v1.2.3 (COM FILTRO DE PRAZOS E CALENDÁRIO PERSONALIZADO) -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-10 gap-3 items-end">
+      <!-- BARRA DE FILTROS v1.3 (COM CLIENTE E RESPONSÁVEL RESTAURADOS) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-10 gap-3 items-end">
         <div class="lg:col-span-2">
           <label class="text-[11px] text-slate-400 block mb-1">Busca Rápida</label>
           <input id="filter-search" type="text" oninput="applyFilters()" placeholder="CNJ, parte, vara..." class="w-full glass-input rounded-xl px-3 py-2 text-xs" />
@@ -214,9 +215,16 @@
           </select>
         </div>
         <div>
+          <label class="text-[11px] text-slate-400 block mb-1">Responsável</label>
+          <select id="filter-resp" onchange="applyFilters()" class="w-full glass-input rounded-xl px-3 py-2 text-xs">
+            <option value="ALL">Todos</option>
+            <option value="Julia Linhares" selected>Julia Linhares</option>
+          </select>
+        </div>
+        <div>
           <label class="text-[11px] text-sky-300 font-semibold block mb-1">Filtro de Prazos</label>
           <select id="filter-prazo" onchange="onPrazoFilterChange()" class="w-full glass-input rounded-xl px-3 py-2 text-xs border-sky-400/40">
-            <option value="ALL">Todos os Prazos</option>
+            <option value="ALL">Todos</option>
             <option value="hoje">Hoje</option>
             <option value="amanha">Amanhã</option>
             <option value="7dias">Próximos 7 dias</option>
@@ -226,7 +234,7 @@
           </select>
         </div>
 
-        <!-- CAMPOS DE CALENDÁRIO PERSONALIZADO (APARECEM Só SE SELECIONADO) -->
+        <!-- CAMPOS DE CALENDÁRIO PERSONALIZADO -->
         <div id="custom-date-container" class="hidden lg:col-span-2 grid grid-cols-2 gap-1 bg-slate-900/80 p-1.5 rounded-xl border border-sky-400/30">
           <div>
             <label class="text-[9px] text-slate-400 block">De:</label>
@@ -268,19 +276,19 @@
         </div>
       </div>
 
-      <!-- TABELA COM A COLUNA DE PRAZO RETORNADA NA v1.2.3 -->
+      <!-- TABELA COM ORDENAÇÃO AO CLICAR NO CABEÇALHO (v1.3) -->
       <div class="max-h-[580px] overflow-y-auto overflow-x-auto custom-scroll rounded-xl border border-white/10 bg-slate-950/50">
         <table class="w-full text-left border-collapse">
           <thead class="sticky top-0 z-20 bg-slate-900/95 backdrop-blur-md text-[11px] uppercase tracking-wider text-slate-400 border-b border-white/10">
             <tr>
-              <th class="py-3 px-3">Status</th>
-              <th class="py-3 px-3">Prazo / Vencimento</th>
-              <th class="py-3 px-3">Pasta / Tipo</th>
-              <th class="py-3 px-3">Nº do Processo</th>
-              <th class="py-3 px-3">UF / Cidade</th>
-              <th class="py-3 px-3">Cliente Principal</th>
-              <th class="py-3 px-3">Contrário / Ação</th>
-              <th class="py-3 px-3">Responsável</th>
+              <th class="py-3 px-3 sortable" onclick="sortData('status_proc')">Status ↕</th>
+              <th class="py-3 px-3 sortable" onclick="sortData('data_prazo')">Prazo / Vencimento ↕</th>
+              <th class="py-3 px-3 sortable" onclick="sortData('pasta')">Pasta / Tipo ↕</th>
+              <th class="py-3 px-3 sortable" onclick="sortData('cnj')">Nº do Processo ↕</th>
+              <th class="py-3 px-3 sortable" onclick="sortData('uf')">UF / Cidade ↕</th>
+              <th class="py-3 px-3 sortable" onclick="sortData('cliente')">Cliente Principal ↕</th>
+              <th class="py-3 px-3 sortable" onclick="sortData('parte')">Contrário / Ação ↕</th>
+              <th class="py-3 px-3 sortable" onclick="sortData('resp')">Responsável ↕</th>
             </tr>
           </thead>
           <tbody id="process-table-body" class="divide-y divide-white/5 text-xs"></tbody>
@@ -362,9 +370,8 @@
   </div>
 
   <script>
-    // DADOS COM DATAS DE PRAZO INTEGRADAS NA v1.2.3
     function getInitialDataset() {
-      const saved = localStorage.getItem('ditalia_processes_v1_2_3');
+      const saved = localStorage.getItem('ditalia_processes_v1_3');
       if (saved) {
         try {
           const parsed = JSON.parse(saved);
@@ -376,27 +383,18 @@
       let nextId = 1;
       const today = new Date();
 
-      // Gerando datas de exemplo variadas para testar Hoje, Amanhã, 7 dias, etc.
       for (let i = 1; i <= 548; i++) {
         let prazoStr = "";
         if (i % 15 === 0) {
-          // Prazo para hoje
           const d = new Date(today);
           prazoStr = d.toISOString().split('T')[0];
         } else if (i % 20 === 0) {
-          // Prazo para amanhã
           const d = new Date(today);
           d.setDate(d.getDate() + 1);
           prazoStr = d.toISOString().split('T')[0];
         } else if (i % 7 === 0) {
-          // Prazo para os próximos 7 dias (esta semana)
           const d = new Date(today);
           d.setDate(d.getDate() + (i % 6) + 1);
-          prazoStr = d.toISOString().split('T')[0];
-        } else if (i % 11 === 0) {
-          // Prazo para daqui a 20 dias
-          const d = new Date(today);
-          d.setDate(d.getDate() + 20);
           prazoStr = d.toISOString().split('T')[0];
         }
 
@@ -422,6 +420,8 @@
 
     let ALL_PROCESSES = getInitialDataset();
     let FILTERED_PROCESSES = [...ALL_PROCESSES];
+    let currentSortColumn = null;
+    let currentSortAsc = true;
     let charts = {};
 
     function switchTab(tabName) {
@@ -439,6 +439,10 @@
       const clientes = [...new Set(ALL_PROCESSES.map(p => p.cliente))].filter(Boolean).sort();
       document.getElementById('filter-cliente').innerHTML = `<option value="ALL">Todas</option>` +
         clientes.map(c => `<option value="${c}">${c}</option>`).join('');
+
+      const resps = [...new Set(ALL_PROCESSES.map(p => p.resp))].filter(Boolean).sort();
+      document.getElementById('filter-resp').innerHTML = `<option value="ALL">Todos</option>` +
+        resps.map(r => `<option value="${r}" ${r==='Julia Linhares'?'selected':''}>${r}</option>`).join('');
     }
 
     function onPrazoFilterChange() {
@@ -455,6 +459,7 @@
     function applyFilters() {
       const q = document.getElementById('filter-search').value.toLowerCase().trim();
       const cli = document.getElementById('filter-cliente').value;
+      const resp = document.getElementById('filter-resp').value;
       const prazoFilter = document.getElementById('filter-prazo').value;
       const uf = document.getElementById('filter-uf').value;
       const statusProc = document.getElementById('filter-status-proc').value;
@@ -465,11 +470,11 @@
 
       FILTERED_PROCESSES = ALL_PROCESSES.filter(p => {
         if (cli !== 'ALL' && p.cliente !== cli) return false;
+        if (resp !== 'ALL' && p.resp !== resp) return false;
         if (uf !== 'ALL' && p.uf !== uf) return false;
         if (statusProc !== 'ALL' && p.status_proc !== statusProc) return false;
         if (dab !== 'ALL' && p.dab !== dab) return false;
 
-        // Filtro de Prazos Avançado (v1.2.3)
         if (prazoFilter !== 'ALL') {
           if (!p.data_prazo) return false;
           const pDate = new Date(p.data_prazo + 'T00:00:00');
@@ -496,8 +501,38 @@
         return true;
       });
 
+      if (currentSortColumn) {
+        sortFilteredList();
+      }
+
       updateKPIs();
       renderTable();
+    }
+
+    // ORDENAÇÃO DINÂMICA AO CLICAR NAS COLUNAS (v1.3)
+    function sortData(column) {
+      if (currentSortColumn === column) {
+        currentSortAsc = !currentSortAsc;
+      } else {
+        currentSortColumn = column;
+        currentSortAsc = true;
+      }
+      sortFilteredList();
+      renderTable();
+    }
+
+    function sortFilteredList() {
+      FILTERED_PROCESSES.sort((a, b) => {
+        let valA = a[currentSortColumn] || "";
+        let valB = b[currentSortColumn] || "";
+
+        if (typeof valA === 'string') valA = valA.toLowerCase();
+        if (typeof valB === 'string') valB = valB.toLowerCase();
+
+        if (valA < valB) return currentSortAsc ? -1 : 1;
+        if (valA > valB) return currentSortAsc ? 1 : -1;
+        return 0;
+      });
     }
 
     function filterWeekDeadlines() {
@@ -509,11 +544,13 @@
     function resetAllFilters() {
       document.getElementById('filter-search').value = '';
       document.getElementById('filter-cliente').value = 'ALL';
+      document.getElementById('filter-resp').value = 'ALL';
       document.getElementById('filter-prazo').value = 'ALL';
       document.getElementById('custom-date-container').classList.add('hidden');
       document.getElementById('filter-uf').value = 'ALL';
       document.getElementById('filter-status-proc').value = 'ALL';
       document.getElementById('filter-dab').value = 'ALL';
+      currentSortColumn = null;
       applyFilters();
     }
 
@@ -522,7 +559,6 @@
       const ativos = ALL_PROCESSES.filter(p => p.status_proc === 'Ativo').length;
       const dabCount = ALL_PROCESSES.filter(p => p.dab === 'SIM').length;
 
-      // Calcular prazos para esta semana (7 dias)
       const todayStr = new Date().toISOString().split('T')[0];
       const todayDate = new Date(todayStr + 'T00:00:00');
       const semanaCount = ALL_PROCESSES.filter(p => {
@@ -627,7 +663,7 @@
         ALL_PROCESSES.unshift(dataObj);
       }
 
-      localStorage.setItem('ditalia_processes_v1_2_3', JSON.stringify(ALL_PROCESSES));
+      localStorage.setItem('ditalia_processes_v1_3', JSON.stringify(ALL_PROCESSES));
       closeModal();
       applyFilters();
       initCharts();
@@ -680,7 +716,7 @@
       const ws = XLSX.utils.json_to_sheet(FILTERED_PROCESSES);
       const wb = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(wb, ws, "Processos_Atualizados");
-      XLSX.writeFile(wb, "Relatorio_Processos_Julia_v123.xlsx");
+      XLSX.writeFile(wb, "Relatorio_Processos_Julia_v13.xlsx");
     }
 
     function handleExcelUpload(event) {
