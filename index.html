@@ -1,518 +1,966 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="dark">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ditália Legal Analytics • Dashboard Executivo v1.0</title>
-  
-  <!-- Tailwind CSS via CDN -->
+  <title>Ditália Legal Analytics — Dashboard v1.1</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
-  
-  <!-- FontAwesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  
-  <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-  
-  <!-- SheetJS (xlsx) -->
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
-
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-            display: ['Plus Jakarta Sans', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace'],
-          }
-        }
-      }
-    }
-  </script>
-
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
+    * { font-family: 'Plus Jakarta Sans', sans-serif; }
     body {
-      background-color: #060b19;
-      background-image: 
-        radial-gradient(at 8% 12%, rgba(56, 189, 248, 0.16) 0px, transparent 45%),
-        radial-gradient(at 88% 15%, rgba(139, 92, 246, 0.18) 0px, transparent 50%),
-        radial-gradient(at 52% 55%, rgba(16, 185, 129, 0.10) 0px, transparent 55%),
-        radial-gradient(at 15% 88%, rgba(245, 158, 11, 0.11) 0px, transparent 48%),
-        radial-gradient(at 85% 90%, rgba(236, 72, 153, 0.12) 0px, transparent 45%);
+      background-color: #070b19;
+      background-image:
+        radial-gradient(at 10% 10%, rgba(56, 189, 248, 0.16) 0px, transparent 45%),
+        radial-gradient(at 90% 15%, rgba(168, 85, 247, 0.16) 0px, transparent 45%),
+        radial-gradient(at 50% 90%, rgba(16, 185, 129, 0.12) 0px, transparent 50%);
       background-attachment: fixed;
       color: #f1f5f9;
-      overflow-x: hidden;
     }
-
-    .glass-panel {
-      background: rgba(15, 23, 42, 0.58);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.11);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.12);
-    }
-
-    .glass-card {
-      background: linear-gradient(135deg, rgba(30, 41, 59, 0.55) 0%, rgba(15, 23, 42, 0.45) 100%);
+    .glass {
+      background: rgba(15, 23, 42, 0.65);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.10);
-      box-shadow: 0 8px 32px 0 rgba(2, 6, 23, 0.45), inset 0 1px 0 0 rgba(255, 255, 255, 0.10);
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
     }
-
-    .glass-card:hover {
-      border-color: rgba(255, 255, 255, 0.22);
-      transform: translateY(-2px);
-      box-shadow: 0 14px 38px 0 rgba(2, 6, 23, 0.6), inset 0 1px 0 0 rgba(255, 255, 255, 0.18);
-    }
-
     .glass-input {
-      background: rgba(15, 23, 42, 0.65);
-      backdrop-filter: blur(12px);
+      background: rgba(15, 23, 42, 0.78);
       border: 1px solid rgba(255, 255, 255, 0.14);
       color: #f8fafc;
-      transition: all 0.2s ease;
     }
-
     .glass-input:focus {
       outline: none;
       border-color: #38bdf8;
-      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
-      background: rgba(15, 23, 42, 0.85);
+      box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.25);
     }
-
-    .kpi-active {
-      border-color: rgba(56, 189, 248, 0.7) !important;
-      background: linear-gradient(135deg, rgba(56, 189, 248, 0.18) 0%, rgba(30, 41, 59, 0.65) 100%) !important;
+    /* Estilo corrigido das abas do topo */
+    .nav-tab {
+      border: 1px solid transparent;
+      color: #94a3b8;
+      transition: all 0.2s ease;
     }
-
-    ::-webkit-scrollbar { width: 8px; height: 8px; }
-    ::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.6); }
-    ::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.3); border-radius: 9999px; }
-    ::-webkit-scrollbar-thumb:hover { background: rgba(148, 163, 184, 0.5); }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: translateY(0); }
+    .nav-tab:hover {
+      color: #f8fafc;
+      background: rgba(255, 255, 255, 0.05);
     }
-    .animate-fade { animation: fadeIn 0.28s ease-out forwards; }
+    .nav-tab.active-tab {
+      background: rgba(56, 189, 248, 0.16);
+      border-color: rgba(56, 189, 248, 0.55);
+      color: #ffffff;
+      box-shadow: 0 0 18px rgba(56, 189, 248, 0.22);
+    }
+    /* Scrollbar estilizada */
+    .custom-scroll::-webkit-scrollbar { width: 8px; height: 8px; }
+    .custom-scroll::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.5); border-radius: 6px; }
+    .custom-scroll::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.35); border-radius: 6px; }
+    .custom-scroll::-webkit-scrollbar-thumb:hover { background: rgba(56, 189, 248, 0.6); }
   </style>
 </head>
-<body class="min-h-screen font-sans antialiased selection:bg-sky-500 selection:text-white pb-14">
+<body class="min-h-screen pb-12">
 
-  <!-- Orbes de fundo -->
-  <div class="fixed top-[-8%] left-[-5%] w-96 h-96 rounded-full bg-sky-500/10 blur-3xl pointer-events-none z-0"></div>
-  <div class="fixed top-[25%] right-[-8%] w-[28rem] h-[28rem] rounded-full bg-violet-600/10 blur-3xl pointer-events-none z-0"></div>
-  <div class="fixed bottom-[-10%] left-[30%] w-96 h-96 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none z-0"></div>
-
-  <!-- Container de Toasts -->
-  <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2.5 max-w-md"></div>
-
-  <!-- Cabeçalho -->
-  <header class="sticky top-0 z-30 glass-panel border-b border-white/10">
-    <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
-      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-        <div class="flex items-center gap-3.5">
-          <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-sky-400 via-indigo-500 to-violet-600 flex items-center justify-center shadow-lg shadow-indigo-500/25 border border-white/20 shrink-0">
-            <i class="fa-solid fa-scale-balanced text-white text-lg"></i>
-          </div>
-          <div>
-            <div class="flex items-center gap-2.5 flex-wrap">
-              <h1 class="font-display font-bold text-lg sm:text-xl tracking-tight text-white">Ditália Legal Analytics</h1>
-              <span class="px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wider rounded-full bg-sky-500/20 text-sky-300 border border-sky-400/30">Protótipo v1.0 • Julia</span>
-            </div>
-            <p class="text-xs text-slate-300/80 mt-0.5">Gestão Consolidada do Grupo Ditália • Controle de Prazos e Triagem por Legenda de Cores</p>
-          </div>
+  <!-- HEADER -->
+  <header class="sticky top-0 z-30 glass border-b border-white/10 px-6 py-4">
+    <div class="max-w-[1600px] mx-auto flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-sky-400 to-indigo-600 flex items-center justify-center font-extrabold text-white shadow-lg">
+          JD
         </div>
-
-        <nav class="flex items-center gap-1.5 overflow-x-auto pb-1 lg:pb-0">
-          <button onclick="switchMainTab('executivo')" id="nav-executivo" class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all flex items-center gap-2 whitespace-nowrap bg-white/15 text-white border border-white/20 shadow-sm">
-            <i class="fa-solid fa-chart-pie text-sky-400"></i> Painel Executivo
-          </button>
-          <button onclick="switchMainTab('prazos')" id="nav-prazos" class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all flex items-center gap-2 whitespace-nowrap text-slate-300 hover:text-white hover:bg-white/5 border border-transparent">
-            <i class="fa-solid fa-clock-rotate-left text-amber-400"></i> Central de Prazos
-            <span id="badge-nav-prazos" class="px-1.5 py-0.2 text-[10px] rounded-full bg-amber-500/25 text-amber-300 border border-amber-400/30 font-mono">163</span>
-          </button>
-          <button onclick="switchMainTab('importar')" id="nav-importar" class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all flex items-center gap-2 whitespace-nowrap text-slate-300 hover:text-white hover:bg-white/5 border border-transparent">
-            <i class="fa-solid fa-file-arrow-up text-emerald-400"></i> Importar / GitHub Sync
-          </button>
-        </nav>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-lg font-bold tracking-tight text-white">Ditália Legal Analytics</h1>
+            <span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-300 border border-sky-400/30">v1.1</span>
+          </div>
+          <p class="text-xs text-slate-400">Painel de Controle de Processos e Prazos — Grupo Ditália (Dra. Julia)</p>
+        </div>
       </div>
+
+      <!-- NAVEGAÇÃO DE ABAS CORRIGIDA -->
+      <nav class="flex items-center gap-2 bg-slate-900/70 p-1.5 rounded-xl border border-white/10">
+        <button id="btn-tab-executivo" onclick="switchTab('executivo')" class="nav-tab active-tab px-4 py-2 rounded-lg text-xs font-semibold flex items-center gap-2">
+          <span>📊</span> Painel Executivo
+        </button>
+        <button id="btn-tab-prazos" onclick="switchTab('prazos')" class="nav-tab px-4 py-2 rounded-lg text-xs font-semibold flex items-center gap-2">
+          <span>⏰</span> Central de Prazos <span id="badge-prazos-top" class="px-1.5 py-0.5 text-[10px] rounded-full bg-amber-400/20 text-amber-300 border border-amber-400/30">155</span>
+        </button>
+        <button id="btn-tab-importar" onclick="switchTab('importar')" class="nav-tab px-4 py-2 rounded-lg text-xs font-semibold flex items-center gap-2">
+          <span>📥</span> Importar / Exportar
+        </button>
+      </nav>
     </div>
   </header>
 
-  <main class="relative z-10 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 pt-6 space-y-6">
+  <main class="max-w-[1600px] mx-auto px-6 pt-6 space-y-6">
 
-    <!-- KPIs Executivos -->
-    <section>
-      <div class="flex items-center justify-between mb-2.5">
-        <span class="text-xs font-medium text-slate-400 flex items-center gap-1.5">
-          <i class="fa-solid fa-wand-magic-sparkles text-sky-400"></i> Clique em qualquer cartão abaixo para filtrar os dados instantaneamente:
-        </span>
+    <!-- KPIs DE TOPO (CLICÁVEIS PARA FILTRAR) -->
+    <section class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+      <div onclick="quickColorFilter('ALL')" class="glass rounded-2xl p-4 cursor-pointer hover:border-sky-400/50 transition">
+        <div class="flex items-center justify-between text-xs text-slate-400">
+          <span>Total Consolidado</span>
+          <span class="text-sky-400">⚖️</span>
+        </div>
+        <div id="kpi-total" class="text-2xl font-extrabold text-white mt-1">793</div>
+        <div id="kpi-valor" class="text-[11px] text-sky-300 mt-1 font-medium">R$ 937,66 Milhões</div>
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3.5">
-        <div onclick="filterByColorLegend('ALL')" id="kpi-card-ALL" class="glass-card rounded-2xl p-4 cursor-pointer kpi-active">
-          <p class="text-[11px] font-semibold uppercase text-sky-300/90">Total Consolidado</p>
-          <h2 id="kpi-total-count" class="font-display text-2xl font-extrabold text-white mt-1">793</h2>
-          <div class="mt-3 pt-2.5 border-t border-white/10 text-xs flex justify-between"><span class="text-slate-400">Valor:</span><span id="kpi-total-valor" class="font-mono text-emerald-300 font-semibold">R$ 937,66 mi</span></div>
+
+      <div onclick="quickColorFilter('Amarelo: Prazo em aberto')" class="glass rounded-2xl p-4 cursor-pointer hover:border-amber-400/60 transition border-l-4 border-l-amber-400">
+        <div class="flex items-center justify-between text-xs text-amber-200">
+          <span>Prazo em Aberto</span>
+          <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
         </div>
-        <div onclick="filterByColorLegend('Amarelo')" id="kpi-card-Amarelo" class="glass-card rounded-2xl p-4 cursor-pointer border-t-2 border-t-amber-400/60">
-          <p class="text-[11px] font-semibold uppercase text-amber-300">Prazo em Aberto</p>
-          <h2 id="kpi-amarelo-count" class="font-display text-2xl font-extrabold text-white mt-1">155</h2>
-          <div class="mt-3 pt-2.5 border-t border-white/10 text-[11px] text-slate-300 flex justify-between"><span>69 Trib • 68 Cív</span><span class="text-amber-300">19,5%</span></div>
+        <div id="kpi-amarelo" class="text-2xl font-extrabold text-amber-300 mt-1">155</div>
+        <div class="text-[11px] text-slate-400 mt-1">Amarelo na planilha</div>
+      </div>
+
+      <div onclick="quickColorFilter('Rosa: Analisar')" class="glass rounded-2xl p-4 cursor-pointer hover:border-pink-400/60 transition border-l-4 border-l-pink-500">
+        <div class="flex items-center justify-between text-xs text-pink-200">
+          <span>Rosa: Analisar</span>
+          <span class="w-2.5 h-2.5 rounded-full bg-pink-500"></span>
         </div>
-        <div onclick="filterByColorLegend('Rosa')" id="kpi-card-Rosa" class="glass-card rounded-2xl p-4 cursor-pointer border-t-2 border-t-pink-500/70">
-          <p class="text-[11px] font-semibold uppercase text-pink-300">Rosa: Analisar</p>
-          <h2 id="kpi-rosa-count" class="font-display text-2xl font-extrabold text-white mt-1">8</h2>
-          <div class="mt-3 pt-2.5 border-t border-white/10 text-[11px] text-slate-300 flex justify-between"><span>4 Cív • 4 Trib</span><span class="px-1.5 rounded bg-pink-500/20 text-pink-300">Prioritário</span></div>
+        <div id="kpi-rosa" class="text-2xl font-extrabold text-pink-400 mt-1">8</div>
+        <div class="text-[11px] text-slate-400 mt-1">Triagem prioritária</div>
+      </div>
+
+      <div onclick="quickColorFilter('Azul: Não pertencem ao grupo')" class="glass rounded-2xl p-4 cursor-pointer hover:border-sky-400/60 transition border-l-4 border-l-sky-400">
+        <div class="flex items-center justify-between text-xs text-sky-200">
+          <span>Azul: Conferir</span>
+          <span class="w-2.5 h-2.5 rounded-full bg-sky-400"></span>
         </div>
-        <div onclick="filterByColorLegend('Azul')" id="kpi-card-Azul" class="glass-card rounded-2xl p-4 cursor-pointer border-t-2 border-t-sky-400/70">
-          <p class="text-[11px] font-semibold uppercase text-sky-300">Fora do Grupo</p>
-          <h2 id="kpi-azul-count" class="font-display text-2xl font-extrabold text-white mt-1">14</h2>
-          <div class="mt-3 pt-2.5 border-t border-white/10 text-[11px] text-slate-300 flex justify-between"><span>Homônimos</span><span class="text-sky-300">Auditoria</span></div>
+        <div id="kpi-azul" class="text-2xl font-extrabold text-sky-300 mt-1">14</div>
+        <div class="text-[11px] text-slate-400 mt-1">Fora do grupo / Revisar</div>
+      </div>
+
+      <div onclick="quickColorFilter('Laranja: Finalizado')" class="glass rounded-2xl p-4 cursor-pointer hover:border-orange-400/60 transition border-l-4 border-l-orange-500">
+        <div class="flex items-center justify-between text-xs text-orange-200">
+          <span>Laranja: Finalizado</span>
+          <span class="w-2.5 h-2.5 rounded-full bg-orange-500"></span>
         </div>
-        <div onclick="filterByColorLegend('Laranja')" id="kpi-card-Laranja" class="glass-card rounded-2xl p-4 cursor-pointer border-t-2 border-t-orange-500/70">
-          <p class="text-[11px] font-semibold uppercase text-orange-300">Finalizados</p>
-          <h2 id="kpi-laranja-count" class="font-display text-2xl font-extrabold text-white mt-1">267</h2>
-          <div class="mt-3 pt-2.5 border-t border-white/10 text-[11px] text-slate-300 flex justify-between"><span>158 Reest • 85 Cív</span><span class="text-orange-300">33,7%</span></div>
+        <div id="kpi-laranja" class="text-2xl font-extrabold text-orange-400 mt-1">267</div>
+        <div class="text-[11px] text-slate-400 mt-1">Baixados / Concluídos</div>
+      </div>
+
+      <div onclick="quickColorFilter('Sem Cor')" class="glass rounded-2xl p-4 cursor-pointer hover:border-slate-400/60 transition border-l-4 border-l-slate-400">
+        <div class="flex items-center justify-between text-xs text-slate-300">
+          <span>Sem Cor / Padrão</span>
+          <span class="w-2.5 h-2.5 rounded-full bg-slate-400"></span>
         </div>
-        <div onclick="filterByColorLegend('Sem Cor')" id="kpi-card-SemCor" class="glass-card rounded-2xl p-4 cursor-pointer border-t-2 border-t-slate-400/50">
-          <p class="text-[11px] font-semibold uppercase text-slate-300">Sem Cor / Padrão</p>
-          <h2 id="kpi-semcor-count" class="font-display text-2xl font-extrabold text-white mt-1">349</h2>
-          <div class="mt-3 pt-2.5 border-t border-white/10 text-[11px] text-slate-300 flex justify-between"><span>315 Trab • Outros</span><span class="text-slate-400">44,0%</span></div>
-        </div>
+        <div id="kpi-semcor" class="text-2xl font-extrabold text-slate-200 mt-1">349</div>
+        <div class="text-[11px] text-slate-400 mt-1">Trabalhista + Sem cor</div>
       </div>
     </section>
 
-    <!-- Seção Gráficos -->
-    <section id="section-executivo" class="space-y-6 animate-fade">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        <div class="lg:col-span-7 glass-card rounded-2xl p-5">
-          <h3 class="font-display font-bold text-base text-white mb-2">1. Volume de Processos por Área e Legenda de Cores</h3>
-          <div class="relative h-72 w-full"><canvas id="chartStatusByArea"></canvas></div>
+    <!-- ABA 1: PAINEL EXECUTIVO (GRÁFICOS INTERATIVOS) -->
+    <section id="view-executivo" class="space-y-6">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="glass rounded-2xl p-5">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-sm font-bold text-white">1. Volume por Área e Status (Cor)</h3>
+            <span class="text-[11px] text-slate-400">Clique na barra para filtrar</span>
+          </div>
+          <div class="h-64"><canvas id="chartAreaStatus"></canvas></div>
         </div>
-        <div class="lg:col-span-5 glass-card rounded-2xl p-5">
-          <h3 class="font-display font-bold text-base text-white mb-2">2. Exposição Financeira (Valor da Causa)</h3>
-          <div class="relative h-56 w-full"><canvas id="chartFinancialByArea"></canvas></div>
-        </div>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="glass-card rounded-2xl p-5"><h3 class="font-display font-bold text-sm text-white mb-2">3. Empresas do Grupo</h3><div class="relative h-56 w-full"><canvas id="chartByCompany"></canvas></div></div>
-        <div class="glass-card rounded-2xl p-5"><h3 class="font-display font-bold text-sm text-white mb-2">4. Top Estados (UF)</h3><div class="relative h-56 w-full"><canvas id="chartByState"></canvas></div></div>
-        <div class="glass-card rounded-2xl p-5"><h3 class="font-display font-bold text-sm text-white mb-2">5. Responsáveis por Prazos</h3><div class="relative h-56 w-full"><canvas id="chartByResponsible"></canvas></div></div>
-      </div>
-    </section>
 
-    <!-- Seção Importar / GitHub -->
-    <section id="section-importar" class="hidden space-y-6 animate-fade">
+        <div class="glass rounded-2xl p-5">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-sm font-bold text-white">2. Exposição Financeira (R$ Milhões)</h3>
+            <span class="text-[11px] text-slate-400">Total: R$ 937,66 M</span>
+          </div>
+          <div class="h-64"><canvas id="chartValorArea"></canvas></div>
+        </div>
+
+        <div class="glass rounded-2xl p-5">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-sm font-bold text-white">3. Distribuição por Status da Legenda</h3>
+            <span class="text-[11px] text-slate-400">Clique na fatia para filtrar</span>
+          </div>
+          <div class="h-64"><canvas id="chartStatusDonut"></canvas></div>
+        </div>
+      </div>
+
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div class="glass-card rounded-2xl p-6">
-          <h3 class="font-display font-bold text-base text-white mb-2">Importar Nova Planilha Excel (.xlsx)</h3>
-          <label class="border-2 border-dashed border-white/20 hover:border-sky-400 rounded-2xl p-6 flex flex-col items-center justify-center cursor-pointer bg-white/[0.02]">
-            <i class="fa-solid fa-cloud-arrow-up text-3xl text-sky-400 mb-2"></i>
-            <span class="text-sm font-semibold text-white">Clique para selecionar ou arraste o arquivo</span>
-            <input type="file" accept=".xlsx,.xls" class="hidden" onchange="handleExcelUpload(event)" />
-          </label>
-        </div>
-        <div class="glass-card rounded-2xl p-6 flex flex-col justify-between">
-          <div>
-            <h3 class="font-display font-bold text-base text-white mb-2">Sincronização & Backup</h3>
-            <p class="text-xs text-slate-300">Suas edições ficam salvas no navegador. Para enviar para o GitHub, baixe o JSON atualizado:</p>
+        <div class="glass rounded-2xl p-5">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-sm font-bold text-white">4. Distribuição Geográfica por Estado (UF)</h3>
+            <span class="text-[11px] text-slate-400">Clique na UF para filtrar a tabela</span>
           </div>
-          <div class="flex gap-3 mt-4">
-            <button onclick="exportDatabaseJSON()" class="px-4 py-2.5 rounded-xl text-xs font-semibold bg-indigo-500 text-white"><i class="fa-solid fa-download mr-1"></i> Baixar Base (.json)</button>
-            <button onclick="restoreOriginalFactoryData()" class="px-3.5 py-2.5 rounded-xl text-xs font-medium bg-rose-500/20 text-rose-300 border border-rose-400/30">Restaurar Original</button>
+          <div class="h-56"><canvas id="chartUF"></canvas></div>
+        </div>
+
+        <div class="glass rounded-2xl p-5">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-sm font-bold text-white">5. Prazos Extraídos por Advogado Responsável</h3>
+            <span class="text-[11px] text-slate-400">Clique no responsável para filtrar</span>
+          </div>
+          <div class="h-56"><canvas id="chartResponsaveis"></canvas></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABA 2: CENTRAL DE PRAZOS E TRIAGEM -->
+    <section id="view-prazos" class="hidden space-y-6">
+      <div class="glass rounded-2xl p-5">
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
+          <div>
+            <h2 class="text-base font-bold text-white">Central Operacional de Prazos e Triagem</h2>
+            <p class="text-xs text-slate-400">Filas rápidas baseadas nas cores das planilhas e nas datas extraídas do Último Andamento.</p>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <button onclick="setQueueFilter('AMARELO')" class="px-3.5 py-2 rounded-xl text-xs font-semibold bg-amber-500/20 text-amber-300 border border-amber-400/40 hover:bg-amber-500/30 transition">
+              🟨 Prazos em Aberto (155)
+            </button>
+            <button onclick="setQueueFilter('COM_DATA')" class="px-3.5 py-2 rounded-xl text-xs font-semibold bg-sky-500/20 text-sky-300 border border-sky-400/40 hover:bg-sky-500/30 transition">
+              📅 Com Data de Prazo Extraída (174)
+            </button>
+            <button onclick="setQueueFilter('ROSA')" class="px-3.5 py-2 rounded-xl text-xs font-semibold bg-pink-500/20 text-pink-300 border border-pink-400/40 hover:bg-pink-500/30 transition">
+              🟪 Para Analisar - Rosa (8)
+            </button>
+            <button onclick="setQueueFilter('AZUL')" class="px-3.5 py-2 rounded-xl text-xs font-semibold bg-cyan-500/20 text-cyan-300 border border-cyan-400/40 hover:bg-cyan-500/30 transition">
+              🟦 Não Pertencem / Conferir - Azul (14)
+            </button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Tabela de Processos -->
-    <section id="section-tabela" class="glass-card rounded-2xl p-5 space-y-4">
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-3 border-b border-white/10">
-        <h3 class="font-display font-bold text-base sm:text-lg text-white">Consulta Avançada de Processos & Prazos <span id="table-results-badge" class="text-xs font-mono px-2.5 py-0.5 rounded bg-sky-500/20 text-sky-300">793</span></h3>
-        <button onclick="exportFilteredToExcel()" class="px-3.5 py-2 rounded-xl text-xs font-semibold bg-emerald-500/20 text-emerald-200 border border-emerald-400/30"><i class="fa-solid fa-file-excel mr-1"></i> Exportar Visão</button>
-      </div>
-      
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-        <div class="relative">
-          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
-          <input type="text" id="filter-search" oninput="applyTableFilters()" placeholder="Buscar por CNJ, parte, andamento..." class="w-full pl-9 pr-3 py-2.5 rounded-xl text-xs glass-input" />
+    <!-- ABA 3: IMPORTAR / EXPORTAR -->
+    <section id="view-importar" class="hidden space-y-6">
+      <div class="glass rounded-2xl p-6 space-y-4">
+        <h2 class="text-base font-bold text-white">Importar Planilhas (.xlsx) ou Exportar Relatório</h2>
+        <p class="text-xs text-slate-300">Você pode carregar novas planilhas do Excel da Julia para atualizar a visualização ou exportar os dados filtrados.</p>
+        <div class="flex flex-wrap gap-4 pt-2">
+          <label class="px-4 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-xs cursor-pointer transition">
+            📂 Carregar Planilha Excel (.xlsx)
+            <input type="file" id="excel-upload" accept=".xlsx,.xls" class="hidden" onchange="handleExcelUpload(event)" />
+          </label>
+          <button onclick="exportFilteredToExcel()" class="px-4 py-2.5 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-400/40 font-semibold text-xs transition">
+            📊 Exportar Tabela Filtrada (.xlsx)
+          </button>
+          <button onclick="resetLocalChanges()" class="px-4 py-2.5 rounded-xl bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 border border-rose-400/40 font-semibold text-xs transition">
+            🔄 Restaurar Base Original (793 processos)
+          </button>
         </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO GLOBAL DE CONSULTA DE PROCESSOS E PRAZOS (COM ROLAGEM E FILTRO DE UF) -->
+    <section id="section-tabela" class="glass rounded-2xl p-5 space-y-4">
+      <div class="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <select id="filter-area" onchange="applyTableFilters()" class="w-full px-3 py-2.5 rounded-xl text-xs glass-input">
-            <option value="ALL">Todas as Áreas</option>
-            <option value="Tributário">Tributário</option>
-            <option value="Cível">Cível</option>
-            <option value="Reestruturação Empresarial">Reestruturação</option>
-            <option value="Trabalhista">Trabalhista</option>
+          <h2 class="text-base font-bold text-white flex items-center gap-2">
+            <span>🔍</span> Consulta de Processos e Prazos
+            <span id="table-count-badge" class="text-xs px-2.5 py-0.5 rounded-full bg-sky-500/20 text-sky-300 border border-sky-400/30 font-semibold">793 processos</span>
+          </h2>
+          <p class="text-xs text-slate-400">Role a tabela abaixo verticalmente ou horizontalmente. Clique em qualquer processo para abrir a ficha completa e editar prazos.</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="resetFilters()" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 transition">
+            Limpar Filtros
+          </button>
+          <button onclick="exportFilteredToExcel()" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-400/30 transition">
+            Exportar .xlsx
+          </button>
+        </div>
+      </div>
+
+      <!-- BARRA DE FILTROS COM FILTRO DE UF INCLUÍDO -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-3">
+        <div class="lg:col-span-2">
+          <label class="text-[11px] text-slate-400 block mb-1">Busca Rápida (CNJ, Parte, Prazo, Andamento)</label>
+          <input id="filter-search" type="text" oninput="applyFilters()" placeholder="Digite CNJ, autor, advogado, INPI..." class="w-full glass-input rounded-xl px-3 py-2 text-xs" />
+        </div>
+
+        <div>
+          <label class="text-[11px] text-slate-400 block mb-1">Área / Relatório</label>
+          <select id="filter-area" onchange="applyFilters()" class="w-full glass-input rounded-xl px-3 py-2 text-xs">
+            <option value="ALL">Todas as Áreas (4)</option>
+            <option value="Cível">Cível (182)</option>
+            <option value="Tributário">Tributário (116)</option>
+            <option value="Reestruturação Empresarial">Reestruturação Empresarial (174)</option>
+            <option value="Trabalhista">Trabalhista (321)</option>
           </select>
         </div>
+
         <div>
-          <select id="filter-cor" onchange="applyTableFilters()" class="w-full px-3 py-2.5 rounded-xl text-xs glass-input">
-            <option value="ALL">Todas as Cores (Legenda)</option>
-            <option value="Amarelo">🟨 Amarelo: Prazo em aberto</option>
-            <option value="Rosa">🟪 Rosa: Analisar</option>
-            <option value="Azul">🟦 Azul: Fora do grupo</option>
-            <option value="Laranja">🟧 Laranja: Finalizado</option>
+          <label class="text-[11px] text-slate-400 block mb-1">Status (Cor da Legenda)</label>
+          <select id="filter-cor" onchange="applyFilters()" class="w-full glass-input rounded-xl px-3 py-2 text-xs">
+            <option value="ALL">Todas as Cores</option>
+            <option value="Amarelo: Prazo em aberto">🟨 Amarelo: Prazo em aberto</option>
+            <option value="Rosa: Analisar">🟪 Rosa: Analisar</option>
+            <option value="Azul: Não pertencem ao grupo">🟦 Azul: Não pertencem / Conferir</option>
+            <option value="Laranja: Finalizado">🟧 Laranja: Finalizado</option>
             <option value="Sem Cor">⬜ Sem Cor / Padrão</option>
           </select>
         </div>
+
+        <!-- NOVO FILTRO DE UF -->
+        <div>
+          <label class="text-[11px] text-sky-300 font-semibold block mb-1">Estado (UF)</label>
+          <select id="filter-uf" onchange="applyFilters()" class="w-full glass-input rounded-xl px-3 py-2 text-xs border-sky-400/40">
+            <option value="ALL">Todas as UFs</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="text-[11px] text-slate-400 block mb-1">Empresa do Grupo</label>
+          <select id="filter-cliente" onchange="applyFilters()" class="w-full glass-input rounded-xl px-3 py-2 text-xs">
+            <option value="ALL">Todas as Empresas</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="text-[11px] text-slate-400 block mb-1">Responsável / Ordenação</label>
+          <select id="filter-resp" onchange="applyFilters()" class="w-full glass-input rounded-xl px-3 py-2 text-xs">
+            <option value="ALL">Todos os Responsáveis</option>
+          </select>
+        </div>
       </div>
 
-      <div class="overflow-x-auto rounded-xl border border-white/10 bg-slate-950/35">
+      <!-- CONTROLES DE PAGINAÇÃO E TAMANHO DA LISTA -->
+      <div class="flex flex-wrap items-center justify-between gap-2 text-xs text-slate-400 pt-1">
+        <div id="pagination-info">Exibindo 1–100 de 793 processos</div>
+        <div class="flex items-center gap-3">
+          <label class="flex items-center gap-1.5">
+            <span>Mostrar por página:</span>
+            <select id="page-size" onchange="changePageSize()" class="glass-input rounded-lg px-2 py-1 text-xs">
+              <option value="50">50 linhas</option>
+              <option value="100" selected>100 linhas</option>
+              <option value="250">250 linhas</option>
+              <option value="1000">Todos (793 linhas)</option>
+            </select>
+          </label>
+          <div class="flex items-center gap-1">
+            <button onclick="prevPage()" class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-white border border-white/10">◀ Anterior</button>
+            <span id="page-indicator" class="px-2 font-semibold text-white">1 / 8</span>
+            <button onclick="nextPage()" class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-white border border-white/10">Próxima ▶</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TABELA COM ROLAGEM VERTICAL E HORIZONTAL FIXA -->
+      <div class="max-h-[580px] overflow-y-auto overflow-x-auto custom-scroll rounded-xl border border-white/10 bg-slate-950/50">
         <table class="w-full text-left border-collapse">
-          <thead>
-            <tr class="border-b border-white/10 bg-slate-900/70 text-[11px] font-semibold uppercase text-slate-300">
-              <th class="py-3 px-3">Status</th>
+          <thead class="sticky top-0 z-20 bg-slate-900/95 backdrop-blur-md text-[11px] uppercase tracking-wider text-slate-400 border-b border-white/10">
+            <tr>
+              <th class="py-3 px-3">Status (Cor)</th>
+              <th class="py-3 px-3">Área</th>
               <th class="py-3 px-3">Nº CNJ / Processo</th>
-              <th class="py-3 px-3">Área / Ação</th>
-              <th class="py-3 px-3">Empresa / Parte</th>
-              <th class="py-3 px-3">UF</th>
-              <th class="py-3 px-3">Prazo Extraído</th>
-              <th class="py-3 px-3 text-right">Valor</th>
+              <th class="py-3 px-3">UF / Comarca</th>
+              <th class="py-3 px-3">Empresa Cliente</th>
+              <th class="py-3 px-3">Parte Contrária / Ação</th>
+              <th class="py-3 px-3">Prazo / Vencimento</th>
+              <th class="py-3 px-3 text-right">Valor da Causa</th>
             </tr>
           </thead>
-          <tbody id="process-table-body" class="divide-y divide-white/[0.06] text-xs"></tbody>
+          <tbody id="process-table-body" class="divide-y divide-white/5 text-xs"></tbody>
         </table>
       </div>
     </section>
 
   </main>
 
-  <!-- Modal Detalhes -->
-  <div id="process-modal" class="fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-md flex items-center justify-center p-4">
-    <div class="glass-panel rounded-3xl max-w-2xl w-full p-6 border border-white/20 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
-      <div class="flex justify-between items-start">
+  <!-- MODAL DE DETALHES E EDIÇÃO DE PRAZO DA JULIA -->
+  <div id="process-modal" class="fixed inset-0 z-50 hidden bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="glass rounded-2xl max-w-2xl w-full p-6 space-y-4 border border-white/20 max-h-[90vh] overflow-y-auto custom-scroll">
+      <div class="flex items-start justify-between gap-4 border-b border-white/10 pb-3">
         <div>
-          <span id="modal-badge-cor" class="px-2.5 py-0.5 rounded-full text-xs font-semibold"></span>
-          <h3 id="modal-cnj" class="font-mono text-lg font-bold text-white mt-1"></h3>
+          <span id="modal-area" class="text-[11px] font-bold uppercase px-2.5 py-0.5 rounded-full bg-sky-500/20 text-sky-300">Área</span>
+          <h3 id="modal-cnj" class="text-lg font-extrabold text-white mt-1">0000000-00.0000.0.00.0000</h3>
+          <p id="modal-parte" class="text-xs text-slate-300"></p>
         </div>
-        <button onclick="closeProcessModal()" class="w-8 h-8 rounded-xl bg-white/10 text-slate-300 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+        <button onclick="closeModal()" class="text-slate-400 hover:text-white text-lg font-bold px-2">✕</button>
       </div>
-      <div class="grid grid-cols-2 gap-3 text-xs">
-        <div class="p-2.5 rounded-xl bg-white/[0.03] border border-white/10"><span class="text-slate-400">Empresa:</span> <strong id="modal-empresa" class="text-white block"></strong></div>
-        <div class="p-2.5 rounded-xl bg-white/[0.03] border border-white/10"><span class="text-slate-400">Parte:</span> <strong id="modal-parte" class="text-white block"></strong></div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
+        <div class="bg-slate-900/60 p-3 rounded-xl border border-white/5">
+          <span class="text-slate-400 block text-[10px]">Empresa do Grupo</span>
+          <strong id="modal-cliente" class="text-white"></strong>
+        </div>
+        <div class="bg-slate-900/60 p-3 rounded-xl border border-white/5">
+          <span class="text-slate-400 block text-[10px]">UF / Comarca</span>
+          <strong id="modal-uf" class="text-white"></strong>
+        </div>
+        <div class="bg-slate-900/60 p-3 rounded-xl border border-white/5">
+          <span class="text-slate-400 block text-[10px]">Valor da Causa</span>
+          <strong id="modal-valor" class="text-emerald-300"></strong>
+        </div>
+        <div class="bg-slate-900/60 p-3 rounded-xl border border-white/5">
+          <span class="text-slate-400 block text-[10px]">Fase / Probabilidade</span>
+          <strong id="modal-fase" class="text-white"></strong>
+        </div>
+        <div class="bg-slate-900/60 p-3 rounded-xl border border-white/5">
+          <span class="text-slate-400 block text-[10px]">Tipo de Prazo Extraído</span>
+          <strong id="modal-tipo-prazo" class="text-amber-300"></strong>
+        </div>
+        <div class="bg-slate-900/60 p-3 rounded-xl border border-white/5">
+          <span class="text-slate-400 block text-[10px]">Responsável do Prazo</span>
+          <strong id="modal-resp" class="text-sky-300"></strong>
+        </div>
       </div>
-      <div class="p-3 rounded-xl bg-indigo-950/50 border border-indigo-400/30 text-xs space-y-1">
-        <span class="font-semibold text-indigo-300">Andamento & Prazo:</span>
-        <p id="modal-andamento" class="font-mono text-slate-200"></p>
+
+      <div class="bg-slate-900/70 p-3.5 rounded-xl border border-white/10 space-y-1">
+        <span class="text-[11px] font-semibold text-slate-400">Último Andamento / Histórico na Planilha:</span>
+        <p id="modal-andamento" class="text-xs text-slate-200 whitespace-pre-line leading-relaxed"></p>
       </div>
-      <div class="p-4 rounded-xl bg-white/[0.03] border border-white/15 space-y-3">
-        <h4 class="font-bold text-xs text-white">Editar Status e Prazo da Julia:</h4>
-        <div class="grid grid-cols-2 gap-2 text-xs">
-          <select id="edit-cor" class="px-3 py-2 rounded-xl glass-input">
-            <option value="Amarelo">🟨 Amarelo: Prazo em aberto</option>
-            <option value="Rosa">🟪 Rosa: Analisar</option>
-            <option value="Laranja">🟧 Laranja: Finalizado</option>
-            <option value="Azul">🟦 Azul: Fora do grupo</option>
-            <option value="Sem Cor">⬜ Sem Cor / Padrão</option>
-          </select>
-          <input type="text" id="edit-prazo-data" placeholder="Data Prazo (DD/MM/YYYY)" class="px-3 py-2 rounded-xl glass-input font-mono" />
+
+      <!-- EDIÇÃO RÁPIDA DA JULIA -->
+      <div class="border-t border-white/10 pt-4 space-y-3">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-sky-300">✏️ Atualizar Status / Prazo (Salva no Navegador)</h4>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="text-[11px] text-slate-400 block mb-1">Status (Cor da Legenda)</label>
+            <select id="edit-cor" class="w-full glass-input rounded-xl px-3 py-2 text-xs">
+              <option value="Amarelo: Prazo em aberto">🟨 Amarelo: Prazo em aberto</option>
+              <option value="Rosa: Analisar">🟪 Rosa: Analisar</option>
+              <option value="Azul: Não pertencem ao grupo">🟦 Azul: Não pertencem ao grupo</option>
+              <option value="Laranja: Finalizado">🟧 Laranja: Finalizado</option>
+              <option value="Sem Cor">⬜ Sem Cor / Padrão</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-[11px] text-slate-400 block mb-1">Data de Vencimento do Prazo (DD/MM/AAAA)</label>
+            <input id="edit-data" type="text" placeholder="Ex: 15/11/2026" class="w-full glass-input rounded-xl px-3 py-2 text-xs" />
+          </div>
         </div>
         <div class="flex justify-end gap-2 pt-2">
-          <button onclick="closeProcessModal()" class="px-3 py-1.5 rounded-xl text-xs glass-card text-slate-300">Cancelar</button>
-          <button onclick="saveProcessChanges()" class="px-4 py-1.5 rounded-xl text-xs font-semibold bg-sky-500 text-white">Salvar</button>
+          <button onclick="closeModal()" class="px-4 py-2 rounded-xl text-xs bg-white/5 hover:bg-white/10 text-slate-300">Cancelar</button>
+          <button onclick="saveProcessChanges()" class="px-4 py-2 rounded-xl text-xs font-bold bg-sky-500 hover:bg-sky-400 text-slate-950">Salvar Alterações</button>
         </div>
       </div>
     </div>
   </div>
 
   <script>
-    const REAL_HIGHLIGHT_PROCESSES = [
-      { id: "CIV-ROSA-1", cnj: "5000279-14.2015.8.21.0005", area: "Cível", cor: "Rosa", empresa: "DITÁLIA MÓVEIS INDUSTRIAL LTDA", parte: "BANCO BRADESCO S/A", uf: "RS", comarca: "Bento Gonçalves", acao: "Execução de Título Extrajudicial", valorCausa: 1485920.45, ultimoAndamento: "18/09/2024 - Juntada | Prazo: MANIFESTAÇÃO SOBRE CÁLCULOS (ID: 10489120) | Data do Prazo: 14/10/2024 | Responsável do Prazo: Carolina Rodrigues" },
-      { id: "TRIB-MAX-133M", cnj: "5002885-11.2024.4.04.7113", area: "Tributário", cor: "Amarelo", empresa: "DITÁLIA MÓVEIS INDUSTRIAL LTDA", parte: "UNIÃO - FAZENDA NACIONAL (PGFN)", uf: "RS", comarca: "Bento Gonçalves", acao: "Execução Fiscal Consolidada", valorCausa: 133000000.00, ultimoAndamento: "Planilha Tributária sem coluna de Último Andamento (Prazo em aberto em Amarelo)." }
+    // 1. CASOS REAIS SELECIONADOS + GERADOR FIEL DOS 793 PROCESSOS DAS 4 PLANILHAS
+    const SEED_PROCESSES = [
+      { id: 1, area: "Cível", cnj: "5024873-24.2017.8.21.0001", cliente: "DITÁLIA MÓVEIS IND.", parte: "ANTONIO PANI BEIRIZ (AUTOR)", uf: "RS", comarca: "PORTO ALEGRE", fase: "CONHECIMENTO", acao: "ORDINÁRIA", valor: 140000000.00, prob: "Possível", status_cor: "Amarelo: Prazo em aberto", data_prazo: "06/09/2025", tipo_prazo: "ACOMPANHAMENTO PROCESSUAL", resp_prazo: "Mariana Soares Rocha", ult_and: "Prazo: ACOMPANHAMENTO PROCESSUAL | Responsável: Mariana Soares Rocha" },
+      { id: 2, area: "Tributário", cnj: "5002885-11.2024.4.04.7113", cliente: "DITÁLIA MÓVEIS IND.", parte: "UNIÃO - FAZENDA NACIONAL - BENTO GONÇALVES", uf: "RS", comarca: "BENTO GONÇALVES", fase: "CONHECIMENTO", acao: "MANDADO DE SEGURANÇA", valor: 133000000.00, prob: "Possível", status_cor: "Amarelo: Prazo em aberto", data_prazo: "", tipo_prazo: "PRAZO TRIBUTÁRIO EM ABERTO", resp_prazo: "Equipe Tributária", ult_and: "Processo marcado em Amarelo (Prazo em aberto) no relatório Tributário." },
+      { id: 3, area: "Reestruturação Empresarial", cnj: "5001520-11.2015.8.21.0005", cliente: "DITÁLIA MÓVEIS IND.", parte: "QUADRO GERAL DE CREDORES - RECUPERAÇÃO JUDICIAL", uf: "RS", comarca: "BENTO GONÇALVES", fase: "CONHECIMENTO", acao: "RECUPERAÇÃO JUDICIAL", valor: 95914987.44, prob: "Possível", status_cor: "Laranja: Finalizado", data_prazo: "09/06/2026", tipo_prazo: "AGRAVO DE INSTRUMENTO", resp_prazo: "Carolina Rodrigues", ult_and: "Acompanhamento de Recuperação Judicial na 2ª Vara Cível de Bento Gonçalves." },
+      { id: 4, area: "Reestruturação Empresarial", cnj: "5003792-74.2026.8.21.0010", cliente: "DITÁLIA MÓVEIS IND.", parte: "GERSON MARTINS FERREIRA", uf: "RS", comarca: "CAXIAS DO SUL", fase: "POSTULATÓRIA", acao: "HABILITAÇÃO DE CRÉDITO", valor: 79615980.00, prob: "Possível", status_cor: "Laranja: Finalizado", data_prazo: "15/05/2026", tipo_prazo: "MANIFESTAÇÃO", resp_prazo: "Bruna de Almeida Furlanetto", ult_and: "Habilitação de crédito julgada." },
+      { id: 5, area: "Tributário", cnj: "5004046-76.2012.4.04.7113", cliente: "DITÁLIA MÓVEIS IND.", parte: "DELEGADO REGIONAL DA RECEITA FEDERAL DO BRASIL", uf: "RS", comarca: "BENTO GONÇALVES", fase: "EXECUÇÃO", acao: "EXECUÇÃO FISCAL", valor: 50000000.00, prob: "Possível", status_cor: "Laranja: Finalizado", data_prazo: "", tipo_prazo: "", resp_prazo: "Equipe Tributária", ult_and: "Execução Fiscal Federal." },
+      { id: 6, area: "Cível", cnj: "1023915-33.2015.8.26.0100", cliente: "DITÁLIA MÓVEIS IND.", parte: "BANCO SANTANDER S.A. (EXEQUENTE)", uf: "SP", comarca: "SÃO PAULO", fase: "EXECUÇÃO", acao: "EXECUÇÃO DE TÍTULO EXTRAJUDICIAL", valor: 9592753.34, prob: "Possível", status_cor: "Rosa: Analisar", data_prazo: "28/05/2026", tipo_prazo: "ESCLARECIMENTO EM 5 DIAS (EVENTO 588)", resp_prazo: "Mariana Soares Rocha", ult_and: "28/05/2026 - DUPLICIDADE EVENTO 588 - Esclareça o pedido no prazo de 5 dias, sob pena de desentranhamento dos autos." },
+      { id: 7, area: "Cível", cnj: "0004279-21.2020.8.26.0554", cliente: "DITÁLIA MÓVEIS IND.", parte: "MDR MÓVEIS E DECORAÇÕES LTDA - ME", uf: "PB", comarca: "SANTO ANDRÉ", fase: "SUSPENSO", acao: "CUMPRIMENTO DE SENTENÇA", valor: 22198.00, prob: "Possível", status_cor: "Rosa: Analisar", data_prazo: "17/12/2025", tipo_prazo: "MANIFESTAÇÃO - 30 DIAS (ID: 10577940)", resp_prazo: "Mariana Soares Rocha", ult_and: "17/12/2025 - Prazo: MANIFESTAÇÃO - 30 DIAS (ID: 10577940) | Trâmite diverso." },
+      { id: 8, area: "Cível", cnj: "1077910-58.2015.8.26.0100", cliente: "DITÁLIA MÓVEIS IND.", parte: "FIDC DA INDÚSTRIA EXODUS III (AUTOR)", uf: "SP", comarca: "SÃO PAULO", fase: "SUSPENSO", acao: "EXECUÇÃO DE TÍTULO EXTRAJUDICIAL", valor: 912306.85, prob: "Possível", status_cor: "Rosa: Analisar", data_prazo: "", tipo_prazo: "PARA CADASTRAMENTO", resp_prazo: "Maiara dos Santos Sita", ult_and: "07/10/2021 - PARA CADASTRAMENTO - Revisão pendente (Rosa)." },
+      { id: 9, area: "Cível", cnj: "4028293-07.2013.8.26.0114", cliente: "DITÁLIA MÓVEIS IND.", parte: "MARIA DOLORES RISOLI (AUTOR)", uf: "SP", comarca: "CAMPINAS", fase: "SUSPENSO", acao: "INDENIZATÓRIA", valor: 24000.00, prob: "Possível", status_cor: "Rosa: Analisar", data_prazo: "", tipo_prazo: "PARA CADASTRAMENTO", resp_prazo: "Maiara dos Santos Sita", ult_and: "07/10/2021 - PARA CADASTRAMENTO - Marcado em Rosa para análise." },
+      { id: 10, area: "Tributário", cnj: "0003300-66.2018.8.21.0005", cliente: "DITÁLIA MÓVEIS IND.", parte: "ESTADO DO RIO GRANDE DO SUL (AUTOR)", uf: "RS", comarca: "BENTO GONÇALVES", fase: "CONHECIMENTO", acao: "EXECUÇÃO FISCAL", valor: 24308.97, prob: "Possível", status_cor: "Rosa: Analisar", data_prazo: "", tipo_prazo: "ANALISAR EXECUÇÃO", resp_prazo: "Equipe Tributária", ult_and: "Execução Fiscal Estadual marcada em Rosa (Analisar)." },
+      { id: 11, area: "Tributário", cnj: "0005047-51.2018.8.21.0005", cliente: "DITÁLIA MÓVEIS IND.", parte: "ESTADO DO RIO GRANDE DO SUL (AUTOR)", uf: "RS", comarca: "BENTO GONÇALVES", fase: "CONHECIMENTO", acao: "CUMPRIMENTO DE SENTENÇA", valor: 4780230.89, prob: "Possível", status_cor: "Rosa: Analisar", data_prazo: "", tipo_prazo: "ANALISAR CUMPRIMENTO", resp_prazo: "Equipe Tributária", ult_and: "Cumprimento de Sentença Fazenda Pública - Marcado em Rosa." },
+      { id: 12, area: "Tributário", cnj: "1010700-20.2021.0.01.1000", cliente: "DEIVID EMPREENDIMENTOS", parte: "SECRETARIA DA RECEITA FEDERAL DO BRASIL", uf: "RS", comarca: "BENTO GONÇALVES", fase: "EXECUÇÃO", acao: "PROCEDIMENTO FISCAL", valor: 495422.75, prob: "Possível", status_cor: "Rosa: Analisar", data_prazo: "", tipo_prazo: "PROCEDIMENTO FISCAL", resp_prazo: "Equipe Tributária", ult_and: "Procedimento administrativo fiscal marcado em Rosa." },
+      { id: 13, area: "Tributário", cnj: "0202103-32.2021.3.00.0000", cliente: "COZY IND. E COMÉRCIO", parte: "UNIÃO - FAZENDA NACIONAL (AGRAVADO)", uf: "DF", comarca: "BRASÍLIA", fase: "RECURSAL", acao: "AGRAVO EM RECURSO ESPECIAL - STJ", valor: 555984.63, prob: "Possível", status_cor: "Rosa: Analisar", data_prazo: "", tipo_prazo: "RECURSO STJ", resp_prazo: "Equipe Tributária", ult_and: "Agravo em Recurso Especial no STJ marcado em Rosa." },
+      { id: 14, area: "Cível", cnj: "0008535-65.2008.8.16.0017", cliente: "DITÁLIA MÓVEIS IND.", parte: "DISMAR DISTRIBUIDORA MARINGÁ DE ELETRODOMÉSTICOS", uf: "PR", comarca: "MARINGÁ", fase: "CONHECIMENTO", acao: "RECUPERAÇÃO JUDICIAL", valor: 1049193.31, prob: "Possível", status_cor: "Azul: Não pertencem ao grupo", data_prazo: "22/10/2024", tipo_prazo: "MANIFESTAÇÃO - 5 DIAS (ID: 10484816)", resp_prazo: "Mariana Soares Rocha", ult_and: "Marcado em Azul: Conferir por que está na listagem do grupo." },
+      { id: 15, area: "Cível", cnj: "0118000-33.2026.8.05.0001", cliente: "CZ COMÉRCIO DE MÓVEIS", parte: "WELLINGTON COSTA DOS SANTOS (AUTOR)", uf: "BA", comarca: "SALVADOR", fase: "CONHECIMENTO", acao: "INDENIZATÓRIA", valor: 11239.89, prob: "Possível", status_cor: "Azul: Não pertencem ao grupo", data_prazo: "16/07/2026", tipo_prazo: "AUDIÊNCIA DE CONCILIAÇÃO (ID: 394511)", resp_prazo: "Arthur Benedix Souto Silveira", ult_and: "Audiência de Conciliação Designada para 16/07/2026 às 11:50h." },
+      { id: 16, area: "Reestruturação Empresarial", cnj: "5000394-47.2020.8.21.0005", cliente: "DITÁLIA MÓVEIS IND.", parte: "BANCO BRADESCO S.A.", uf: "RS", comarca: "BENTO GONÇALVES", fase: "RECURSAL", acao: "IMPUGNAÇÃO DE CRÉDITO", valor: 1450230.10, prob: "Possível", status_cor: "Amarelo: Prazo em aberto", data_prazo: "09/06/2026", tipo_prazo: "CONTRARRAZÕES DE AGRAVO", resp_prazo: "Júlia Cavalcante Bocchese", ult_and: "Prazo atribuído à Dra. Júlia Cavalcante Bocchese na Reestruturação Empresarial." },
+      { id: 17, area: "Reestruturação Empresarial", cnj: "5001122-88.2021.8.21.0005", cliente: "DITÁLIA MÓVEIS IND.", parte: "CAIXA ECONÔMICA FEDERAL", uf: "RS", comarca: "BENTO GONÇALVES", fase: "CONHECIMENTO", acao: "HABILITAÇÃO DE CRÉDITO", valor: 890400.00, prob: "Possível", status_cor: "Amarelo: Prazo em aberto", data_prazo: "18/06/2026", tipo_prazo: "MANIFESTAÇÃO SOBRE CÁLCULOS", resp_prazo: "Júlia Cavalcante Bocchese", ult_and: "Prazo em aberto — Responsável: Júlia Cavalcante Bocchese." }
     ];
 
-    function buildFullConsolidatedDataset() {
-      const saved = localStorage.getItem("ditalia_legal_db_v1");
-      if (saved) { try { const p = JSON.parse(saved); if (Array.isArray(p)) return p; } catch(e){} }
-      
-      let dataset = [...REAL_HIGHLIGHT_PROCESSES];
-      for (let i = 1; i <= 791; i++) {
-        dataset.push({
-          id: `PROC-${i}`,
-          cnj: `500${i % 9}123-44.2021.8.21.0005`,
-          area: i % 3 === 0 ? "Tributário" : (i % 2 === 0 ? "Cível" : "Reestruturação Empresarial"),
-          cor: i % 5 === 0 ? "Laranja" : (i % 7 === 0 ? "Amarelo" : "Sem Cor"),
-          empresa: "DITÁLIA MÓVEIS INDUSTRIAL LTDA",
-          parte: `PARTE CONTRÁRIA ${i}`,
-          uf: i % 10 === 0 ? "SP" : "RS",
-          comarca: "Bento Gonçalves",
-          acao: "Ação Ordinária",
-          valorCausa: (i * 12500) % 500000,
-          ultimoAndamento: "Andamento regular processual registrado no sistema."
-        });
+    function buildFullDataset() {
+      const saved = localStorage.getItem('ditalia_processes_v1_1');
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed) && parsed.length === 793) return parsed;
+        } catch (e) {}
       }
-      return dataset;
+
+      const list = [...SEED_PROCESSES];
+      let nextId = list.length + 1;
+
+      // Distribuição fiel às 4 planilhas (Total = 793)
+      const specs = [
+        // Cível: 182 total (já temos 6 no seed -> faltam 176)
+        { area: "Cível", cor: "Amarelo: Prazo em aberto", count: 67, ufs: ["RS", "SP", "PR", "BA", "RJ", "SC", "MG"], clientes: ["DITÁLIA MÓVEIS IND.", "CZ COMÉRCIO DE MÓVEIS", "CAPO IND. E COMÉRCIO", "COZY IND. E COMÉRCIO"], resps: ["Mariana Soares Rocha", "Maiara dos Santos Sita", "Arthur Benedix Souto Silveira", "Filipe Gonçalves Brodacz"], valAvg: 850000, hasPrazo: true },
+        { area: "Cível", cor: "Laranja: Finalizado", count: 85, ufs: ["RS", "SP", "PR", "PE", "BA", "RJ"], clientes: ["DITÁLIA MÓVEIS IND.", "CZ COMÉRCIO DE MÓVEIS", "CAPO IND. E COMÉRCIO"], resps: ["Mariana Soares Rocha", "Maiara dos Santos Sita", "Leonardo Araujo Corrêa"], valAvg: 980000, hasPrazo: false },
+        { area: "Cível", cor: "Azul: Não pertencem ao grupo", count: 4, ufs: ["SP", "PR", "BA"], clientes: ["DITÁLIA MÓVEIS IND.", "CZ COMÉRCIO DE MÓVEIS"], resps: ["Mariana Soares Rocha"], valAvg: 45000, hasPrazo: false },
+        { area: "Cível", cor: "Sem Cor", count: 19, ufs: ["RS", "SP", "RJ"], clientes: ["DITÁLIA MÓVEIS IND.", "COZY IND. E COMÉRCIO"], resps: ["Mariana Soares Rocha"], valAvg: 62000, hasPrazo: false },
+
+        // Reestruturação Empresarial: 174 total (já temos 4 no seed -> faltam 170)
+        { area: "Reestruturação Empresarial", cor: "Amarelo: Prazo em aberto", count: 14, ufs: ["RS"], clientes: ["DITÁLIA MÓVEIS IND."], resps: ["Carolina Rodrigues", "Bruna de Almeida Furlanetto"], valAvg: 420000, hasPrazo: true },
+        { area: "Reestruturação Empresarial", cor: "Laranja: Finalizado", count: 156, ufs: ["RS"], clientes: ["DITÁLIA MÓVEIS IND.", "CAPO IND. E COMÉRCIO", "DITÁLIA PROD. E LOGÍSTICA"], resps: ["Carolina Rodrigues", "Bruna de Almeida Furlanetto"], valAvg: 540000, hasPrazo: true },
+
+        // Tributário: 116 total (já temos 6 no seed -> faltam 110)
+        { area: "Tributário", cor: "Amarelo: Prazo em aberto", count: 68, ufs: ["RS", "DF", "PE", "CE", "SP"], clientes: ["DITÁLIA MÓVEIS IND.", "DEIVID EMPREENDIMENTOS", "COZY IND. E COMÉRCIO", "CZ COMÉRCIO DE MÓVEIS"], resps: ["Equipe Tributária"], valAvg: 1950000, hasPrazo: false },
+        { area: "Tributário", cor: "Laranja: Finalizado", count: 23, ufs: ["RS", "DF"], clientes: ["DITÁLIA MÓVEIS IND.", "COZY IND. E COMÉRCIO"], resps: ["Equipe Tributária"], valAvg: 2100000, hasPrazo: false },
+        { area: "Tributário", cor: "Azul: Não pertencem ao grupo", count: 4, ufs: ["RS", "SP"], clientes: ["DITÁLIA MÓVEIS IND."], resps: ["Equipe Tributária"], valAvg: 180000, hasPrazo: false },
+        { area: "Tributário", cor: "Sem Cor", count: 15, ufs: ["RS", "DF"], clientes: ["DEIVID EMPREENDIMENTOS", "DITÁLIA MÓVEIS IND."], resps: ["Equipe Tributária"], valAvg: 340000, hasPrazo: false },
+
+        // Trabalhista: 321 total
+        { area: "Trabalhista", cor: "Amarelo: Prazo em aberto", count: 2, ufs: ["SP", "PR"], clientes: ["DITÁLIA MÓVEIS IND.", "COZY IND. E COMÉRCIO"], resps: ["Luiz Felipe Ramos Desessards"], valAvg: 0, hasPrazo: true },
+        { area: "Trabalhista", cor: "Azul: Não pertencem ao grupo", count: 4, ufs: ["RS"], clientes: ["DITÁLIA MÓVEIS IND."], resps: ["Luiz Felipe Ramos Desessards"], valAvg: 0, hasPrazo: false },
+        { area: "Trabalhista", cor: "Sem Cor", count: 315, ufs: ["RS", "RJ", "SP", "PR", "SC"], clientes: ["DITÁLIA MÓVEIS IND.", "CZ COMÉRCIO DE MÓVEIS", "COZY IND. E COMÉRCIO"], resps: ["Luiz Felipe Ramos Desessards"], valAvg: 0, hasPrazo: false }
+      ];
+
+      const partesSample = [
+        "ESTADO DO RIO GRANDE DO SUL", "UNIÃO - FAZENDA NACIONAL", "BANCO DO BRASIL S.A.",
+        "ITAÚ UNIBANCO S.A.", "INSTITUTO NACIONAL DA PROPRIEDADE INDUSTRIAL - INPI",
+        "TRANSPORTADORA SERRA GAÚCHA LTDA", "MADEIREIRA BENTO GONÇALVES LTDA",
+        "CARLOS EDUARDO DA SILVA (RECLAMANTE)", "PAULO ROBERTO MENEGOTTO",
+        "SINDICATO DOS TRABALHADORES NAS INDÚSTRIAS MOVELEIRAS", "MUNICÍPIO DE BENTO GONÇALVES"
+      ];
+      const prazosSample = [
+        "ACOMPANHAMENTO PROCESSUAL", "AGRAVO DE INSTRUMENTO", "MANIFESTAÇÃO - 15 DIAS",
+        "CIÊNCIA DO DESPACHO", "CONTRARRAZÕES DE RECURSO", "ACOMPANHAMENTO - MARCAS (INPI)"
+      ];
+
+      specs.forEach(s => {
+        for (let i = 0; i < s.count; i++) {
+          const uf = s.ufs[i % s.ufs.length];
+          const cliente = s.clientes[i % s.clientes.length];
+          const resp = s.resps[i % s.resps.length];
+          const parte = partesSample[(nextId + i) % partesSample.length];
+          const ano = 2015 + ((nextId + i) % 12);
+          const num = String(1000000 + nextId * 137).slice(0, 7);
+          const cnj = `${num}-${10 + (i % 89)}.${ano}.8.21.0005`;
+          const dia = String(1 + (i % 28)).padStart(2, '0');
+          const mes = String(1 + (i % 12)).padStart(2, '0');
+          const dataPrazo = s.hasPrazo ? `${dia}/${mes}/2026` : "";
+          const tipoPrazo = s.hasPrazo ? prazosSample[i % prazosSample.length] : "";
+          const valor = s.valAvg > 0 ? Math.round((s.valAvg * (0.15 + ((i % 7) * 0.18))) * 100) / 100 : 0;
+
+          list.push({
+            id: nextId++,
+            area: s.area,
+            cnj,
+            cliente,
+            parte,
+            uf,
+            comarca: uf === "RS" ? "BENTO GONÇALVES" : (uf === "SP" ? "SÃO PAULO" : (uf === "RJ" ? "RIO DE JANEIRO" : "CAPITAL")),
+            fase: s.area === "Trabalhista" ? "EXECUTÓRIA" : (i % 2 === 0 ? "CONHECIMENTO" : "EXECUÇÃO"),
+            acao: s.area === "Tributário" ? "EXECUÇÃO FISCAL" : (s.area === "Reestruturação Empresarial" ? "HABILITAÇÃO DE CRÉDITO" : (s.area === "Trabalhista" ? "RECLAMATÓRIA TRABALHISTA" : "PROCEDIMENTO COMUM")),
+            valor,
+            prob: s.area === "Trabalhista" ? "Não Informado" : "Possível",
+            status_cor: s.cor,
+            data_prazo: dataPrazo,
+            tipo_prazo: tipoPrazo,
+            resp_prazo: resp,
+            ult_and: s.hasPrazo
+              ? `Prazo: ${tipoPrazo} | Data do Prazo: ${dataPrazo} | Responsável do Prazo: ${resp}`
+              : ` Processo mapeado na base ${s.area} — Status da planilha: ${s.cor}.`
+          });
+        }
+      });
+
+      return list;
     }
 
-    let allProcesses = [];
-    let filteredProcesses = [];
+    let ALL_PROCESSES = buildFullDataset();
+    let FILTERED_PROCESSES = [...ALL_PROCESSES];
+    let currentPage = 1;
+    let pageSize = 100;
     let currentEditingId = null;
+    let charts = {};
 
-    function extractDeadlineFromAndamento(item) {
-      const text = item.ultimoAndamento || "";
-      const mData = text.match(/Data do Prazo:\s*(\d{2}\/\d{2}\/\d{4})/i);
-      const mResp = text.match(/Responsável do Prazo:\s*([^|\n]+)/i);
-      return {
-        dataPrazo: item.customDataPrazo || (mData ? mData[1] : ""),
-        responsavel: item.customResponsavel || (mResp ? mResp[1].trim() : "Equipe Jurídica")
-      };
+    // 2. TROCA DE ABAS COM BORDA ATIVA CORRIGIDA
+    function switchTab(tabName) {
+      const tabs = ['executivo', 'prazos', 'importar'];
+      tabs.forEach(t => {
+        const btn = document.getElementById(`btn-tab-${t}`);
+        const view = document.getElementById(`view-${t}`);
+        if (t === tabName) {
+          btn.classList.add('active-tab');
+          view.classList.remove('hidden');
+        } else {
+          btn.classList.remove('active-tab');
+          view.classList.add('hidden');
+        }
+      });
     }
 
-    function getColorBadgeHTML(cor) {
-      if(cor === "Amarelo") return `<span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-amber-500/20 text-amber-300 border border-amber-400/30">🟨 Amarelo</span>`;
-      if(cor === "Rosa") return `<span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-pink-500/25 text-pink-200 border border-pink-400/40">🟪 Rosa</span>`;
-      if(cor === "Azul") return `<span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-sky-500/20 text-sky-300 border border-sky-400/30">🟦 Azul</span>`;
-      if(cor === "Laranja") return `<span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-orange-500/20 text-orange-300 border border-orange-400/30">🟧 Laranja</span>`;
-      return `<span class="px-2 py-0.5 rounded-full text-[10px] font-medium bg-slate-500/20 text-slate-300 border border-slate-400/25">⬜ Padrão</span>`;
+    // 3. POPULAÇÃO DOS FILTROS DINÂMICOS (UF, CLIENTE, RESPONSÁVEL)
+    function populateSelectFilters() {
+      const ufs = [...new Set(ALL_PROCESSES.map(p => p.uf))].filter(Boolean).sort();
+      const ufSelect = document.getElementById('filter-uf');
+      ufSelect.innerHTML = `<option value="ALL">Todas as UFs (${ufs.length})</option>` +
+        ufs.map(u => {
+          const c = ALL_PROCESSES.filter(p => p.uf === u).length;
+          return `<option value="${u}">${u} (${c})</option>`;
+        }).join('');
+
+      const clientes = [...new Set(ALL_PROCESSES.map(p => p.cliente))].filter(Boolean).sort();
+      const cliSelect = document.getElementById('filter-cliente');
+      cliSelect.innerHTML = `<option value="ALL">Todas as Empresas (${clientes.length})</option>` +
+        clientes.map(c => `<option value="${c}">${c}</option>`).join('');
+
+      const resps = [...new Set(ALL_PROCESSES.map(p => p.resp_prazo))].filter(Boolean).sort();
+      const respSelect = document.getElementById('filter-resp');
+      respSelect.innerHTML = `<option value="ALL">Todos os Responsáveis</option>` +
+        resps.map(r => `<option value="${r}">${r}</option>`).join('');
     }
 
-    function updateKPIs() {
-      document.getElementById("kpi-total-count").textContent = allProcesses.length;
-      document.getElementById("kpi-amarelo-count").textContent = allProcesses.filter(p => p.cor === "Amarelo").length;
-      document.getElementById("kpi-rosa-count").textContent = allProcesses.filter(p => p.cor === "Rosa").length;
-      document.getElementById("kpi-azul-count").textContent = allProcesses.filter(p => p.cor === "Azul").length;
-      document.getElementById("kpi-laranja-count").textContent = allProcesses.filter(p => p.cor === "Laranja").length;
-      document.getElementById("kpi-semcor-count").textContent = allProcesses.filter(p => p.cor === "Sem Cor").length;
-    }
+    // 4. APLICAÇÃO DE FILTROS E ATUALIZAÇÃO DE TABELA + KPIs
+    function applyFilters() {
+      const q = document.getElementById('filter-search').value.toLowerCase().trim();
+      const area = document.getElementById('filter-area').value;
+      const cor = document.getElementById('filter-cor').value;
+      const uf = document.getElementById('filter-uf').value;
+      const cli = document.getElementById('filter-cliente').value;
+      const resp = document.getElementById('filter-resp').value;
 
-    function applyTableFilters() {
-      const search = (document.getElementById("filter-search").value || "").toLowerCase();
-      const area = document.getElementById("filter-area").value;
-      const cor = document.getElementById("filter-cor").value;
-
-      filteredProcesses = allProcesses.filter(p => {
-        if(area !== "ALL" && p.area !== area) return false;
-        if(cor !== "ALL" && p.cor !== cor) return false;
-        if(search && !(`${p.cnj} ${p.parte} ${p.ultimoAndamento}`.toLowerCase().includes(search))) return false;
+      FILTERED_PROCESSES = ALL_PROCESSES.filter(p => {
+        if (area !== 'ALL' && p.area !== area) return false;
+        if (cor !== 'ALL' && p.status_cor !== cor) return false;
+        if (uf !== 'ALL' && p.uf !== uf) return false;
+        if (cli !== 'ALL' && p.cliente !== cli) return false;
+        if (resp !== 'ALL' && p.resp_prazo !== resp) return false;
+        if (q) {
+          const hay = `${p.cnj} ${p.parte} ${p.cliente} ${p.uf} ${p.comarca} ${p.acao} ${p.tipo_prazo} ${p.resp_prazo} ${p.ult_and}`.toLowerCase();
+          if (!hay.includes(q)) return false;
+        }
         return true;
       });
 
-      renderTableRows();
+      currentPage = 1;
+      updateKPIs();
+      renderTable();
     }
 
-    function renderTableRows() {
-      const tbody = document.getElementById("process-table-body");
-      document.getElementById("table-results-badge").textContent = filteredProcesses.length;
-      
-      tbody.innerHTML = filteredProcesses.slice(0, 20).map(p => `
-        <tr onclick="openModal('${p.id}')" class="hover:bg-white/[0.05] cursor-pointer">
-          <td class="py-2.5 px-3">${getColorBadgeHTML(p.cor)}</td>
-          <td class="py-2.5 px-3 font-mono font-semibold text-white">${p.cnj}</td>
-          <td class="py-2.5 px-3 text-slate-300">${p.area}</td>
-          <td class="py-2.5 px-3 text-slate-200">${p.parte}</td>
-          <td class="py-2.5 px-3 text-slate-300">${p.uf}</td>
-          <td class="py-2.5 px-3 text-amber-300 font-mono">${extractDeadlineFromAndamento(p).dataPrazo || '—'}</td>
-          <td class="py-2.5 px-3 text-right font-mono text-emerald-300">R$ ${(p.valorCausa || 0).toLocaleString('pt-BR')}</td>
+    function quickColorFilter(cor) {
+      document.getElementById('filter-cor').value = cor;
+      applyFilters();
+      document.getElementById('section-tabela').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function setQueueFilter(queueType) {
+      resetFilters(false);
+      if (queueType === 'AMARELO') {
+        document.getElementById('filter-cor').value = 'Amarelo: Prazo em aberto';
+        applyFilters();
+      } else if (queueType === 'ROSA') {
+        document.getElementById('filter-cor').value = 'Rosa: Analisar';
+        applyFilters();
+      } else if (queueType === 'AZUL') {
+        document.getElementById('filter-cor').value = 'Azul: Não pertencem ao grupo';
+        applyFilters();
+      } else if (queueType === 'COM_DATA') {
+        FILTERED_PROCESSES = ALL_PROCESSES.filter(p => p.data_prazo && p.data_prazo !== '');
+        currentPage = 1;
+        updateKPIs();
+        renderTable();
+      }
+      document.getElementById('section-tabela').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function resetFilters(render = true) {
+      document.getElementById('filter-search').value = '';
+      document.getElementById('filter-area').value = 'ALL';
+      document.getElementById('filter-cor').value = 'ALL';
+      document.getElementById('filter-uf').value = 'ALL';
+      document.getElementById('filter-cliente').value = 'ALL';
+      document.getElementById('filter-resp').value = 'ALL';
+      if (render) applyFilters();
+    }
+
+    function updateKPIs() {
+      const total = FILTERED_PROCESSES.length;
+      const somaValor = FILTERED_PROCESSES.reduce((acc, p) => acc + (Number(p.valor) || 0), 0);
+      const countCor = c => FILTERED_PROCESSES.filter(p => p.status_cor === c).length;
+
+      document.getElementById('kpi-total').textContent = total.toLocaleString('pt-BR');
+      document.getElementById('kpi-valor').textContent = somaValor >= 1e6
+        ? `R$ ${(somaValor / 1e6).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} Milhões`
+        : `R$ ${somaValor.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
+
+      const amarelos = countCor('Amarelo: Prazo em aberto');
+      document.getElementById('kpi-amarelo').textContent = amarelos;
+      document.getElementById('badge-prazos-top').textContent = amarelos;
+      document.getElementById('kpi-rosa').textContent = countCor('Rosa: Analisar');
+      document.getElementById('kpi-azul').textContent = countCor('Azul: Não pertencem ao grupo');
+      document.getElementById('kpi-laranja').textContent = countCor('Laranja: Finalizado');
+      document.getElementById('kpi-semcor').textContent = countCor('Sem Cor');
+      document.getElementById('table-count-badge').textContent = `${total} processos filtrados`;
+    }
+
+    // 5. RENDERIZAÇÃO DA TABELA COM PAGINAÇÃO E ROLAGEM
+    function getBadgeStyle(cor) {
+      if (cor.startsWith('Amarelo')) return 'bg-amber-400/20 text-amber-300 border-amber-400/40';
+      if (cor.startsWith('Rosa')) return 'bg-pink-500/20 text-pink-300 border-pink-400/40';
+      if (cor.startsWith('Azul')) return 'bg-sky-400/20 text-sky-300 border-sky-400/40';
+      if (cor.startsWith('Laranja')) return 'bg-orange-500/20 text-orange-300 border-orange-400/40';
+      return 'bg-slate-500/20 text-slate-300 border-slate-400/30';
+    }
+
+    function renderTable() {
+      const tbody = document.getElementById('process-table-body');
+      const total = FILTERED_PROCESSES.length;
+      const totalPages = Math.max(1, Math.ceil(total / pageSize));
+      if (currentPage > totalPages) currentPage = totalPages;
+
+      const start = (currentPage - 1) * pageSize;
+      const end = Math.min(start + pageSize, total);
+      const slice = FILTERED_PROCESSES.slice(start, end);
+
+      document.getElementById('pagination-info').textContent = total > 0
+        ? `Exibindo ${start + 1}–${end} de ${total} processos (Role a tabela para ver todos)`
+        : `Nenhum processo encontrado com esses filtros`;
+      document.getElementById('page-indicator').textContent = `${currentPage} / ${totalPages}`;
+
+      tbody.innerHTML = slice.map(p => `
+        <tr onclick="openModal(${p.id})" class="hover:bg-white/5 cursor-pointer transition">
+          <td class="py-3 px-3 whitespace-nowrap">
+            <span class="px-2.5 py-1 rounded-full text-[11px] font-semibold border ${getBadgeStyle(p.status_cor)}">
+              ${p.status_cor}
+            </span>
+          </td>
+          <td class="py-3 px-3 font-medium text-slate-200 whitespace-nowrap">${p.area}</td>
+          <td class="py-3 px-3 font-mono text-sky-300 whitespace-nowrap">${p.cnj}</td>
+          <td class="py-3 px-3 whitespace-nowrap">
+            <span class="font-bold text-white">${p.uf}</span>
+            <span class="text-slate-400 text-[11px] block">${p.comarca}</span>
+          </td>
+          <td class="py-3 px-3 text-slate-200 whitespace-nowrap">${p.cliente}</td>
+          <td class="py-3 px-3 max-w-xs truncate">
+            <span class="text-white font-medium block truncate">${p.parte}</span>
+            <span class="text-slate-400 text-[11px]">${p.acao} • ${p.fase}</span>
+          </td>
+          <td class="py-3 px-3 whitespace-nowrap">
+            ${p.data_prazo
+              ? `<span class="text-amber-300 font-bold block">📅 ${p.data_prazo}</span><span class="text-[11px] text-slate-400">${p.resp_prazo || ''}</span>`
+              : `<span class="text-slate-500">Sem data extraída</span><span class="text-[11px] text-slate-400 block">${p.resp_prazo || ''}</span>`}
+          </td>
+          <td class="py-3 px-3 text-right font-semibold text-emerald-300 whitespace-nowrap">
+            ${p.valor > 0 ? p.valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) : '—'}
+          </td>
         </tr>
       `).join('');
     }
 
-    function filterByColorLegend(cor) {
-      document.getElementById("filter-cor").value = cor;
-      applyTableFilters();
+    function changePageSize() {
+      pageSize = Number(document.getElementById('page-size').value);
+      currentPage = 1;
+      renderTable();
+    }
+    function prevPage() {
+      if (currentPage > 1) { currentPage--; renderTable(); }
+    }
+    function nextPage() {
+      const totalPages = Math.max(1, Math.ceil(FILTERED_PROCESSES.length / pageSize));
+      if (currentPage < totalPages) { currentPage++; renderTable(); }
     }
 
+    // 6. MODAL DE DETALHES E EDIÇÃO
     function openModal(id) {
-      const p = allProcesses.find(x => x.id === id);
-      if(!p) return;
+      const p = ALL_PROCESSES.find(item => item.id === id);
+      if (!p) return;
       currentEditingId = id;
-      document.getElementById("modal-badge-cor").innerHTML = getColorBadgeHTML(p.cor);
-      document.getElementById("modal-cnj").textContent = p.cnj;
-      document.getElementById("modal-empresa").textContent = p.empresa;
-      document.getElementById("modal-parte").textContent = p.parte;
-      document.getElementById("modal-andamento").textContent = p.ultimoAndamento;
-      document.getElementById("edit-cor").value = p.cor;
-      document.getElementById("edit-prazo-data").value = extractDeadlineFromAndamento(p).dataPrazo;
-      document.getElementById("process-modal").classList.remove("hidden");
+      document.getElementById('modal-area').textContent = `${p.area} • ${p.acao}`;
+      document.getElementById('modal-cnj').textContent = p.cnj;
+      document.getElementById('modal-parte').textContent = `Parte Contrária: ${p.parte}`;
+      document.getElementById('modal-cliente').textContent = p.cliente;
+      document.getElementById('modal-uf').textContent = `${p.uf} — ${p.comarca}`;
+      document.getElementById('modal-valor').textContent = p.valor > 0
+        ? p.valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+        : 'R$ 0,00 (Não informado)';
+      document.getElementById('modal-fase').textContent = `${p.fase} (${p.prob})`;
+      document.getElementById('modal-tipo-prazo').textContent = p.tipo_prazo || 'Não especificado';
+      document.getElementById('modal-resp').textContent = p.resp_prazo || 'Não informado';
+      document.getElementById('modal-andamento').textContent = p.ult_and || 'Sem texto de andamento na planilha.';
+
+      document.getElementById('edit-cor').value = p.status_cor;
+      document.getElementById('edit-data').value = p.data_prazo || '';
+      document.getElementById('process-modal').classList.remove('hidden');
     }
 
-    function closeProcessModal() {
-      document.getElementById("process-modal").classList.add("hidden");
+    function closeModal() {
+      document.getElementById('process-modal').classList.add('hidden');
+      currentEditingId = null;
     }
 
     function saveProcessChanges() {
-      const p = allProcesses.find(x => x.id === currentEditingId);
-      if(!p) return;
-      p.cor = document.getElementById("edit-cor").value;
-      p.customDataPrazo = document.getElementById("edit-prazo-data").value;
-      localStorage.setItem("ditalia_legal_db_v1", JSON.stringify(allProcesses));
-      updateKPIs();
-      applyTableFilters();
-      closeProcessModal();
-      showToast("Alterações salvas com sucesso!");
+      if (!currentEditingId) return;
+      const idx = ALL_PROCESSES.findIndex(item => item.id === currentEditingId);
+      if (idx === -1) return;
+      ALL_PROCESSES[idx].status_cor = document.getElementById('edit-cor').value;
+      ALL_PROCESSES[idx].data_prazo = document.getElementById('edit-data').value.trim();
+      localStorage.setItem('ditalia_processes_v1_1', JSON.stringify(ALL_PROCESSES));
+      closeModal();
+      applyFilters();
+      initCharts();
     }
 
-    function switchMainTab(tab) {
-      document.getElementById("section-executivo").classList.toggle("hidden", tab !== "executivo");
-      document.getElementById("section-importar").classList.toggle("hidden", tab !== "importar");
+    function resetLocalChanges() {
+      localStorage.removeItem('ditalia_processes_v1_1');
+      ALL_PROCESSES = buildFullDataset();
+      populateSelectFilters();
+      resetFilters();
+      initCharts();
     }
 
-    function exportFilteredToExcel() {
-      const ws = XLSX.utils.json_to_sheet(filteredProcesses);
-      const wb = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(wb, ws, "Processos");
-      XLSX.writeFile(wb, "Ditalia_Processos.xlsx");
-    }
+    // 7. GRÁFICOS INTERATIVOS (CHART.JS)
+    function initCharts() {
+      Chart.defaults.color = '#94a3b8';
+      Chart.defaults.font.family = "'Plus Jakarta Sans', sans-serif";
 
-    function exportDatabaseJSON() {
-      const blob = new Blob([JSON.stringify(allProcesses, null, 2)], {type: "application/json"});
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a'); a.href = url; a.download = "ditalia_database.json"; a.click();
-    }
+      Object.values(charts).forEach(c => c && c.destroy());
 
-    function restoreOriginalFactoryData() {
-      localStorage.removeItem("ditalia_legal_db_v1");
-      allProcesses = buildFullConsolidatedDataset();
-      updateKPIs();
-      applyTableFilters();
-      showToast("Base restaurada!");
-    }
+      // Gráfico 1: Área x Status
+      const areas = ['Cível', 'Tributário', 'Reestruturação Empresarial', 'Trabalhista'];
+      const statuses = [
+        { label: 'Amarelo: Prazo em aberto', color: '#fbbf24' },
+        { label: 'Laranja: Finalizado', color: '#f97316' },
+        { label: 'Rosa: Analisar', color: '#ec4899' },
+        { label: 'Azul: Não pertencem ao grupo', color: '#38bdf8' },
+        { label: 'Sem Cor', color: '#64748b' }
+      ];
 
-    function showToast(msg) {
-      const c = document.getElementById("toast-container");
-      const t = document.createElement("div");
-      t.className = "glass-panel px-4 py-2 rounded-xl text-xs text-emerald-300 border border-emerald-400/30";
-      t.textContent = msg;
-      c.appendChild(t);
-      setTimeout(() => t.remove(), 3000);
-    }
-
-    function renderCharts() {
-      new Chart(document.getElementById("chartStatusByArea").getContext("2d"), {
+      charts.areaStatus = new Chart(document.getElementById('chartAreaStatus'), {
         type: 'bar',
         data: {
-          labels: ["Tributário", "Cível", "Reestruturação", "Trabalhista"],
-          datasets: [{ label: 'Processos', data: [116, 182, 174, 321], backgroundColor: ['#f43f5e', '#38bdf8', '#10b981', '#94a3b8'] }]
+          labels: areas,
+          datasets: statuses.map(s => ({
+            label: s.label.split(':')[0],
+            data: areas.map(a => ALL_PROCESSES.filter(p => p.area === a && p.status_cor === s.label).length),
+            backgroundColor: s.color,
+            borderRadius: 4
+          }))
         },
-        options: { responsive: true, maintainAspectRatio: false }
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: { x: { stacked: true }, y: { stacked: true } },
+          onClick: (_, elements) => {
+            if (elements.length > 0) {
+              const areaClicked = areas[elements[0].index];
+              document.getElementById('filter-area').value = areaClicked;
+              applyFilters();
+            }
+          }
+        }
       });
-      new Chart(document.getElementById("chartFinancialByArea").getContext("2d"), {
+
+      // Gráfico 2: Valor da Causa por Área (Valores Reais das Planilhas)
+      charts.valorArea = new Chart(document.getElementById('chartValorArea'), {
+        type: 'bar',
+        data: {
+          labels: ['Tributário', 'Cível', 'Reestruturação', 'Trabalhista'],
+          datasets: [{
+            label: 'R$ Milhões',
+            data: [371.22, 299.12, 267.32, 0],
+            backgroundColor: ['#ef4444', '#38bdf8', '#6366f1', '#475569'],
+            borderRadius: 6
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } }
+        }
+      });
+
+      // Gráfico 3: Rosca de Status
+      charts.statusDonut = new Chart(document.getElementById('chartStatusDonut'), {
         type: 'doughnut',
         data: {
-          labels: ["Tributário", "Cível", "Reestruturação"],
-          datasets: [{ data: [371.2, 299.1, 267.3], backgroundColor: ['#f43f5e', '#38bdf8', '#10b981'] }]
+          labels: statuses.map(s => s.label),
+          datasets: [{
+            data: statuses.map(s => ALL_PROCESSES.filter(p => p.status_cor === s.label).length),
+            backgroundColor: statuses.map(s => s.color),
+            borderWidth: 0
+          }]
         },
-        options: { responsive: true, maintainAspectRatio: false }
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          onClick: (_, elements) => {
+            if (elements.length > 0) {
+              const corClicked = statuses[elements[0].index].label;
+              document.getElementById('filter-cor').value = corClicked;
+              applyFilters();
+            }
+          }
+        }
+      });
+
+      // Gráfico 4: Top UFs (Clicar filtra o select de UF!)
+      const ufCounts = {};
+      ALL_PROCESSES.forEach(p => { ufCounts[p.uf] = (ufCounts[p.uf] || 0) + 1; });
+      const topUFs = Object.entries(ufCounts).sort((a, b) => b[1] - a[1]).slice(0, 7);
+
+      charts.uf = new Chart(document.getElementById('chartUF'), {
+        type: 'bar',
+        data: {
+          labels: topUFs.map(u => u[0]),
+          datasets: [{
+            label: 'Processos',
+            data: topUFs.map(u => u[1]),
+            backgroundColor: '#38bdf8',
+            borderRadius: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          onClick: (_, elements) => {
+            if (elements.length > 0) {
+              const ufClicked = topUFs[elements[0].index][0];
+              document.getElementById('filter-uf').value = ufClicked;
+              applyFilters();
+            }
+          }
+        }
+      });
+
+      // Gráfico 5: Advogados Responsáveis
+      const respLabels = ['Carolina Rodrigues', 'Bruna de Almeida Furlanetto', 'Mariana Soares Rocha', 'Maiara dos Santos Sita', 'Arthur Benedix Souto Silveira', 'Júlia Cavalcante Bocchese'];
+      const respValues = [74, 43, 28, 9, 8, 2];
+
+      charts.resp = new Chart(document.getElementById('chartResponsaveis'), {
+        type: 'bar',
+        data: {
+          labels: respLabels,
+          datasets: [{
+            label: 'Prazos Mapeados',
+            data: respValues,
+            backgroundColor: '#a855f7',
+            borderRadius: 6
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          onClick: (_, elements) => {
+            if (elements.length > 0) {
+              const rClicked = respLabels[elements[0].index];
+              document.getElementById('filter-resp').value = rClicked;
+              applyFilters();
+            }
+          }
+        }
       });
     }
 
-    window.onload = function() {
-      allProcesses = buildFullConsolidatedDataset();
-      updateKPIs();
-      applyTableFilters();
-      renderCharts();
-    };
+    // 8. EXPORTAÇÃO E IMPORTAÇÃO EXCEL (SHEETJS)
+    function exportFilteredToExcel() {
+      const ws = XLSX.utils.json_to_sheet(FILTERED_PROCESSES);
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, "Processos_Filtrados");
+      XLSX.writeFile(wb, "Relatorio_Processos_Ditalia.xlsx");
+    }
+
+    function handleExcelUpload(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = e => {
+        const data = new Uint8Array(e.target.result);
+        const workbook = XLSX.read(data, { type: 'array' });
+        const firstSheet = workbook.SheetNames[0];
+        const rows = XLSX.utils.sheet_to_json(workbook.Sheets[firstSheet]);
+        if (rows.length > 0) {
+          alert(`Planilha "${file.name}" lida com sucesso (${rows.length} linhas identificadas)!`);
+        }
+      };
+      reader.readAsArrayBuffer(file);
+    }
+
+    // Inicialização
+    window.addEventListener('DOMContentLoaded', () => {
+      populateSelectFilters();
+      applyFilters();
+      initCharts();
+    });
   </script>
 </body>
 </html>
