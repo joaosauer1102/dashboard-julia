@@ -7,6 +7,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="dados.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     * { font-family: 'Plus Jakarta Sans', sans-serif; }
@@ -379,73 +380,16 @@
     ];
 
     function getInitialDataset() {
-      const saved = localStorage.getItem('ditalia_processes_v1_3_1');
-      if (saved) {
-        try {
-          const parsed = JSON.parse(saved);
-          if (Array.isArray(parsed) && parsed.length > 0) return parsed;
-        } catch(e) {}
-      }
-
-      let list = [...ATTACHED_TRIBUTARIOS];
-      let nextId = 2006;
-      const today = new Date();
-
-      // Completando os 23 processos do anexo tributário com status Baixado
-      for (let i = 6; i <= 23; i++) {
-        list.push({
-          id: nextId++,
-          pasta: `Proc - TB0${i}`,
-          tipo: "Processo",
-          cnj: `000${1000 + i}-38.2023.8.21.0005`,
-          acao: "EXECUÇÃO FISCAL",
-          cliente: i % 2 === 0 ? "DITALIA MOVEIS INDUSTRIAL LTDA" : "COZY INDUSTRIA E COMERCIO DE MOVEIS LTDA - ME",
-          parte: `ESTADO - FAZENDA PÚBLICA ${i}`,
-          status_proc: "Baixado",
-          uf: "RS",
-          comarca: "Bento Gonçalves",
-          resp: "Julia Linhares",
-          esc: "DA&B \\ núcleo de advocacia",
-          dab: "SIM",
-          data_prazo: ""
-        });
-      }
-
-      // Adicionando os processos ativos da base anterior para somar 571 totais
-      for (let i = 24; i <= 571; i++) {
-        let prazoStr = "";
-        if (i % 15 === 0) {
-          const d = new Date(today);
-          prazoStr = d.toISOString().split('T')[0];
-        } else if (i % 20 === 0) {
-          const d = new Date(today);
-          d.setDate(d.getDate() + 1);
-          prazoStr = d.toISOString().split('T')[0];
-        } else if (i % 7 === 0) {
-          const d = new Date(today);
-          d.setDate(d.getDate() + (i % 6) + 1);
-          prazoStr = d.toISOString().split('T')[0];
-        }
-
-        list.push({
-          id: nextId++,
-          pasta: `Proc - 00${i}`,
-          tipo: "Processo",
-          cnj: `500${1000 + i}-22.2024.8.21.0005`,
-          acao: "PROCEDIMENTO COMUM",
-          cliente: i % 2 === 0 ? "DITALIA MOVEIS INDUSTRIAL LTDA-FALIDO" : "CZ COMERCIO DE MOVEIS LTDA",
-          parte: `PARTE CONTRÁRIA ${i}`,
-          status_proc: i % 4 === 0 ? "Baixado" : (i % 3 === 0 ? "Suspenso" : "Ativo"),
-          uf: i % 3 === 0 ? "SP" : "RS",
-          comarca: "Bento Gonçalves",
-          resp: "Julia Linhares",
-          esc: "DA&B \\ núcleo de advocacia",
-          dab: i % 7 === 0 ? "SIM" : "NAO",
-          data_prazo: prazoStr
-        });
-      }
-      return list;
-    }
+  const saved = localStorage.getItem('ditalia_processes_v1_3_1');
+  if (saved) {
+    try {
+      const parsed = JSON.parse(saved);
+      if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+    } catch(e) {}
+  }
+  // Se não houver nada salvo no navegador da Julia, carrega a base oficial do ficheiro dados.js
+  return [...DADOS_REAIS_DITALIA];
+}
 
     let ALL_PROCESSES = getInitialDataset();
     let FILTERED_PROCESSES = [...ALL_PROCESSES];
