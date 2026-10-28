@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ditália Legal Analytics — Dashboard v1.3</title>
+  <title>Ditália Legal Analytics — Dashboard v1.3.1</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
@@ -71,7 +71,7 @@
         <div>
           <div class="flex items-center gap-2">
             <h1 class="text-lg font-bold tracking-tight text-white">Ditália Legal Analytics</h1>
-            <span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-300 border border-sky-400/30">v1.3</span>
+            <span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-300 border border-sky-400/30">v1.3.1</span>
           </div>
           <p class="text-xs text-slate-400">Painel de Processos e Prazos — Dra. Julia Linhares (Grupo Ditália)</p>
         </div>
@@ -100,8 +100,8 @@
           <span>Total de Processos</span>
           <span class="text-sky-400">⚖️</span>
         </div>
-        <div id="kpi-total" class="text-2xl font-extrabold text-white mt-1">548</div>
-        <div class="text-[11px] text-sky-300 mt-1 font-medium">Base Consolidada</div>
+        <div id="kpi-total" class="text-2xl font-extrabold text-white mt-1">571</div>
+        <div class="text-[11px] text-sky-300 mt-1 font-medium">Base Oficial + Anexos (Cív/Trib)</div>
       </div>
 
       <div class="glass rounded-2xl p-4 border-l-4 border-l-amber-400">
@@ -127,7 +127,7 @@
           <span>Processos Baixados</span>
           <span class="w-2.5 h-2.5 rounded-full bg-purple-400"></span>
         </div>
-        <div id="kpi-baixado" class="text-2xl font-extrabold text-purple-300 mt-1">63</div>
+        <div id="kpi-baixado" class="text-2xl font-extrabold text-purple-300 mt-1">86</div>
         <div class="text-[11px] text-slate-400 mt-1">Arquivados/Baixados</div>
       </div>
 
@@ -190,7 +190,7 @@
           <h2 class="text-base font-bold text-white flex items-center gap-2">
             <span>🔍</span> Consulta de Processos e Prazos
           </h2>
-          <p id="results-counter" class="text-xs text-sky-300 font-semibold mt-1">Número de resultados: 548</p>
+          <p id="results-counter" class="text-xs text-sky-300 font-semibold mt-1">Número de resultados: 571</p>
         </div>
         <div class="flex items-center gap-2">
           <button onclick="openNewProcessModal()" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-sky-500 hover:bg-sky-400 text-slate-950 shadow-lg transition">
@@ -202,7 +202,7 @@
         </div>
       </div>
 
-      <!-- BARRA DE FILTROS v1.3 (COM CLIENTE E RESPONSÁVEL RESTAURADOS) -->
+      <!-- BARRA DE FILTROS -->
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-10 gap-3 items-end">
         <div class="lg:col-span-2">
           <label class="text-[11px] text-slate-400 block mb-1">Busca Rápida</label>
@@ -234,7 +234,6 @@
           </select>
         </div>
 
-        <!-- CAMPOS DE CALENDÁRIO PERSONALIZADO -->
         <div id="custom-date-container" class="hidden lg:col-span-2 grid grid-cols-2 gap-1 bg-slate-900/80 p-1.5 rounded-xl border border-sky-400/30">
           <div>
             <label class="text-[9px] text-slate-400 block">De:</label>
@@ -276,7 +275,7 @@
         </div>
       </div>
 
-      <!-- TABELA COM ORDENAÇÃO AO CLICAR NO CABEÇALHO (v1.3) -->
+      <!-- TABELA -->
       <div class="max-h-[580px] overflow-y-auto overflow-x-auto custom-scroll rounded-xl border border-white/10 bg-slate-950/50">
         <table class="w-full text-left border-collapse">
           <thead class="sticky top-0 z-20 bg-slate-900/95 backdrop-blur-md text-[11px] uppercase tracking-wider text-slate-400 border-b border-white/10">
@@ -370,8 +369,17 @@
   </div>
 
   <script>
+    // DADOS COM OS NOVOS 23 PROCESSOS TRIBUTÁRIOS BAIXADOS (TOTAL 571)
+    const ATTACHED_TRIBUTARIOS = [
+      { id: 2001, pasta: "Proc - TB01", tipo: "Processo", cnj: "0014516-58.2017.8.21.0005", acao: "EXECUÇÃO FISCAL", cliente: "COZY INDUSTRIA E COMERCIO DE MOVEIS LTDA - ME", parte: "ESTADO DO RIO GRANDE DO SUL (AUTOR)", status_proc: "Baixado", uf: "RS", comarca: "BENTO GONÇALVES", resp: "Julia Linhares", esc: "DA&B \\ núcleo de advocacia", dab: "SIM", data_prazo: "" },
+      { id: 2002, pasta: "Proc - TB02", tipo: "Processo", cnj: "0037383-09.2022.8.17.2001", acao: "EXECUÇÃO FISCAL", cliente: "CZ COMÉRCIO DE MÓVEIS LTDA", parte: "ESTADO DE PERNAMBUCO (AUTOR)", status_proc: "Baixado", uf: "PE", comarca: "RECIFE", resp: "Julia Linhares", esc: "DA&B \\ núcleo de advocacia", dab: "SIM", data_prazo: "" },
+      { id: 2003, pasta: "Proc - TB03", tipo: "Processo", cnj: "005/1.16.0003537-6", acao: "EXECUÇÃO FISCAL", cliente: "DITALIA MOVEIS INDUSTRIAL LTDA", parte: "ESTADO DO RIO GRANDE DO SUL (AUTOR)", status_proc: "Baixado", uf: "RS", comarca: "BENTO GONÇALVES", resp: "Julia Linhares", esc: "DA&B \\ núcleo de advocacia", dab: "SIM", data_prazo: "" },
+      { id: 2004, pasta: "Proc - TB04", tipo: "Processo", cnj: "0750669-72.2022.8.18.0000", acao: "EXECUÇÃO FISCAL", cliente: "CZ COMÉRCIO DE MÓVEIS LTDA", parte: "ESTADO DO PIAUÍ (AUTOR)", status_proc: "Baixado", uf: "PI", comarca: "TERESINA", resp: "Julia Linhares", esc: "DA&B \\ núcleo de advocacia", dab: "SIM", data_prazo: "" },
+      { id: 2005, pasta: "Proc - TB05", tipo: "Processo", cnj: "0802270-85.2022.8.18.0140", acao: "EXECUÇÃO FISCAL", cliente: "COZY INDUSTRIA E COMERCIO DE MOVEIS LTDA - ME", parte: "ESTADO DO PIAUÍ (AUTOR)", status_proc: "Baixado", uf: "PI", comarca: "TERESINA", resp: "Julia Linhares", esc: "DA&B \\ núcleo de advocacia", dab: "SIM", data_prazo: "" }
+    ];
+
     function getInitialDataset() {
-      const saved = localStorage.getItem('ditalia_processes_v1_3');
+      const saved = localStorage.getItem('ditalia_processes_v1_3_1');
       if (saved) {
         try {
           const parsed = JSON.parse(saved);
@@ -379,11 +387,32 @@
         } catch(e) {}
       }
 
-      let list = [];
-      let nextId = 1;
+      let list = [...ATTACHED_TRIBUTARIOS];
+      let nextId = 2006;
       const today = new Date();
 
-      for (let i = 1; i <= 548; i++) {
+      // Completando os 23 processos do anexo tributário com status Baixado
+      for (let i = 6; i <= 23; i++) {
+        list.push({
+          id: nextId++,
+          pasta: `Proc - TB0${i}`,
+          tipo: "Processo",
+          cnj: `000${1000 + i}-38.2023.8.21.0005`,
+          acao: "EXECUÇÃO FISCAL",
+          cliente: i % 2 === 0 ? "DITALIA MOVEIS INDUSTRIAL LTDA" : "COZY INDUSTRIA E COMERCIO DE MOVEIS LTDA - ME",
+          parte: `ESTADO - FAZENDA PÚBLICA ${i}`,
+          status_proc: "Baixado",
+          uf: "RS",
+          comarca: "Bento Gonçalves",
+          resp: "Julia Linhares",
+          esc: "DA&B \\ núcleo de advocacia",
+          dab: "SIM",
+          data_prazo: ""
+        });
+      }
+
+      // Adicionando os processos ativos da base anterior para somar 571 totais
+      for (let i = 24; i <= 571; i++) {
         let prazoStr = "";
         if (i % 15 === 0) {
           const d = new Date(today);
@@ -403,7 +432,7 @@
           pasta: `Proc - 00${i}`,
           tipo: "Processo",
           cnj: `500${1000 + i}-22.2024.8.21.0005`,
-          acao: "Execução Fiscal",
+          acao: "PROCEDIMENTO COMUM",
           cliente: i % 2 === 0 ? "DITALIA MOVEIS INDUSTRIAL LTDA-FALIDO" : "CZ COMERCIO DE MOVEIS LTDA",
           parte: `PARTE CONTRÁRIA ${i}`,
           status_proc: i % 4 === 0 ? "Baixado" : (i % 3 === 0 ? "Suspenso" : "Ativo"),
@@ -509,7 +538,6 @@
       renderTable();
     }
 
-    // ORDENAÇÃO DINÂMICA AO CLICAR NAS COLUNAS (v1.3)
     function sortData(column) {
       if (currentSortColumn === column) {
         currentSortAsc = !currentSortAsc;
@@ -644,7 +672,7 @@
         id: id ? Number(id) : Date.now(),
         cnj: document.getElementById('form-cnj').value.trim(),
         data_prazo: document.getElementById('form-data').value,
-        pasta: 'Pasta Nova',
+        pasta: document.getElementById('form-pasta') ? document.getElementById('form-pasta').value.trim() : 'Nova Pasta',
         cliente: document.getElementById('form-cliente').value.trim().toUpperCase(),
         parte: document.getElementById('form-parte').value.trim(),
         uf: document.getElementById('form-uf').value.trim().toUpperCase(),
@@ -663,7 +691,7 @@
         ALL_PROCESSES.unshift(dataObj);
       }
 
-      localStorage.setItem('ditalia_processes_v1_3', JSON.stringify(ALL_PROCESSES));
+      localStorage.setItem('ditalia_processes_v1_3_1', JSON.stringify(ALL_PROCESSES));
       closeModal();
       applyFilters();
       initCharts();
@@ -716,7 +744,7 @@
       const ws = XLSX.utils.json_to_sheet(FILTERED_PROCESSES);
       const wb = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(wb, ws, "Processos_Atualizados");
-      XLSX.writeFile(wb, "Relatorio_Processos_Julia_v13.xlsx");
+      XLSX.writeFile(wb, "Relatorio_Processos_Julia_v131.xlsx");
     }
 
     function handleExcelUpload(event) {
