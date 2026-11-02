@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ditália Legal Analytics — Dashboard v1.5.2</title>
+  <title>Ditália Legal Analytics — Dashboard v1.5.3</title>
   
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -125,7 +125,7 @@
           <h1 class="text-xl font-bold tracking-tight font-serif text-gray-900 dark:text-white">Ditália Legal Analytics</h1>
           <p class="text-[13px] font-medium text-gray-500 dark:text-gray-400">
             Gestão de Processos — Dra. Julia Linhares 
-            <span class="ml-2 px-1.5 py-0.5 rounded-full bg-gray-200 dark:bg-white/10 text-gray-700 dark:text-gray-300 text-[10px] font-bold">v1.5.2</span>
+            <span class="ml-2 px-1.5 py-0.5 rounded-full bg-gray-200 dark:bg-white/10 text-gray-700 dark:text-gray-300 text-[10px] font-bold">v1.5.3</span>
           </p>
         </div>
       </div>
@@ -140,7 +140,6 @@
           </button>
         </nav>
         <button onclick="toggleTheme()" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-white/10 text-gray-600 dark:text-gray-300 transition" title="Alternar Tema">
-          <!-- Ícones Lua/Sol -->
           <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
           <svg class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
         </button>
@@ -150,7 +149,6 @@
 
   <main class="max-w-[1600px] mx-auto px-8 pt-8 space-y-8">
 
-    <!-- KPIs DE TOPO -->
     <section class="grid grid-cols-1 md:grid-cols-5 gap-5">
       <div class="taste-card p-5">
         <div class="text-[12px] font-medium uppercase tracking-wider mb-2 text-gray-500 dark:text-gray-400">Total na Base</div>
@@ -230,7 +228,6 @@
         </div>
       </div>
 
-      <!-- BARRA DE FILTROS -->
       <div class="flex flex-wrap items-end gap-3">
         <div class="flex-1 min-w-[160px]">
           <label class="text-[11px] font-semibold uppercase tracking-wide block mb-1.5 text-gray-500 dark:text-gray-400">Pesquisa</label>
@@ -342,7 +339,6 @@
     </section>
   </main>
 
-  <!-- MODAL GESTÃO DO PROCESSO -->
   <div id="process-modal" class="fixed inset-0 z-50 hidden bg-gray-900/40 dark:bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
     <div class="taste-card max-w-4xl w-full p-8 space-y-6 max-h-[90vh] overflow-y-auto custom-scroll relative">
       <div class="flex items-start justify-between border-b pb-4 border-gray-100 dark:border-white/10">
@@ -471,8 +467,7 @@
     }
 
     function getInitialDataset() {
-      // Nova chave de armazenamento para forçar recarregamento limpo dos 571 processos
-      const saved = localStorage.getItem('ditalia_processes_v1_5_2_colors');
+      const saved = localStorage.getItem('ditalia_processes_v1_5_3_final');
       if (saved) {
         try {
           const parsed = JSON.parse(saved);
@@ -481,7 +476,7 @@
       }
       
       const baseData = typeof DADOS_REAIS_DITALIA !== 'undefined' ? [...DADOS_REAIS_DITALIA] : [];
-      if (baseData.length === 0) console.warn("Aviso: ficheiro dados.js não carregado corretamente.");
+      if (baseData.length === 0) console.warn("Aviso: ficheiro dados.js não encontrado.");
       
       return baseData.map(p => {
         let area = 'Cível';
@@ -679,7 +674,6 @@
       tbody.innerHTML = FILTERED_PROCESSES.map(p => `
         <tr onclick="openEditModal(${p.id})" class="hover:bg-gray-50 dark:hover:bg-white/5 cursor-pointer transition">
           <td class="py-3.5 px-4 whitespace-nowrap">
-            <!-- CORES PASTEL APLICADAS NAS BADGES DA TABELA -->
             <span class="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide ${p.status_proc === 'Ativo' ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-500/20 dark:text-emerald-300' : (p.status_proc === 'Baixado' ? 'bg-orange-100 text-orange-800 dark:bg-orange-500/20 dark:text-orange-300' : 'bg-yellow-100 text-yellow-800 dark:bg-yellow-500/20 dark:text-yellow-300')}">
               ${p.status_proc}
             </span>
@@ -778,7 +772,7 @@
         ALL_PROCESSES.unshift(dataObj);
       }
 
-      localStorage.setItem('ditalia_processes_v1_5_2_colors', JSON.stringify(ALL_PROCESSES));
+      localStorage.setItem('ditalia_processes_v1_5_3_final', JSON.stringify(ALL_PROCESSES));
       closeModal();
       populateSelectFilters();
       applyFilters();
@@ -789,8 +783,6 @@
       const isDark = document.documentElement.classList.contains('dark');
       const textColor = isDark ? '#a3a3a3' : '#737373';
       const gridColor = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)';
-      
-      // Cores suaves para os gráficos de barra (cinzento em vez de preto/branco puro)
       const barColor = isDark ? '#e5e5e5' : '#404040';
 
       Chart.defaults.color = textColor;
@@ -801,7 +793,6 @@
       const statusCounts = { Ativo: 0, Suspenso: 0, Baixado: 0 };
       ALL_PROCESSES.forEach(p => { if(statusCounts[p.status_proc] !== undefined) statusCounts[p.status_proc]++; });
 
-      // CORES PASTEL APLICADAS AO GRÁFICO DE STATUS
       charts.status = new Chart(document.getElementById('chartStatus'), {
         type: 'doughnut',
         data: {
