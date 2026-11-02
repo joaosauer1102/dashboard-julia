@@ -1,14 +1,24 @@
 <!DOCTYPE html>
-<html lang="pt-PT">
+<html lang="pt-BR" class="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ditália Legal Analytics — Dashboard v1.5 (Taste UI)</title>
+  <title>Ditália Legal Analytics — Dashboard v1.5.1</title>
+  
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {}
+      }
+    }
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
   
+  <!-- LEITURA DA BASE OFICIAL -->
   <script src="dados.js"></script>
 
   <style>
@@ -16,84 +26,125 @@
     .font-serif { font-family: 'Playfair Display', serif; }
     
     body {
-      background-color: #f7f7f5;
-      color: #171717;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
     
     .taste-card {
+      border-radius: 20px;
+      transition: all 0.3s ease;
+    }
+    .dark .taste-card {
+      background: #0a0a0a;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 4px 40px rgba(0, 0, 0, 0.5);
+    }
+    html:not(.dark) .taste-card {
       background: #ffffff;
       border: 1px solid rgba(0, 0, 0, 0.04);
-      border-radius: 20px;
       box-shadow: 0 4px 40px rgba(0, 0, 0, 0.03);
     }
 
     .taste-input {
-      background: #fafafa;
-      border: 1px solid #e5e5e5;
       border-radius: 12px;
-      color: #171717;
       transition: all 0.2s ease;
     }
-
-    .taste-input:focus {
+    .dark .taste-input {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+    }
+    html:not(.dark) .taste-input {
+      background: #fafafa;
+      border: 1px solid #e5e5e5;
+      color: #171717;
+    }
+    
+    .dark .taste-input:focus {
+      outline: none;
+      border-color: #ffffff;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.5);
+      background: rgba(255, 255, 255, 0.05);
+    }
+    html:not(.dark) .taste-input:focus {
       outline: none;
       border-color: #171717;
       box-shadow: 0 0 0 1px #171717;
       background: #ffffff;
     }
 
+    /* Cores do Date Input / Select no Dark Mode */
+    .dark input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); }
+    .dark select option { background: #0a0a0a; color: #ffffff; }
+
     .taste-btn-primary {
-      background: #111111;
-      color: #ffffff;
       border-radius: 9999px;
       transition: background 0.2s ease;
     }
-    .taste-btn-primary:hover { background: #333333; }
+    .dark .taste-btn-primary { background: #ffffff; color: #000000; }
+    .dark .taste-btn-primary:hover { background: #e5e5e5; }
+    html:not(.dark) .taste-btn-primary { background: #111111; color: #ffffff; }
+    html:not(.dark) .taste-btn-primary:hover { background: #333333; }
 
     .taste-btn-outline {
-      background: #ffffff;
-      border: 1px solid #e5e5e5;
-      color: #171717;
       border-radius: 9999px;
       transition: all 0.2s ease;
     }
-    .taste-btn-outline:hover { background: #f9f9f9; border-color: #d4d4d4; }
+    .dark .taste-btn-outline { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: #ffffff; }
+    .dark .taste-btn-outline:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.4); }
+    html:not(.dark) .taste-btn-outline { background: #ffffff; border: 1px solid #e5e5e5; color: #171717; }
+    html:not(.dark) .taste-btn-outline:hover { background: #f9f9f9; border-color: #d4d4d4; }
 
-    .nav-tab { color: #737373; border-radius: 9999px; transition: all 0.2s ease; }
-    .nav-tab:hover { color: #171717; background: #f0f0f0; }
-    .nav-tab.active-tab { background: #111111; color: #ffffff; }
+    .nav-tab { border-radius: 9999px; transition: all 0.2s ease; }
+    .dark .nav-tab { color: #a3a3a3; }
+    .dark .nav-tab:hover { color: #ffffff; background: rgba(255,255,255,0.05); }
+    .dark .nav-tab.active-tab { background: #ffffff; color: #000000; }
+    html:not(.dark) .nav-tab { color: #737373; }
+    html:not(.dark) .nav-tab:hover { color: #171717; background: #f0f0f0; }
+    html:not(.dark) .nav-tab.active-tab { background: #111111; color: #ffffff; }
 
     .custom-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
     .custom-scroll::-webkit-scrollbar-track { background: transparent; }
-    .custom-scroll::-webkit-scrollbar-thumb { background: #e5e5e5; border-radius: 10px; }
-    .custom-scroll::-webkit-scrollbar-thumb:hover { background: #d4d4d4; }
+    .dark .custom-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
+    .dark .custom-scroll::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.3); }
+    html:not(.dark) .custom-scroll::-webkit-scrollbar-thumb { background: #e5e5e5; border-radius: 10px; }
+    html:not(.dark) .custom-scroll::-webkit-scrollbar-thumb:hover { background: #d4d4d4; }
     
-    th.sortable { cursor: pointer; user-select: none; }
-    th.sortable:hover { color: #111111; background: #f9f9f9; }
+    th.sortable { cursor: pointer; user-select: none; transition: background 0.2s; }
+    .dark th.sortable:hover { color: #ffffff; background: rgba(255,255,255,0.05); }
+    html:not(.dark) th.sortable:hover { color: #111111; background: #f9f9f9; }
   </style>
 </head>
-<body class="min-h-screen pb-12">
+<body class="min-h-screen pb-12 bg-[#f7f7f5] dark:bg-[#000000] text-gray-900 dark:text-gray-100">
 
-  <header class="sticky top-0 z-30 bg-[#f7f7f5]/80 backdrop-blur-xl border-b border-gray-200/60 px-8 py-5">
+  <header class="sticky top-0 z-30 bg-[#f7f7f5]/80 dark:bg-[#000000]/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-white/10 px-8 py-5">
     <div class="max-w-[1600px] mx-auto flex flex-wrap items-center justify-between gap-4">
       <div class="flex items-center gap-4">
-        <div class="w-11 h-11 rounded-full bg-black flex items-center justify-center font-bold text-white shadow-sm">
+        <div class="w-11 h-11 rounded-full bg-black dark:bg-white flex items-center justify-center font-bold text-white dark:text-black shadow-sm">
           JL
         </div>
         <div>
-          <h1 class="text-xl font-bold tracking-tight text-gray-900 font-serif">Ditália Legal Analytics</h1>
-          <p class="text-[13px] text-gray-500 font-medium">Gestão de Processos — Dra. Julia Linhares <span class="ml-2 px-1.5 py-0.5 rounded-full bg-gray-200 text-gray-700 text-[10px] font-bold">v1.5</span></p>
+          <h1 class="text-xl font-bold tracking-tight font-serif text-gray-900 dark:text-white">Ditália Legal Analytics</h1>
+          <p class="text-[13px] font-medium text-gray-500 dark:text-gray-400">
+            Gestão de Processos — Dra. Julia Linhares 
+            <span class="ml-2 px-1.5 py-0.5 rounded-full bg-gray-200 dark:bg-white/10 text-gray-700 dark:text-gray-300 text-[10px] font-bold">v1.5.1</span>
+          </p>
         </div>
       </div>
 
-      <nav class="flex items-center gap-1 bg-white p-1 rounded-full border border-gray-200 shadow-sm">
-        <button id="btn-tab-executivo" onclick="switchTab('executivo')" class="nav-tab active-tab px-5 py-2 text-[13px] font-semibold flex items-center gap-2">
-          Painel Executivo
+      <div class="flex items-center gap-4">
+        <nav class="flex items-center gap-1 bg-white dark:bg-[#0a0a0a] p-1 rounded-full border border-gray-200 dark:border-white/10 shadow-sm">
+          <button id="btn-tab-executivo" onclick="switchTab('executivo')" class="nav-tab active-tab px-5 py-2 text-[13px] font-semibold flex items-center gap-2">
+            Painel Executivo
+          </button>
+          <button id="btn-tab-importar" onclick="switchTab('importar')" class="nav-tab px-5 py-2 text-[13px] font-semibold flex items-center gap-2">
+            Importar / Exportar
+          </button>
+        </nav>
+        <button onclick="toggleTheme()" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-white/10 text-gray-600 dark:text-gray-300 transition" title="Alternar Tema">
+          <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+          <svg class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
         </button>
-        <button id="btn-tab-importar" onclick="switchTab('importar')" class="nav-tab px-5 py-2 text-[13px] font-semibold flex items-center gap-2">
-          Importar / Exportar
-        </button>
-      </nav>
+      </div>
     </div>
   </header>
 
@@ -101,46 +152,46 @@
 
     <section class="grid grid-cols-1 md:grid-cols-5 gap-5">
       <div class="taste-card p-5">
-        <div class="text-[12px] font-medium text-gray-500 uppercase tracking-wider mb-2">Total na Base</div>
-        <div id="kpi-total" class="text-3xl font-bold text-gray-900">0</div>
+        <div class="text-[12px] font-medium uppercase tracking-wider mb-2 text-gray-500 dark:text-gray-400">Total na Base</div>
+        <div id="kpi-total" class="text-3xl font-bold text-gray-900 dark:text-white">0</div>
       </div>
 
-      <div class="taste-card p-5 border-l-4 border-l-gray-900">
-        <div class="text-[12px] font-medium text-gray-500 uppercase tracking-wider mb-2">Em Andamento</div>
-        <div id="kpi-ativo" class="text-3xl font-bold text-gray-900">0</div>
+      <div class="taste-card p-5 border-l-4 border-l-gray-900 dark:border-l-white">
+        <div class="text-[12px] font-medium uppercase tracking-wider mb-2 text-gray-500 dark:text-gray-400">Em Andamento</div>
+        <div id="kpi-ativo" class="text-3xl font-bold text-gray-900 dark:text-white">0</div>
       </div>
 
-      <div onclick="filterWeekDeadlines()" class="taste-card p-5 border-l-4 border-l-red-500 cursor-pointer hover:shadow-md transition">
+      <div onclick="filterWeekDeadlines()" class="taste-card p-5 border-l-4 border-l-red-500 dark:border-l-red-400 cursor-pointer hover:shadow-md transition">
         <div class="flex items-center justify-between">
-          <div class="text-[12px] font-medium text-red-500 uppercase tracking-wider mb-2">Vence em 7 dias</div>
-          <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+          <div class="text-[12px] font-medium uppercase tracking-wider mb-2 text-red-500 dark:text-red-400">Vence em 7 dias</div>
+          <span class="w-2 h-2 rounded-full bg-red-500 dark:bg-red-400 animate-pulse"></span>
         </div>
-        <div id="kpi-semana" class="text-3xl font-bold text-gray-900">0</div>
+        <div id="kpi-semana" class="text-3xl font-bold text-gray-900 dark:text-white">0</div>
       </div>
 
-      <div class="taste-card p-5 border-l-4 border-l-gray-300">
-        <div class="text-[12px] font-medium text-gray-500 uppercase tracking-wider mb-2">Baixados</div>
-        <div id="kpi-baixado" class="text-3xl font-bold text-gray-900">0</div>
+      <div class="taste-card p-5 border-l-4 border-l-gray-300 dark:border-l-gray-600">
+        <div class="text-[12px] font-medium uppercase tracking-wider mb-2 text-gray-500 dark:text-gray-400">Baixados</div>
+        <div id="kpi-baixado" class="text-3xl font-bold text-gray-900 dark:text-white">0</div>
       </div>
 
-      <div class="taste-card p-5 border-l-4 border-l-emerald-500">
-        <div class="text-[12px] font-medium text-emerald-600 uppercase tracking-wider mb-2">Finalizados DA&B</div>
-        <div id="kpi-dab" class="text-3xl font-bold text-gray-900">0</div>
+      <div class="taste-card p-5 border-l-4 border-l-emerald-500 dark:border-l-emerald-400">
+        <div class="text-[12px] font-medium uppercase tracking-wider mb-2 text-emerald-600 dark:text-emerald-400">Finalizados DA&B</div>
+        <div id="kpi-dab" class="text-3xl font-bold text-gray-900 dark:text-white">0</div>
       </div>
     </section>
 
     <section id="view-executivo" class="space-y-8">
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div class="taste-card p-6">
-          <h3 class="text-sm font-semibold text-gray-900 mb-6">Status Processual</h3>
+          <h3 class="text-sm font-semibold mb-6 text-gray-900 dark:text-white">Status Processual</h3>
           <div class="h-64"><canvas id="chartStatus"></canvas></div>
         </div>
         <div class="taste-card p-6">
-          <h3 class="text-sm font-semibold text-gray-900 mb-6">Volume por Matéria</h3>
+          <h3 class="text-sm font-semibold mb-6 text-gray-900 dark:text-white">Volume por Matéria</h3>
           <div class="h-64"><canvas id="chartMateria"></canvas></div>
         </div>
         <div class="taste-card p-6">
-          <h3 class="text-sm font-semibold text-gray-900 mb-6">Distribuição Geográfica</h3>
+          <h3 class="text-sm font-semibold mb-6 text-gray-900 dark:text-white">Distribuição Geográfica</h3>
           <div class="h-64"><canvas id="chartUF"></canvas></div>
         </div>
       </div>
@@ -148,8 +199,8 @@
 
     <section id="view-importar" class="hidden space-y-6">
       <div class="taste-card p-8 text-center max-w-2xl mx-auto">
-        <h2 class="text-xl font-serif font-bold text-gray-900 mb-2">Gestão de Ficheiros</h2>
-        <p class="text-sm text-gray-500 mb-8">Importe as suas planilhas do sistema ou exporte a vista atualizada.</p>
+        <h2 class="text-xl font-serif font-bold mb-2 text-gray-900 dark:text-white">Gestão de Ficheiros</h2>
+        <p class="text-sm mb-8 text-gray-500 dark:text-gray-400">Importe as suas planilhas do sistema ou exporte a vista atualizada.</p>
         <div class="flex items-center justify-center gap-4">
           <label class="taste-btn-primary px-6 py-3 text-sm font-medium cursor-pointer">
             Carregar Excel (.xlsx)
@@ -163,10 +214,10 @@
     </section>
 
     <section id="section-tabela" class="taste-card p-6 space-y-6">
-      <div class="flex flex-wrap items-center justify-between gap-4 border-b border-gray-100 pb-4">
+      <div class="flex flex-wrap items-center justify-between gap-4 border-b pb-4 border-gray-100 dark:border-white/10">
         <div>
-          <h2 class="text-lg font-bold text-gray-900 font-serif">Consulta de Processos</h2>
-          <p id="results-counter" class="text-[13px] text-gray-500 mt-1">A carregar...</p>
+          <h2 class="text-lg font-bold font-serif text-gray-900 dark:text-white">Consulta de Processos</h2>
+          <p id="results-counter" class="text-[13px] mt-1 text-gray-500 dark:text-gray-400">A carregar...</p>
         </div>
         <div class="flex items-center gap-3">
           <button onclick="exportFilteredToExcel()" class="taste-btn-outline px-4 py-2 text-[13px] font-semibold">
@@ -179,12 +230,12 @@
       </div>
 
       <div class="flex flex-wrap items-end gap-3">
-        <div class="flex-1 min-w-[200px]">
-          <label class="text-[11px] font-semibold text-gray-500 uppercase tracking-wide block mb-1.5">Pesquisa</label>
-          <input id="filter-search" type="text" oninput="applyFilters()" placeholder="CNJ, parte, vara..." class="w-full taste-input px-3 py-2.5 text-[13px]" />
+        <div class="flex-1 min-w-[160px]">
+          <label class="text-[11px] font-semibold uppercase tracking-wide block mb-1.5 text-gray-500 dark:text-gray-400">Pesquisa</label>
+          <input id="filter-search" type="text" oninput="applyFilters()" placeholder="CNJ, parte, vara, resumo..." class="w-full taste-input px-3 py-2.5 text-[13px]" />
         </div>
-        <div class="flex-1 min-w-[120px]">
-          <label class="text-[11px] font-semibold text-gray-500 uppercase tracking-wide block mb-1.5">Matéria</label>
+        <div class="flex-1 min-w-[100px]">
+          <label class="text-[11px] font-semibold uppercase tracking-wide block mb-1.5 text-gray-500 dark:text-gray-400">Matéria</label>
           <select id="filter-materia" onchange="applyFilters()" class="w-full taste-input px-3 py-2.5 text-[13px]">
             <option value="ALL">Todas</option>
             <option value="Cível">Cível</option>
@@ -192,8 +243,8 @@
             <option value="Tributário">Tributário</option>
           </select>
         </div>
-        <div class="flex-1 min-w-[130px]">
-          <label class="text-[11px] font-semibold text-gray-500 uppercase tracking-wide block mb-1.5">Tipo de Ação</label>
+        <div class="flex-1 min-w-[120px]">
+          <label class="text-[11px] font-semibold uppercase tracking-wide block mb-1.5 text-gray-500 dark:text-gray-400">Ação</label>
           <select id="filter-acao" onchange="applyFilters()" class="w-full taste-input px-3 py-2.5 text-[13px]">
             <option value="ALL">Todas</option>
             <option value="Conhecimento">Conhecimento</option>
@@ -201,29 +252,29 @@
             <option value="Recursão">Recursão</option>
           </select>
         </div>
-        <div class="flex-1 min-w-[100px]">
-          <label class="text-[11px] font-semibold text-gray-500 uppercase tracking-wide block mb-1.5">Hab?</label>
+        <div class="flex-1 min-w-[90px]">
+          <label class="text-[11px] font-semibold uppercase tracking-wide block mb-1.5 text-gray-500 dark:text-gray-400">Hab?</label>
           <select id="filter-habilitado" onchange="applyFilters()" class="w-full taste-input px-3 py-2.5 text-[13px]">
             <option value="ALL">Todos</option>
             <option value="SIM">Sim</option>
             <option value="NAO">Não</option>
           </select>
         </div>
-        <div class="flex-1 min-w-[140px]">
-          <label class="text-[11px] font-semibold text-gray-500 uppercase tracking-wide block mb-1.5">Cliente</label>
+        <div class="flex-1 min-w-[130px]">
+          <label class="text-[11px] font-semibold uppercase tracking-wide block mb-1.5 text-gray-500 dark:text-gray-400">Cliente</label>
           <select id="filter-cliente" onchange="applyFilters()" class="w-full taste-input px-3 py-2.5 text-[13px]">
             <option value="ALL">Todos</option>
           </select>
         </div>
-        <div class="flex-1 min-w-[140px]">
-          <label class="text-[11px] font-semibold text-gray-500 uppercase tracking-wide block mb-1.5">Responsável</label>
+        <div class="flex-1 min-w-[130px]">
+          <label class="text-[11px] font-semibold uppercase tracking-wide block mb-1.5 text-gray-500 dark:text-gray-400">Responsável</label>
           <select id="filter-resp" onchange="applyFilters()" class="w-full taste-input px-3 py-2.5 text-[13px]">
             <option value="ALL">Todos</option>
           </select>
         </div>
-        <div class="flex-1 min-w-[140px]">
-          <label class="text-[11px] font-semibold text-gray-900 uppercase tracking-wide block mb-1.5">Prazos</label>
-          <select id="filter-prazo" onchange="onPrazoFilterChange()" class="w-full taste-input px-3 py-2.5 text-[13px] border-gray-300">
+        <div class="flex-1 min-w-[130px]">
+          <label class="text-[11px] font-semibold uppercase tracking-wide block mb-1.5 text-gray-900 dark:text-gray-200">Prazos</label>
+          <select id="filter-prazo" onchange="onPrazoFilterChange()" class="w-full taste-input px-3 py-2.5 text-[13px]">
             <option value="ALL">Todos</option>
             <option value="hoje">Hoje</option>
             <option value="amanha">Amanhã</option>
@@ -234,19 +285,19 @@
           </select>
         </div>
         
-        <div id="custom-date-container" class="hidden flex-1 min-w-[200px] grid grid-cols-2 gap-2 p-1.5 bg-gray-50 rounded-xl border border-gray-200">
+        <div id="custom-date-container" class="hidden flex-1 min-w-[200px] grid grid-cols-2 gap-2 p-1.5 rounded-xl border bg-gray-50 border-gray-200 dark:bg-white/5 dark:border-white/10">
           <div>
-            <label class="text-[10px] text-gray-500 block ml-1">De:</label>
+            <label class="text-[10px] block ml-1 text-gray-500 dark:text-gray-400">De:</label>
             <input id="filter-date-start" type="date" onchange="applyFilters()" class="w-full taste-input px-2 py-1 text-[11px]" />
           </div>
           <div>
-            <label class="text-[10px] text-gray-500 block ml-1">Até:</label>
+            <label class="text-[10px] block ml-1 text-gray-500 dark:text-gray-400">Até:</label>
             <input id="filter-date-end" type="date" onchange="applyFilters()" class="w-full taste-input px-2 py-1 text-[11px]" />
           </div>
         </div>
 
         <div class="flex-1 min-w-[90px]">
-          <label class="text-[11px] font-semibold text-gray-500 uppercase tracking-wide block mb-1.5">Status</label>
+          <label class="text-[11px] font-semibold uppercase tracking-wide block mb-1.5 text-gray-500 dark:text-gray-400">Status</label>
           <select id="filter-status-proc" onchange="applyFilters()" class="w-full taste-input px-3 py-2.5 text-[13px]">
             <option value="ALL">Todos</option>
             <option value="Ativo">Ativo</option>
@@ -255,7 +306,7 @@
           </select>
         </div>
         <div class="flex-1 min-w-[90px]">
-          <label class="text-[11px] font-semibold text-gray-500 uppercase tracking-wide block mb-1.5">DA&B</label>
+          <label class="text-[11px] font-semibold uppercase tracking-wide block mb-1.5 text-gray-500 dark:text-gray-400">DA&B</label>
           <select id="filter-dab" onchange="applyFilters()" class="w-full taste-input px-3 py-2.5 text-[13px]">
             <option value="ALL">Todos</option>
             <option value="SIM">Sim</option>
@@ -263,15 +314,15 @@
           </select>
         </div>
         <div class="flex-1 min-w-[100px]">
-          <button onclick="resetAllFilters()" class="w-full px-3 py-2.5 rounded-xl text-[13px] font-semibold text-gray-600 hover:bg-gray-100 transition">
+          <button onclick="resetAllFilters()" class="w-full px-3 py-2.5 rounded-xl text-[13px] font-semibold transition text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-white/10">
             Limpar
           </button>
         </div>
       </div>
 
-      <div class="max-h-[600px] overflow-y-auto overflow-x-auto custom-scroll border border-gray-200 rounded-xl">
+      <div class="max-h-[600px] overflow-y-auto overflow-x-auto custom-scroll border rounded-xl border-gray-200 dark:border-white/10">
         <table class="w-full text-left border-collapse min-w-[1100px]">
-          <thead class="sticky top-0 z-20 bg-gray-50 text-[11px] uppercase tracking-wider text-gray-500 border-b border-gray-200">
+          <thead class="sticky top-0 z-20 text-[11px] uppercase tracking-wider border-b bg-gray-50 text-gray-500 border-gray-200 dark:bg-black dark:text-gray-400 dark:border-white/10">
             <tr>
               <th class="py-3 px-4 sortable font-semibold" onclick="sortData('status_proc')">Status ↕</th>
               <th class="py-3 px-4 sortable font-semibold" onclick="sortData('data_prazo')">Prazo / Venc. ↕</th>
@@ -283,20 +334,21 @@
               <th class="py-3 px-4 sortable font-semibold text-center" onclick="sortData('habilitado')">Hab ↕</th>
             </tr>
           </thead>
-          <tbody id="process-table-body" class="divide-y divide-gray-100 text-[13px] bg-white"></tbody>
+          <tbody id="process-table-body" class="divide-y text-[13px] bg-white divide-gray-100 dark:bg-[#0a0a0a] dark:divide-white/5"></tbody>
         </table>
       </div>
     </section>
   </main>
 
-  <div id="process-modal" class="fixed inset-0 z-50 hidden bg-gray-900/40 backdrop-blur-sm flex items-center justify-center p-4">
+  <!-- MODAL GESTÃO DO PROCESSO -->
+  <div id="process-modal" class="fixed inset-0 z-50 hidden bg-gray-900/40 dark:bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
     <div class="taste-card max-w-4xl w-full p-8 space-y-6 max-h-[90vh] overflow-y-auto custom-scroll relative">
-      <div class="flex items-start justify-between border-b border-gray-100 pb-4">
+      <div class="flex items-start justify-between border-b pb-4 border-gray-100 dark:border-white/10">
         <div>
-          <p class="text-[11px] font-bold uppercase text-gray-400 tracking-wider mb-1">Gestão</p>
-          <h3 id="modal-title-header" class="text-2xl font-serif font-bold text-gray-900">Ficha do Processo</h3>
+          <p class="text-[11px] font-bold uppercase tracking-wider mb-1 text-gray-400">Gestão</p>
+          <h3 id="modal-title-header" class="text-2xl font-serif font-bold text-gray-900 dark:text-white">Ficha do Processo</h3>
         </div>
-        <button onclick="closeModal()" class="text-gray-400 hover:text-black text-3xl font-light leading-none">&times;</button>
+        <button onclick="closeModal()" class="text-3xl font-light leading-none text-gray-400 hover:text-black dark:hover:text-white">&times;</button>
       </div>
 
       <form id="process-form" onsubmit="saveProcessForm(event)" class="space-y-5 text-[13px]">
@@ -304,11 +356,11 @@
         
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           <div class="lg:col-span-2">
-            <label class="font-semibold text-gray-700 block mb-1.5">Número do Processo (CNJ) *</label>
+            <label class="font-semibold block mb-1.5 text-gray-700 dark:text-gray-300">Número do Processo (CNJ) *</label>
             <input id="form-cnj" type="text" required class="w-full taste-input px-3 py-2.5 font-mono" />
           </div>
           <div>
-            <label class="font-semibold text-gray-700 block mb-1.5">Matéria *</label>
+            <label class="font-semibold block mb-1.5 text-gray-700 dark:text-gray-300">Matéria *</label>
             <select id="form-materia" class="w-full taste-input px-3 py-2.5">
               <option value="Cível">Cível</option>
               <option value="Trabalhista">Trabalhista</option>
@@ -316,7 +368,7 @@
             </select>
           </div>
           <div>
-            <label class="font-semibold text-gray-700 block mb-1.5">Tipo de Ação</label>
+            <label class="font-semibold block mb-1.5 text-gray-700 dark:text-gray-300">Tipo de Ação</label>
             <select id="form-tipo-acao" class="w-full taste-input px-3 py-2.5">
               <option value="Conhecimento">Conhecimento</option>
               <option value="Execução">Execução</option>
@@ -325,57 +377,57 @@
           </div>
 
           <div class="lg:col-span-2">
-            <label class="font-semibold text-gray-700 block mb-1.5">Cliente Principal *</label>
+            <label class="font-semibold block mb-1.5 text-gray-700 dark:text-gray-300">Cliente Principal *</label>
             <input id="form-cliente" type="text" required class="w-full taste-input px-3 py-2.5" />
           </div>
           <div class="lg:col-span-2">
-            <label class="font-semibold text-gray-700 block mb-1.5">Parte Contrária</label>
+            <label class="font-semibold block mb-1.5 text-gray-700 dark:text-gray-300">Parte Contrária</label>
             <input id="form-parte" type="text" class="w-full taste-input px-3 py-2.5" />
           </div>
 
           <div>
-            <label class="font-semibold text-gray-700 block mb-1.5">Juízo / Vara</label>
+            <label class="font-semibold block mb-1.5 text-gray-700 dark:text-gray-300">Juízo / Vara</label>
             <input id="form-juizo" type="text" class="w-full taste-input px-3 py-2.5" />
           </div>
           <div>
-            <label class="font-semibold text-gray-700 block mb-1.5">Sistema Judicial</label>
+            <label class="font-semibold block mb-1.5 text-gray-700 dark:text-gray-300">Sistema Judicial</label>
             <input id="form-sistema" type="text" placeholder="Ex: e-proc" class="w-full taste-input px-3 py-2.5" />
           </div>
           <div>
-            <label class="font-semibold text-gray-700 block mb-1.5">Estado (UF)</label>
+            <label class="font-semibold block mb-1.5 text-gray-700 dark:text-gray-300">Estado (UF)</label>
             <input id="form-uf" type="text" maxlength="2" class="w-full taste-input px-3 py-2.5 uppercase" />
           </div>
           <div>
-            <label class="font-semibold text-gray-700 block mb-1.5">Comarca</label>
+            <label class="font-semibold block mb-1.5 text-gray-700 dark:text-gray-300">Comarca</label>
             <input id="form-comarca" type="text" class="w-full taste-input px-3 py-2.5" />
           </div>
 
           <div>
-            <label class="font-semibold text-gray-700 block mb-1.5">Ajuizamento</label>
-            <input id="form-data-ajuizamento" type="date" class="w-full taste-input px-3 py-2.5 text-gray-500" />
+            <label class="font-semibold block mb-1.5 text-gray-700 dark:text-gray-300">Ajuizamento</label>
+            <input id="form-data-ajuizamento" type="date" class="w-full taste-input px-3 py-2.5" />
           </div>
           <div>
-            <label class="font-semibold text-gray-700 block mb-1.5">Valor da Causa (R$)</label>
+            <label class="font-semibold block mb-1.5 text-gray-700 dark:text-gray-300">Valor da Causa (R$)</label>
             <input id="form-valor" type="number" step="0.01" class="w-full taste-input px-3 py-2.5" />
           </div>
           <div>
-            <label class="font-semibold text-red-600 block mb-1.5">Vencimento Prazo</label>
-            <input id="form-data" type="date" class="w-full taste-input px-3 py-2.5 border-red-200 text-gray-600" />
+            <label class="font-semibold block mb-1.5 text-red-600 dark:text-red-400">Vencimento Prazo</label>
+            <input id="form-data" type="date" class="w-full taste-input px-3 py-2.5 border-red-200 dark:border-red-900/50" />
           </div>
           <div>
-            <label class="font-semibold text-gray-700 block mb-1.5">Responsável</label>
+            <label class="font-semibold block mb-1.5 text-gray-700 dark:text-gray-300">Responsável</label>
             <input id="form-resp" type="text" class="w-full taste-input px-3 py-2.5" />
           </div>
 
           <div>
-            <label class="font-semibold text-gray-700 block mb-1.5">Habilitado?</label>
+            <label class="font-semibold block mb-1.5 text-gray-700 dark:text-gray-300">Habilitado?</label>
             <select id="form-habilitado" class="w-full taste-input px-3 py-2.5">
               <option value="SIM">Sim</option>
               <option value="NAO">Não</option>
             </select>
           </div>
           <div>
-            <label class="font-semibold text-gray-700 block mb-1.5">Status Processual</label>
+            <label class="font-semibold block mb-1.5 text-gray-700 dark:text-gray-300">Status Processual</label>
             <select id="form-status-proc" class="w-full taste-input px-3 py-2.5">
               <option value="Ativo">Ativo</option>
               <option value="Suspenso">Suspenso</option>
@@ -383,7 +435,7 @@
             </select>
           </div>
           <div>
-            <label class="font-semibold text-gray-700 block mb-1.5">DA&B?</label>
+            <label class="font-semibold block mb-1.5 text-gray-700 dark:text-gray-300">DA&B?</label>
             <select id="form-dab" class="w-full taste-input px-3 py-2.5">
               <option value="NAO">Não</option>
               <option value="SIM">Sim</option>
@@ -393,16 +445,16 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-4">
           <div>
-            <label class="font-semibold text-gray-900 block mb-1.5">Resumo da Ação</label>
+            <label class="font-semibold block mb-1.5 text-gray-900 dark:text-gray-200">Resumo da Ação</label>
             <textarea id="form-resumo" rows="4" class="w-full taste-input px-3 py-3 custom-scroll"></textarea>
           </div>
           <div>
-            <label class="font-semibold text-gray-900 block mb-1.5">Andamento / Observações</label>
+            <label class="font-semibold block mb-1.5 text-gray-900 dark:text-gray-200">Andamento / Observações</label>
             <textarea id="form-andamento" rows="4" class="w-full taste-input px-3 py-3 custom-scroll"></textarea>
           </div>
         </div>
 
-        <div class="flex justify-end gap-3 pt-6 border-t border-gray-100">
+        <div class="flex justify-end gap-3 pt-6 border-t border-gray-100 dark:border-white/10">
           <button type="button" onclick="closeModal()" class="taste-btn-outline px-6 py-2.5 font-semibold">Cancelar</button>
           <button type="submit" class="taste-btn-primary px-8 py-2.5 font-bold">Salvar Ficha</button>
         </div>
@@ -411,8 +463,14 @@
   </div>
 
   <script>
+    function toggleTheme() {
+      document.documentElement.classList.toggle('dark');
+      initCharts();
+    }
+
     function getInitialDataset() {
-      const saved = localStorage.getItem('ditalia_processes_v1_5_taste');
+      // Usando uma chave NOVA para limpar o histórico corrompido e forçar os dados novos do dados.js
+      const saved = localStorage.getItem('ditalia_processes_v1_5_1_theme');
       if (saved) {
         try {
           const parsed = JSON.parse(saved);
@@ -421,6 +479,7 @@
       }
       
       const baseData = typeof DADOS_REAIS_DITALIA !== 'undefined' ? [...DADOS_REAIS_DITALIA] : [];
+      if (baseData.length === 0) console.warn("Aviso: ficheiro dados.js não carregado corretamente.");
       
       return baseData.map(p => {
         let area = 'Cível';
@@ -616,29 +675,29 @@
     function renderTable() {
       const tbody = document.getElementById('process-table-body');
       tbody.innerHTML = FILTERED_PROCESSES.map(p => `
-        <tr onclick="openEditModal(${p.id})" class="hover:bg-gray-50 cursor-pointer transition">
+        <tr onclick="openEditModal(${p.id})" class="hover:bg-gray-50 dark:hover:bg-white/5 cursor-pointer transition">
           <td class="py-3.5 px-4 whitespace-nowrap">
-            <span class="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide ${p.status_proc === 'Ativo' ? 'bg-amber-100 text-amber-800' : (p.status_proc === 'Baixado' ? 'bg-gray-200 text-gray-700' : 'bg-blue-100 text-blue-800')}">
+            <span class="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide ${p.status_proc === 'Ativo' ? 'bg-amber-100 text-amber-800 dark:bg-amber-400/20 dark:text-amber-300' : (p.status_proc === 'Baixado' ? 'bg-gray-200 text-gray-700 dark:bg-white/10 dark:text-gray-300' : 'bg-blue-100 text-blue-800 dark:bg-blue-500/20 dark:text-blue-300')}">
               ${p.status_proc}
             </span>
-            ${p.dab === 'SIM' ? '<span class="ml-1 px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[9px] font-bold">DA&B</span>' : ''}
+            ${p.dab === 'SIM' ? '<span class="ml-1 px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 dark:bg-emerald-500/20 dark:text-emerald-300 text-[9px] font-bold">DA&B</span>' : ''}
           </td>
           <td class="py-3.5 px-4 whitespace-nowrap">
-            ${p.data_prazo ? `<strong class="text-red-600 font-semibold">${p.data_prazo.split('-').reverse().join('/')}</strong>` : '<span class="text-gray-400">—</span>'}
+            ${p.data_prazo ? `<strong class="text-red-600 dark:text-red-400 font-semibold">${p.data_prazo.split('-').reverse().join('/')}</strong>` : '<span class="text-gray-400 dark:text-gray-600">—</span>'}
           </td>
-          <td class="py-3.5 px-4 font-mono text-gray-900 font-medium whitespace-nowrap">${p.cnj}</td>
+          <td class="py-3.5 px-4 font-mono font-medium whitespace-nowrap text-gray-900 dark:text-gray-200">${p.cnj}</td>
           <td class="py-3.5 px-4 whitespace-nowrap">
-            <span class="block text-gray-900 font-semibold">${p.materia}</span>
-            <span class="text-[10px] text-gray-500 font-medium uppercase tracking-wider">${p.tipo_acao}</span>
+            <span class="block font-semibold text-gray-900 dark:text-gray-200">${p.materia}</span>
+            <span class="text-[10px] font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">${p.tipo_acao}</span>
           </td>
           <td class="py-3.5 px-4 whitespace-nowrap">
-            <span class="font-bold text-gray-900">${p.uf}</span>
-            <span class="text-gray-500 text-[11px] block">${p.juizo || p.comarca || '—'}</span>
+            <span class="font-bold text-gray-900 dark:text-gray-200">${p.uf}</span>
+            <span class="text-[11px] block text-gray-500 dark:text-gray-400">${p.juizo || p.comarca || '—'}</span>
           </td>
-          <td class="py-3.5 px-4 text-gray-700 truncate max-w-xs">${p.cliente}</td>
-          <td class="py-3.5 px-4 max-w-xs truncate text-gray-900 font-medium">${p.parte}</td>
+          <td class="py-3.5 px-4 truncate max-w-xs text-gray-700 dark:text-gray-300">${p.cliente}</td>
+          <td class="py-3.5 px-4 max-w-xs truncate font-medium text-gray-900 dark:text-gray-200">${p.parte}</td>
           <td class="py-3.5 px-4 text-center">
-            ${p.habilitado === 'SIM' ? '<span class="text-emerald-600 font-bold text-base">✓</span>' : '<span class="text-gray-300">-</span>'}
+            ${p.habilitado === 'SIM' ? '<span class="text-emerald-600 dark:text-emerald-400 font-bold text-base">✓</span>' : '<span class="text-gray-300 dark:text-gray-600">-</span>'}
           </td>
         </tr>
       `).join('');
@@ -716,7 +775,7 @@
         ALL_PROCESSES.unshift(dataObj);
       }
 
-      localStorage.setItem('ditalia_processes_v1_5_taste', JSON.stringify(ALL_PROCESSES));
+      localStorage.setItem('ditalia_processes_v1_5_1_theme', JSON.stringify(ALL_PROCESSES));
       closeModal();
       populateSelectFilters();
       applyFilters();
@@ -724,7 +783,12 @@
     }
 
     function initCharts() {
-      Chart.defaults.color = '#737373';
+      const isDark = document.documentElement.classList.contains('dark');
+      const textColor = isDark ? '#a3a3a3' : '#737373';
+      const gridColor = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)';
+      const barColor = isDark ? '#ffffff' : '#111111';
+
+      Chart.defaults.color = textColor;
       Chart.defaults.font.family = 'Inter';
       
       Object.values(charts).forEach(c => c && c.destroy());
@@ -736,7 +800,7 @@
         type: 'doughnut',
         data: {
           labels: ['Ativo', 'Suspenso', 'Baixado'],
-          datasets: [{ data: [statusCounts.Ativo, statusCounts.Suspenso, statusCounts.Baixado], backgroundColor: ['#111111', '#a3a3a3', '#e5e5e5'], borderWidth: 0 }]
+          datasets: [{ data: [statusCounts.Ativo, statusCounts.Suspenso, statusCounts.Baixado], backgroundColor: [barColor, isDark ? '#404040' : '#a3a3a3', isDark ? '#262626' : '#e5e5e5'], borderWidth: 0 }]
         },
         options: { responsive: true, maintainAspectRatio: false, cutout: '75%' }
       });
@@ -748,9 +812,9 @@
         type: 'bar',
         data: {
           labels: ['Cível', 'Trabalhista', 'Tributário'],
-          datasets: [{ data: [matCounts['Cível'], matCounts['Trabalhista'], matCounts['Tributário']], backgroundColor: '#111111', borderRadius: 8, barThickness: 24 }]
+          datasets: [{ data: [matCounts['Cível'], matCounts['Trabalhista'], matCounts['Tributário']], backgroundColor: barColor, borderRadius: 8, barThickness: 24 }]
         },
-        options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { display: false } }, y: { grid: { display: false } } } }
+        options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { color: gridColor, drawBorder: false } }, y: { grid: { display: false } } } }
       });
 
       const ufCounts = {};
@@ -761,9 +825,9 @@
         type: 'bar',
         data: {
           labels: topUFs.map(u => u[0]),
-          datasets: [{ data: topUFs.map(u => u[1]), backgroundColor: '#111111', borderRadius: 8, barThickness: 24 }]
+          datasets: [{ data: topUFs.map(u => u[1]), backgroundColor: barColor, borderRadius: 8, barThickness: 24 }]
         },
-        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { display: false } }, y: { grid: { display: false } } } }
+        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { display: false } }, y: { grid: { color: gridColor, drawBorder: false } } } }
       });
     }
 
