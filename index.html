@@ -149,18 +149,19 @@
 
   <main class="max-w-[1600px] mx-auto px-8 pt-8 space-y-8">
 
+    <!-- KPIs DE TOPO -->
     <section class="grid grid-cols-1 md:grid-cols-5 gap-5">
       <div class="taste-card p-5">
         <div class="text-[12px] font-medium uppercase tracking-wider mb-2 text-gray-500 dark:text-gray-400">Total na Base</div>
         <div id="kpi-total" class="text-3xl font-bold text-gray-900 dark:text-white">0</div>
       </div>
 
-      <div class="taste-card p-5 border-l-4 border-l-emerald-400 dark:border-l-emerald-300">
+      <div class="taste-card p-5 border-l-4 border-emerald-400 dark:border-emerald-300">
         <div class="text-[12px] font-medium uppercase tracking-wider mb-2 text-emerald-600 dark:text-emerald-400">Ativos (Em Andamento)</div>
         <div id="kpi-ativo" class="text-3xl font-bold text-gray-900 dark:text-white">0</div>
       </div>
 
-      <div onclick="filterWeekDeadlines()" class="taste-card p-5 border-l-4 border-l-red-400 cursor-pointer hover:shadow-md transition">
+      <div onclick="filterWeekDeadlines()" class="taste-card p-5 border-l-4 border-red-400 cursor-pointer hover:shadow-md transition">
         <div class="flex items-center justify-between">
           <div class="text-[12px] font-medium uppercase tracking-wider mb-2 text-red-500 dark:text-red-400">Vence em 7 dias</div>
           <span class="w-2 h-2 rounded-full bg-red-500 dark:bg-red-400 animate-pulse"></span>
@@ -168,17 +169,18 @@
         <div id="kpi-semana" class="text-3xl font-bold text-gray-900 dark:text-white">0</div>
       </div>
 
-      <div class="taste-card p-5 border-l-4 border-l-orange-400 dark:border-l-orange-300">
+      <div class="taste-card p-5 border-l-4 border-orange-400 dark:border-orange-300">
         <div class="text-[12px] font-medium uppercase tracking-wider mb-2 text-orange-500 dark:text-orange-400">Baixados</div>
         <div id="kpi-baixado" class="text-3xl font-bold text-gray-900 dark:text-white">0</div>
       </div>
 
-      <div class="taste-card p-5 border-l-4 border-l-blue-400 dark:border-l-blue-300">
+      <div class="taste-card p-5 border-l-4 border-blue-400 dark:border-blue-300">
         <div class="text-[12px] font-medium uppercase tracking-wider mb-2 text-blue-500 dark:text-blue-400">Finalizados DA&B</div>
         <div id="kpi-dab" class="text-3xl font-bold text-gray-900 dark:text-white">0</div>
       </div>
     </section>
 
+    <!-- GRÁFICOS -->
     <section id="view-executivo" class="space-y-8">
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div class="taste-card p-6">
@@ -196,6 +198,7 @@
       </div>
     </section>
 
+    <!-- IMPORTAR/EXPORTAR -->
     <section id="view-importar" class="hidden space-y-6">
       <div class="taste-card p-8 text-center max-w-2xl mx-auto">
         <h2 class="text-xl font-serif font-bold mb-2 text-gray-900 dark:text-white">Gestão de Ficheiros</h2>
@@ -212,6 +215,7 @@
       </div>
     </section>
 
+    <!-- TABELA E FILTROS -->
     <section id="section-tabela" class="taste-card p-6 space-y-6">
       <div class="flex flex-wrap items-center justify-between gap-4 border-b pb-4 border-gray-100 dark:border-white/10">
         <div>
@@ -231,7 +235,7 @@
       <div class="flex flex-wrap items-end gap-3">
         <div class="flex-1 min-w-[160px]">
           <label class="text-[11px] font-semibold uppercase tracking-wide block mb-1.5 text-gray-500 dark:text-gray-400">Pesquisa</label>
-          <input id="filter-search" type="text" oninput="applyFilters()" placeholder="CNJ, parte, vara, resumo..." class="w-full taste-input px-3 py-2.5 text-[13px]" />
+          <input id="filter-search" type="text" oninput="applyFilters()" placeholder="CNJ, parte, resumo..." class="w-full taste-input px-3 py-2.5 text-[13px]" />
         </div>
         <div class="flex-1 min-w-[100px]">
           <label class="text-[11px] font-semibold uppercase tracking-wide block mb-1.5 text-gray-500 dark:text-gray-400">Matéria</label>
@@ -251,7 +255,7 @@
             <option value="Recursão">Recursão</option>
           </select>
         </div>
-        <div class="flex-1 min-w-[90px]">
+        <div class="flex-1 min-w-[80px]">
           <label class="text-[11px] font-semibold uppercase tracking-wide block mb-1.5 text-gray-500 dark:text-gray-400">Hab?</label>
           <select id="filter-habilitado" onchange="applyFilters()" class="w-full taste-input px-3 py-2.5 text-[13px]">
             <option value="ALL">Todos</option>
@@ -295,7 +299,13 @@
           </div>
         </div>
 
-        <div class="flex-1 min-w-[90px]">
+        <div class="flex-1 min-w-[80px]">
+          <label class="text-[11px] font-semibold uppercase tracking-wide block mb-1.5 text-gray-500 dark:text-gray-400">UF</label>
+          <select id="filter-uf" onchange="applyFilters()" class="w-full taste-input px-3 py-2.5 text-[13px]">
+            <option value="ALL">Todas</option>
+          </select>
+        </div>
+        <div class="flex-1 min-w-[100px]">
           <label class="text-[11px] font-semibold uppercase tracking-wide block mb-1.5 text-gray-500 dark:text-gray-400">Status</label>
           <select id="filter-status-proc" onchange="applyFilters()" class="w-full taste-input px-3 py-2.5 text-[13px]">
             <option value="ALL">Todos</option>
@@ -312,7 +322,7 @@
             <option value="NAO">Não</option>
           </select>
         </div>
-        <div class="flex-1 min-w-[100px]">
+        <div class="flex-1 min-w-[90px]">
           <button onclick="resetAllFilters()" class="w-full px-3 py-2.5 rounded-xl text-[13px] font-semibold transition text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-white/10">
             Limpar
           </button>
@@ -339,6 +349,7 @@
     </section>
   </main>
 
+  <!-- MODAL GESTÃO DO PROCESSO -->
   <div id="process-modal" class="fixed inset-0 z-50 hidden bg-gray-900/40 dark:bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
     <div class="taste-card max-w-4xl w-full p-8 space-y-6 max-h-[90vh] overflow-y-auto custom-scroll relative">
       <div class="flex items-start justify-between border-b pb-4 border-gray-100 dark:border-white/10">
@@ -359,7 +370,7 @@
           </div>
           <div>
             <label class="font-semibold block mb-1.5 text-gray-700 dark:text-gray-300">Matéria *</label>
-            <select id="form-materia" class="w-full taste-input px-3 py-2.5">
+            <select id="form-materia-modal" class="w-full taste-input px-3 py-2.5">
               <option value="Cível">Cível</option>
               <option value="Trabalhista">Trabalhista</option>
               <option value="Tributário">Tributário</option>
@@ -467,7 +478,8 @@
     }
 
     function getInitialDataset() {
-      const saved = localStorage.getItem('ditalia_processes_v1_5_3_final');
+      // Nova chave de armazenamento para garantir leitura 100% limpa da base original
+      const saved = localStorage.getItem('ditalia_processes_v1_5_3_fix');
       if (saved) {
         try {
           const parsed = JSON.parse(saved);
@@ -476,7 +488,6 @@
       }
       
       const baseData = typeof DADOS_REAIS_DITALIA !== 'undefined' ? [...DADOS_REAIS_DITALIA] : [];
-      if (baseData.length === 0) console.warn("Aviso: ficheiro dados.js não encontrado.");
       
       return baseData.map(p => {
         let area = 'Cível';
@@ -521,42 +532,55 @@
       });
     }
 
+    // Leitura à prova de falhas: se o ID não existir no HTML, devolve 'ALL' silenciosamente.
+    const getVal = (id) => {
+      const el = document.getElementById(id);
+      return el ? el.value : 'ALL';
+    };
+
     function populateSelectFilters() {
-      const ufs = [...new Set(ALL_PROCESSES.map(p => p.uf))].filter(Boolean).sort();
-      document.getElementById('filter-uf').innerHTML = `<option value="ALL">Todas</option>` +
-        ufs.map(u => `<option value="${u}">${u}</option>`).join('');
+      const elUf = document.getElementById('filter-uf');
+      if (elUf) {
+        const ufs = [...new Set(ALL_PROCESSES.map(p => p.uf))].filter(Boolean).sort();
+        elUf.innerHTML = `<option value="ALL">Todas</option>` + ufs.map(u => `<option value="${u}">${u}</option>`).join('');
+      }
 
-      const clientes = [...new Set(ALL_PROCESSES.map(p => p.cliente))].filter(Boolean).sort();
-      document.getElementById('filter-cliente').innerHTML = `<option value="ALL">Todos</option>` +
-        clientes.map(c => `<option value="${c}">${c}</option>`).join('');
+      const elCli = document.getElementById('filter-cliente');
+      if (elCli) {
+        const clientes = [...new Set(ALL_PROCESSES.map(p => p.cliente))].filter(Boolean).sort();
+        elCli.innerHTML = `<option value="ALL">Todos</option>` + clientes.map(c => `<option value="${c}">${c}</option>`).join('');
+      }
 
-      const resps = [...new Set(ALL_PROCESSES.map(p => p.resp))].filter(Boolean).sort();
-      document.getElementById('filter-resp').innerHTML = `<option value="ALL">Todos</option>` +
-        resps.map(r => `<option value="${r}" ${r==='Julia Linhares'?'selected':''}>${r}</option>`).join('');
+      const elResp = document.getElementById('filter-resp');
+      if (elResp) {
+        const resps = [...new Set(ALL_PROCESSES.map(p => p.resp))].filter(Boolean).sort();
+        elResp.innerHTML = `<option value="ALL">Todos</option>` + resps.map(r => `<option value="${r}" ${r==='Julia Linhares'?'selected':''}>${r}</option>`).join('');
+      }
     }
 
     function onPrazoFilterChange() {
-      const val = document.getElementById('filter-prazo').value;
+      const val = getVal('filter-prazo');
       const customDiv = document.getElementById('custom-date-container');
-      if (val === 'personalizado') {
-        customDiv.classList.remove('hidden');
-      } else {
-        customDiv.classList.add('hidden');
+      if (customDiv) {
+        if (val === 'personalizado') customDiv.classList.remove('hidden');
+        else customDiv.classList.add('hidden');
       }
       applyFilters();
     }
 
     function applyFilters() {
-      const q = document.getElementById('filter-search').value.toLowerCase().trim();
-      const cli = document.getElementById('filter-cliente').value;
-      const resp = document.getElementById('filter-resp').value;
-      const materia = document.getElementById('filter-materia').value;
-      const acao = document.getElementById('filter-acao').value;
-      const hab = document.getElementById('filter-habilitado').value;
-      const prazoFilter = document.getElementById('filter-prazo').value;
-      const uf = document.getElementById('filter-uf').value;
-      const statusProc = document.getElementById('filter-status-proc').value;
-      const dab = document.getElementById('filter-dab').value;
+      const elSearch = document.getElementById('filter-search');
+      const q = elSearch ? elSearch.value.toLowerCase().trim() : '';
+      
+      const cli = getVal('filter-cliente');
+      const resp = getVal('filter-resp');
+      const materia = getVal('filter-materia');
+      const acao = getVal('filter-acao');
+      const hab = getVal('filter-habilitado');
+      const prazoFilter = getVal('filter-prazo');
+      const uf = getVal('filter-uf');
+      const statusProc = getVal('filter-status-proc');
+      const dab = getVal('filter-dab');
 
       const todayStr = new Date().toISOString().split('T')[0];
       const todayDate = new Date(todayStr + 'T00:00:00');
@@ -583,8 +607,8 @@
           if (prazoFilter === '30dias' && (diffDays < 0 || diffDays > 30)) return false;
           
           if (prazoFilter === 'personalizado') {
-            const startStr = document.getElementById('filter-date-start').value;
-            const endStr = document.getElementById('filter-date-end').value;
+            const startStr = getVal('filter-date-start', '');
+            const endStr = getVal('filter-date-end', '');
             if (startStr && p.data_prazo < startStr) return false;
             if (endStr && p.data_prazo > endStr) return false;
           }
@@ -626,23 +650,33 @@
     }
 
     function filterWeekDeadlines() {
-      document.getElementById('filter-prazo').value = '7dias';
+      const el = document.getElementById('filter-prazo');
+      if(el) el.value = '7dias';
       onPrazoFilterChange();
-      document.getElementById('section-tabela').scrollIntoView({ behavior: 'smooth' });
+      const tbl = document.getElementById('section-tabela');
+      if(tbl) tbl.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function resetVal(id, val='ALL') {
+      const el = document.getElementById(id);
+      if (el) el.value = val;
     }
 
     function resetAllFilters() {
-      document.getElementById('filter-search').value = '';
-      document.getElementById('filter-cliente').value = 'ALL';
-      document.getElementById('filter-resp').value = 'ALL';
-      document.getElementById('filter-materia').value = 'ALL';
-      document.getElementById('filter-acao').value = 'ALL';
-      document.getElementById('filter-habilitado').value = 'ALL';
-      document.getElementById('filter-prazo').value = 'ALL';
-      document.getElementById('custom-date-container').classList.add('hidden');
-      document.getElementById('filter-uf').value = 'ALL';
-      document.getElementById('filter-status-proc').value = 'ALL';
-      document.getElementById('filter-dab').value = 'ALL';
+      resetVal('filter-search', '');
+      resetVal('filter-cliente');
+      resetVal('filter-resp');
+      resetVal('filter-materia');
+      resetVal('filter-acao');
+      resetVal('filter-habilitado');
+      resetVal('filter-prazo');
+      resetVal('filter-uf');
+      resetVal('filter-status-proc');
+      resetVal('filter-dab');
+      
+      const customDiv = document.getElementById('custom-date-container');
+      if (customDiv) customDiv.classList.add('hidden');
+      
       currentSortColumn = null;
       applyFilters();
     }
@@ -661,16 +695,18 @@
         return diff >= 0 && diff <= 7;
       }).length;
 
-      document.getElementById('kpi-total').textContent = ALL_PROCESSES.length;
-      document.getElementById('kpi-ativo').textContent = ativos;
-      document.getElementById('kpi-semana').textContent = semanaCount;
-      document.getElementById('kpi-baixado').textContent = ALL_PROCESSES.filter(p => p.status_proc === 'Baixado').length;
-      document.getElementById('kpi-dab').textContent = dabCount;
-      document.getElementById('results-counter').textContent = `${total} processos encontrados`;
+      if(document.getElementById('kpi-total')) document.getElementById('kpi-total').textContent = ALL_PROCESSES.length;
+      if(document.getElementById('kpi-ativo')) document.getElementById('kpi-ativo').textContent = ativos;
+      if(document.getElementById('kpi-semana')) document.getElementById('kpi-semana').textContent = semanaCount;
+      if(document.getElementById('kpi-baixado')) document.getElementById('kpi-baixado').textContent = ALL_PROCESSES.filter(p => p.status_proc === 'Baixado').length;
+      if(document.getElementById('kpi-dab')) document.getElementById('kpi-dab').textContent = dabCount;
+      if(document.getElementById('results-counter')) document.getElementById('results-counter').textContent = `${total} processos encontrados`;
     }
 
     function renderTable() {
       const tbody = document.getElementById('process-table-body');
+      if(!tbody) return;
+      
       tbody.innerHTML = FILTERED_PROCESSES.map(p => `
         <tr onclick="openEditModal(${p.id})" class="hover:bg-gray-50 dark:hover:bg-white/5 cursor-pointer transition">
           <td class="py-3.5 px-4 whitespace-nowrap">
@@ -701,67 +737,72 @@
     }
 
     function openNewProcessModal() {
-      document.getElementById('form-id').value = '';
-      document.getElementById('modal-title-header').textContent = 'Novo Processo';
-      document.getElementById('process-form').reset();
-      document.getElementById('form-resp').value = 'Julia Linhares';
-      document.getElementById('form-habilitado').value = 'NAO';
-      document.getElementById('process-modal').classList.remove('hidden');
+      resetVal('form-id', '');
+      if(document.getElementById('modal-title-header')) document.getElementById('modal-title-header').textContent = 'Novo Processo';
+      if(document.getElementById('process-form')) document.getElementById('process-form').reset();
+      resetVal('form-resp', 'Julia Linhares');
+      resetVal('form-habilitado', 'NAO');
+      const m = document.getElementById('process-modal');
+      if(m) m.classList.remove('hidden');
     }
 
     function openEditModal(id) {
       const p = ALL_PROCESSES.find(item => item.id === id);
       if (!p) return;
-      document.getElementById('form-id').value = p.id;
-      document.getElementById('modal-title-header').textContent = `Ficha: ${p.cnj}`;
-      document.getElementById('form-cnj').value = p.cnj;
-      document.getElementById('form-materia').value = p.materia;
-      document.getElementById('form-tipo-acao').value = p.tipo_acao;
-      document.getElementById('form-cliente').value = p.cliente || '';
-      document.getElementById('form-parte').value = p.parte || '';
-      document.getElementById('form-juizo').value = p.juizo || '';
-      document.getElementById('form-sistema').value = p.sistema || '';
-      document.getElementById('form-uf').value = p.uf || '';
-      document.getElementById('form-comarca').value = p.comarca || '';
-      document.getElementById('form-data-ajuizamento').value = p.data_ajuizamento || '';
-      document.getElementById('form-valor').value = p.valor || '';
-      document.getElementById('form-data').value = p.data_prazo || '';
-      document.getElementById('form-resp').value = p.resp || 'Julia Linhares';
-      document.getElementById('form-habilitado').value = p.habilitado || 'NAO';
-      document.getElementById('form-status-proc').value = p.status_proc || 'Ativo';
-      document.getElementById('form-dab').value = p.dab || 'NAO';
-      document.getElementById('form-resumo').value = p.resumo || '';
-      document.getElementById('form-andamento').value = p.andamento || '';
-      document.getElementById('process-modal').classList.remove('hidden');
+      
+      resetVal('form-id', p.id);
+      if(document.getElementById('modal-title-header')) document.getElementById('modal-title-header').textContent = `Ficha: ${p.cnj}`;
+      resetVal('form-cnj', p.cnj);
+      resetVal('form-materia-modal', p.materia);
+      resetVal('form-tipo-acao', p.tipo_acao);
+      resetVal('form-cliente', p.cliente || '');
+      resetVal('form-parte', p.parte || '');
+      resetVal('form-juizo', p.juizo || '');
+      resetVal('form-sistema', p.sistema || '');
+      resetVal('form-uf', p.uf || '');
+      resetVal('form-comarca', p.comarca || '');
+      resetVal('form-data-ajuizamento', p.data_ajuizamento || '');
+      resetVal('form-valor', p.valor || '');
+      resetVal('form-data', p.data_prazo || '');
+      resetVal('form-resp', p.resp || 'Julia Linhares');
+      resetVal('form-habilitado', p.habilitado || 'NAO');
+      resetVal('form-status-proc', p.status_proc || 'Ativo');
+      resetVal('form-dab', p.dab || 'NAO');
+      resetVal('form-resumo', p.resumo || '');
+      resetVal('form-andamento', p.andamento || '');
+      
+      const m = document.getElementById('process-modal');
+      if(m) m.classList.remove('hidden');
     }
 
     function closeModal() {
-      document.getElementById('process-modal').classList.add('hidden');
+      const m = document.getElementById('process-modal');
+      if(m) m.classList.add('hidden');
     }
 
     function saveProcessForm(event) {
       event.preventDefault();
-      const id = document.getElementById('form-id').value;
+      const id = getVal('form-id', '');
       const dataObj = {
         id: id ? Number(id) : Date.now(),
-        cnj: document.getElementById('form-cnj').value.trim(),
-        materia: document.getElementById('form-materia').value,
-        tipo_acao: document.getElementById('form-tipo-acao').value,
-        cliente: document.getElementById('form-cliente').value.trim().toUpperCase(),
-        parte: document.getElementById('form-parte').value.trim(),
-        juizo: document.getElementById('form-juizo').value.trim(),
-        sistema: document.getElementById('form-sistema').value.trim(),
-        uf: document.getElementById('form-uf').value.trim().toUpperCase(),
-        comarca: document.getElementById('form-comarca').value.trim().toUpperCase(),
-        data_ajuizamento: document.getElementById('form-data-ajuizamento').value,
-        valor: Number(document.getElementById('form-valor').value) || 0,
-        data_prazo: document.getElementById('form-data').value,
-        resp: document.getElementById('form-resp').value.trim() || 'Julia Linhares',
-        habilitado: document.getElementById('form-habilitado').value,
-        status_proc: document.getElementById('form-status-proc').value,
-        dab: document.getElementById('form-dab').value,
-        resumo: document.getElementById('form-resumo').value.trim(),
-        andamento: document.getElementById('form-andamento').value.trim(),
+        cnj: getVal('form-cnj', '').trim(),
+        materia: getVal('form-materia-modal', 'Cível'),
+        tipo_acao: getVal('form-tipo-acao', 'Conhecimento'),
+        cliente: getVal('form-cliente', '').trim().toUpperCase(),
+        parte: getVal('form-parte', '').trim(),
+        juizo: getVal('form-juizo', '').trim(),
+        sistema: getVal('form-sistema', '').trim(),
+        uf: getVal('form-uf', '').trim().toUpperCase(),
+        comarca: getVal('form-comarca', '').trim().toUpperCase(),
+        data_ajuizamento: getVal('form-data-ajuizamento', ''),
+        valor: Number(getVal('form-valor', 0)) || 0,
+        data_prazo: getVal('form-data', ''),
+        resp: getVal('form-resp', 'Julia Linhares').trim() || 'Julia Linhares',
+        habilitado: getVal('form-habilitado', 'NAO'),
+        status_proc: getVal('form-status-proc', 'Ativo'),
+        dab: getVal('form-dab', 'NAO'),
+        resumo: getVal('form-resumo', '').trim(),
+        andamento: getVal('form-andamento', '').trim(),
         esc: 'DA&B \\ núcleo de advocacia'
       };
 
@@ -772,7 +813,7 @@
         ALL_PROCESSES.unshift(dataObj);
       }
 
-      localStorage.setItem('ditalia_processes_v1_5_3_final', JSON.stringify(ALL_PROCESSES));
+      localStorage.setItem('ditalia_processes_v1_5_3_fix', JSON.stringify(ALL_PROCESSES));
       closeModal();
       populateSelectFilters();
       applyFilters();
@@ -793,43 +834,52 @@
       const statusCounts = { Ativo: 0, Suspenso: 0, Baixado: 0 };
       ALL_PROCESSES.forEach(p => { if(statusCounts[p.status_proc] !== undefined) statusCounts[p.status_proc]++; });
 
-      charts.status = new Chart(document.getElementById('chartStatus'), {
-        type: 'doughnut',
-        data: {
-          labels: ['Ativo', 'Suspenso', 'Baixado'],
-          datasets: [{ 
-            data: [statusCounts.Ativo, statusCounts.Suspenso, statusCounts.Baixado], 
-            backgroundColor: ['#a7f3d0', '#fef08a', '#fed7aa'], 
-            borderWidth: 0 
-          }]
-        },
-        options: { responsive: true, maintainAspectRatio: false, cutout: '75%' }
-      });
+      const elChartStatus = document.getElementById('chartStatus');
+      if (elChartStatus) {
+        charts.status = new Chart(elChartStatus, {
+          type: 'doughnut',
+          data: {
+            labels: ['Ativo', 'Suspenso', 'Baixado'],
+            datasets: [{ 
+              data: [statusCounts.Ativo, statusCounts.Suspenso, statusCounts.Baixado], 
+              backgroundColor: ['#a7f3d0', '#fef08a', '#fed7aa'], 
+              borderWidth: 0 
+            }]
+          },
+          options: { responsive: true, maintainAspectRatio: false, cutout: '75%' }
+        });
+      }
 
       const matCounts = { 'Cível': 0, 'Trabalhista': 0, 'Tributário': 0 };
       ALL_PROCESSES.forEach(p => { if(matCounts[p.materia] !== undefined) matCounts[p.materia]++; });
       
-      charts.materia = new Chart(document.getElementById('chartMateria'), {
-        type: 'bar',
-        data: {
-          labels: ['Cível', 'Trabalhista', 'Tributário'],
-          datasets: [{ data: [matCounts['Cível'], matCounts['Trabalhista'], matCounts['Tributário']], backgroundColor: barColor, borderRadius: 8, barThickness: 24 }]
-        },
-        options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { color: gridColor, drawBorder: false } }, y: { grid: { display: false } } } }
-      });
+      const elChartMateria = document.getElementById('chartMateria');
+      if (elChartMateria) {
+        charts.materia = new Chart(elChartMateria, {
+          type: 'bar',
+          data: {
+            labels: ['Cível', 'Trabalhista', 'Tributário'],
+            datasets: [{ data: [matCounts['Cível'], matCounts['Trabalhista'], matCounts['Tributário']], backgroundColor: barColor, borderRadius: 8, barThickness: 24 }]
+          },
+          options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { color: gridColor, drawBorder: false } }, y: { grid: { display: false } } } }
+        });
+      }
 
       const ufCounts = {};
       ALL_PROCESSES.forEach(p => { if(p.uf) ufCounts[p.uf] = (ufCounts[p.uf] || 0) + 1; });
       const topUFs = Object.entries(ufCounts).sort((a,b)=>b[1]-a[1]).slice(0, 6);
 
-      charts.uf = new Chart(document.getElementById('chartUF'), {
-        type: 'bar',
-        data: {
-          labels: topUFs.map(u => u[0]),
-          datasets: [{ data: topUFs.map(u => u[1]), backgroundColor: barColor, borderRadius: 8, barThickness: 24 }]
-        },
-        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { display: false } }, y: { grid: { color: gridColor, drawBorder: false } } } }
-      });
+      const elChartUF = document.getElementById('chartUF');
+      if (elChartUF) {
+        charts.uf = new Chart(elChartUF, {
+          type: 'bar',
+          data: {
+            labels: topUFs.map(u => u[0]),
+            datasets: [{ data: topUFs.map(u => u[1]), backgroundColor: barColor, borderRadius: 8, barThickness: 24 }]
+          },
+          options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { display: false } }, y: { grid: { color: gridColor, drawBorder: false } } } }
+        });
+      }
     }
 
     function exportFilteredToExcel() {
