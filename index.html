@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ditália Legal Analytics — Dashboard v1.4</title>
+  <title>Ditália Legal Analytics — Dashboard v1.5</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
@@ -65,7 +65,6 @@
 </head>
 <body class="min-h-screen pb-12">
 
-  <!-- HEADER -->
   <header class="sticky top-0 z-30 glass border-b border-white/10 px-6 py-4">
     <div class="max-w-[1600px] mx-auto flex flex-wrap items-center justify-between gap-4">
       <div class="flex items-center gap-3">
@@ -75,18 +74,15 @@
         <div>
           <div class="flex items-center gap-2">
             <h1 class="text-lg font-bold tracking-tight text-white">Ditália Legal Analytics</h1>
-            <span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-300 border border-sky-400/30">v1.4</span>
+            <span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-300 border border-sky-400/30">v1.5</span>
           </div>
-          <p class="text-xs text-slate-400">Painel de Processos e Prazos — Dra. Julia Linhares (Grupo Ditália)</p>
+          <p class="text-xs text-slate-400">Gestão de Processos e Prazos — Dra. Julia Linhares</p>
         </div>
       </div>
 
       <nav class="flex items-center gap-2 bg-slate-900/70 p-1.5 rounded-xl border border-white/10">
         <button id="btn-tab-executivo" onclick="switchTab('executivo')" class="nav-tab active-tab px-4 py-2 rounded-lg text-xs font-semibold flex items-center gap-2">
           <span>📊</span> Painel Executivo
-        </button>
-        <button id="btn-tab-prazos" onclick="switchTab('prazos')" class="nav-tab px-4 py-2 rounded-lg text-xs font-semibold flex items-center gap-2">
-          <span>⏰</span> Central de Prazos <span id="badge-prazos-top" class="px-1.5 py-0.5 text-[10px] rounded-full bg-amber-400/20 text-amber-300 border border-amber-400/30">0</span>
         </button>
         <button id="btn-tab-importar" onclick="switchTab('importar')" class="nav-tab px-4 py-2 rounded-lg text-xs font-semibold flex items-center gap-2">
           <span>📥</span> Importar / Exportar
@@ -97,14 +93,13 @@
 
   <main class="max-w-[1600px] mx-auto px-6 pt-6 space-y-6">
 
-    <!-- KPIs DE TOPO -->
     <section class="grid grid-cols-1 md:grid-cols-5 gap-4">
       <div class="glass rounded-2xl p-4">
         <div class="flex items-center justify-between text-xs text-slate-400">
           <span>Total de Processos</span>
           <span class="text-sky-400">⚖️</span>
         </div>
-        <div id="kpi-total" class="text-2xl font-extrabold text-white mt-1">571</div>
+        <div id="kpi-total" class="text-2xl font-extrabold text-white mt-1">0</div>
         <div class="text-[11px] text-sky-300 mt-1 font-medium">Base Oficial</div>
       </div>
 
@@ -153,9 +148,8 @@
           <div class="h-64"><canvas id="chartStatus"></canvas></div>
         </div>
         <div class="glass rounded-2xl p-5">
-          <!-- GRÁFICO 2 SUBSTITUÍDO: AÇÃO / MATÉRIA -->
-          <h3 class="text-sm font-bold text-white mb-3">2. Volume por Ação / Matéria</h3>
-          <div class="h-64"><canvas id="chartAcao"></canvas></div>
+          <h3 class="text-sm font-bold text-white mb-3">2. Volume por Matéria</h3>
+          <div class="h-64"><canvas id="chartMateria"></canvas></div>
         </div>
         <div class="glass rounded-2xl p-5">
           <h3 class="text-sm font-bold text-white mb-3">3. Distribuição Geográfica (UF)</h3>
@@ -164,15 +158,7 @@
       </div>
     </section>
 
-    <!-- ABA 2: CENTRAL DE PRAZOS -->
-    <section id="view-prazos" class="hidden space-y-6">
-      <div class="glass rounded-2xl p-5">
-        <h2 class="text-base font-bold text-white">Central de Prazos — Julia Linhares</h2>
-        <p class="text-xs text-slate-400">Acompanhamento dos prazos e vencimentos sob responsabilidade da equipe.</p>
-      </div>
-    </section>
-
-    <!-- ABA 3: IMPORTAR / EXPORTAR -->
+    <!-- ABA DE IMPORTAÇÃO -->
     <section id="view-importar" class="hidden space-y-6">
       <div class="glass rounded-2xl p-6 space-y-4">
         <h2 class="text-base font-bold text-white">Importar Planilhas ou Exportar</h2>
@@ -188,18 +174,18 @@
       </div>
     </section>
 
-    <!-- SEÇÃO GLOBAL DE CONSULTA DE PROCESSOS -->
+    <!-- SEÇÃO DE CONSULTA E TABELA -->
     <section id="section-tabela" class="glass rounded-2xl p-5 space-y-4">
       <div class="flex flex-wrap items-center justify-between gap-3">
         <div>
           <h2 class="text-base font-bold text-white flex items-center gap-2">
-            <span>🔍</span> Consulta de Processos e Prazos
+            <span>🔍</span> Consulta e Gestão de Processos
           </h2>
-          <p id="results-counter" class="text-xs text-sky-300 font-semibold mt-1">Número de resultados: 571</p>
+          <p id="results-counter" class="text-xs text-sky-300 font-semibold mt-1">Número de resultados: 0</p>
         </div>
         <div class="flex items-center gap-2">
           <button onclick="openNewProcessModal()" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-sky-500 hover:bg-sky-400 text-slate-950 shadow-lg transition">
-            ➕ Adicionar Novo Processo
+            ➕ Novo Processo
           </button>
           <button onclick="exportFilteredToExcel()" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
             Exportar .xlsx
@@ -207,33 +193,45 @@
         </div>
       </div>
 
-      <!-- BARRA DE FILTROS v1.4 (FILTRO DE TIPO DE AÇÃO/MATÉRIA INCLUÍDO) -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-11 gap-3 items-end">
-        <div class="lg:col-span-2">
+      <!-- BARRA DE FILTROS v1.5 (USANDO FLEX WRAP PARA ORGANIZAR MELHOR) -->
+      <div class="flex flex-wrap items-end gap-3">
+        <div class="flex-1 min-w-[200px]">
           <label class="text-[11px] text-slate-400 block mb-1">Busca Rápida</label>
-          <input id="filter-search" type="text" oninput="applyFilters()" placeholder="CNJ, parte, vara..." class="w-full glass-input rounded-xl px-3 py-2 text-xs" />
+          <input id="filter-search" type="text" oninput="applyFilters()" placeholder="CNJ, parte, vara, resumo..." class="w-full glass-input rounded-xl px-3 py-2 text-xs" />
         </div>
-        <div>
-          <label class="text-[11px] text-slate-400 block mb-1">Cliente</label>
-          <select id="filter-cliente" onchange="applyFilters()" class="w-full glass-input rounded-xl px-3 py-2 text-xs">
+        <div class="flex-1 min-w-[120px]">
+          <label class="text-[11px] text-slate-400 block mb-1">Matéria</label>
+          <select id="filter-materia" onchange="applyFilters()" class="w-full glass-input rounded-xl px-3 py-2 text-xs">
             <option value="ALL">Todas</option>
+            <option value="Cível">Cível</option>
+            <option value="Trabalhista">Trabalhista</option>
+            <option value="Tributário">Tributário</option>
           </select>
         </div>
-        <div>
-          <!-- NOVO FILTRO: TIPO DE AÇÃO / MATÉRIA -->
+        <div class="flex-1 min-w-[130px]">
           <label class="text-[11px] text-slate-400 block mb-1">Tipo de Ação</label>
           <select id="filter-acao" onchange="applyFilters()" class="w-full glass-input rounded-xl px-3 py-2 text-xs">
             <option value="ALL">Todas</option>
+            <option value="Conhecimento">Conhecimento</option>
+            <option value="Execução">Execução</option>
+            <option value="Recursão">Recursão</option>
           </select>
         </div>
-        <div>
-          <label class="text-[11px] text-slate-400 block mb-1">Responsável</label>
-          <select id="filter-resp" onchange="applyFilters()" class="w-full glass-input rounded-xl px-3 py-2 text-xs">
+        <div class="flex-1 min-w-[120px]">
+          <label class="text-[11px] text-slate-400 block mb-1">Habilitado?</label>
+          <select id="filter-habilitado" onchange="applyFilters()" class="w-full glass-input rounded-xl px-3 py-2 text-xs">
             <option value="ALL">Todos</option>
-            <option value="Julia Linhares" selected>Julia Linhares</option>
+            <option value="SIM">Sim</option>
+            <option value="NAO">Não</option>
           </select>
         </div>
-        <div>
+        <div class="flex-1 min-w-[120px]">
+          <label class="text-[11px] text-slate-400 block mb-1">Cliente</label>
+          <select id="filter-cliente" onchange="applyFilters()" class="w-full glass-input rounded-xl px-3 py-2 text-xs">
+            <option value="ALL">Todos</option>
+          </select>
+        </div>
+        <div class="flex-1 min-w-[130px]">
           <label class="text-[11px] text-sky-300 font-semibold block mb-1">Filtro de Prazos</label>
           <select id="filter-prazo" onchange="onPrazoFilterChange()" class="w-full glass-input rounded-xl px-3 py-2 text-xs border-sky-400/40">
             <option value="ALL">Todos</option>
@@ -245,8 +243,7 @@
             <option value="personalizado">Personalizado...</option>
           </select>
         </div>
-
-        <div id="custom-date-container" class="hidden lg:col-span-2 grid grid-cols-2 gap-1 bg-slate-900/80 p-1.5 rounded-xl border border-sky-400/30">
+        <div id="custom-date-container" class="hidden flex-1 min-w-[180px] grid grid-cols-2 gap-1 bg-slate-900/80 p-1.5 rounded-xl border border-sky-400/30">
           <div>
             <label class="text-[9px] text-slate-400 block">De:</label>
             <input id="filter-date-start" type="date" onchange="applyFilters()" class="w-full glass-input rounded-lg px-1.5 py-1 text-[10px]" />
@@ -256,14 +253,7 @@
             <input id="filter-date-end" type="date" onchange="applyFilters()" class="w-full glass-input rounded-lg px-1.5 py-1 text-[10px]" />
           </div>
         </div>
-
-        <div>
-          <label class="text-[11px] text-slate-400 block mb-1">UF</label>
-          <select id="filter-uf" onchange="applyFilters()" class="w-full glass-input rounded-xl px-3 py-2 text-xs">
-            <option value="ALL">Todas</option>
-          </select>
-        </div>
-        <div>
+        <div class="flex-1 min-w-[100px]">
           <label class="text-[11px] text-slate-400 block mb-1">Status Proc.</label>
           <select id="filter-status-proc" onchange="applyFilters()" class="w-full glass-input rounded-xl px-3 py-2 text-xs">
             <option value="ALL">Todos</option>
@@ -272,7 +262,7 @@
             <option value="Baixado">Baixado</option>
           </select>
         </div>
-        <div>
+        <div class="flex-1 min-w-[100px]">
           <label class="text-[11px] text-emerald-300 font-semibold block mb-1">DA&B</label>
           <select id="filter-dab" onchange="applyFilters()" class="w-full glass-input rounded-xl px-3 py-2 text-xs border-emerald-400/40">
             <option value="ALL">Todos</option>
@@ -280,26 +270,26 @@
             <option value="NAO">Não</option>
           </select>
         </div>
-        <div>
+        <div class="flex-1 min-w-[100px]">
           <button onclick="resetAllFilters()" class="w-full px-3 py-2 rounded-xl text-xs font-semibold bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 border border-rose-400/40 transition">
             🧹 Limpar
           </button>
         </div>
       </div>
 
-      <!-- TABELA (SEM A COLUNA PASTA/TIPO, E COM A NOVA COLUNA AÇÃO/MATÉRIA) -->
+      <!-- TABELA -->
       <div class="max-h-[580px] overflow-y-auto overflow-x-auto custom-scroll rounded-xl border border-white/10 bg-slate-950/50">
-        <table class="w-full text-left border-collapse">
+        <table class="w-full text-left border-collapse min-w-[1000px]">
           <thead class="sticky top-0 z-20 bg-slate-900/95 backdrop-blur-md text-[11px] uppercase tracking-wider text-slate-400 border-b border-white/10">
             <tr>
               <th class="py-3 px-3 sortable" onclick="sortData('status_proc')">Status ↕</th>
-              <th class="py-3 px-3 sortable" onclick="sortData('data_prazo')">Prazo / Vencimento ↕</th>
+              <th class="py-3 px-3 sortable" onclick="sortData('data_prazo')">Prazo / Venc. ↕</th>
               <th class="py-3 px-3 sortable" onclick="sortData('cnj')">Nº do Processo ↕</th>
-              <th class="py-3 px-3 sortable" onclick="sortData('acao')">Tipo de Ação / Matéria ↕</th>
-              <th class="py-3 px-3 sortable" onclick="sortData('uf')">UF / Cidade ↕</th>
+              <th class="py-3 px-3 sortable" onclick="sortData('materia')">Matéria / Tipo ↕</th>
+              <th class="py-3 px-3 sortable" onclick="sortData('uf')">UF / Vara ↕</th>
               <th class="py-3 px-3 sortable" onclick="sortData('cliente')">Cliente Principal ↕</th>
               <th class="py-3 px-3 sortable" onclick="sortData('parte')">Parte Contrária ↕</th>
-              <th class="py-3 px-3 sortable" onclick="sortData('resp')">Responsável ↕</th>
+              <th class="py-3 px-3 sortable" onclick="sortData('habilitado')">Hab? ↕</th>
             </tr>
           </thead>
           <tbody id="process-table-body" class="divide-y divide-white/5 text-xs"></tbody>
@@ -309,51 +299,96 @@
 
   </main>
 
-  <!-- MODAL DE CADASTRO E EDIÇÃO -->
+  <!-- MODAL GESTÃO DO PROCESSO v1.5 -->
   <div id="process-modal" class="fixed inset-0 z-50 hidden bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="glass rounded-2xl max-w-2xl w-full p-6 space-y-4 border border-white/20 max-h-[90vh] overflow-y-auto custom-scroll">
-      <div class="flex items-start justify-between gap-4 border-b border-white/10 pb-3">
+    <div class="glass rounded-2xl max-w-4xl w-full p-6 space-y-4 border border-white/20 max-h-[95vh] overflow-y-auto custom-scroll shadow-2xl">
+      <div class="flex items-start justify-between gap-4 border-b border-white/10 pb-3 sticky top-0 bg-slate-900/90 backdrop-blur-md pt-2 -mt-2 z-10">
         <div>
-          <span class="text-[11px] font-bold uppercase px-2.5 py-0.5 rounded-full bg-sky-500/20 text-sky-300">Gestão</span>
-          <h3 id="modal-title-header" class="text-lg font-extrabold text-white mt-1">Adicionar / Editar Processo</h3>
+          <span class="text-[11px] font-bold uppercase px-2.5 py-0.5 rounded-full bg-sky-500/20 text-sky-300">Gestão do Processo</span>
+          <h3 id="modal-title-header" class="text-lg font-extrabold text-white mt-1">Ficha Completa</h3>
         </div>
-        <button onclick="closeModal()" class="text-slate-400 hover:text-white text-lg font-bold px-2">✕</button>
+        <button onclick="closeModal()" class="text-slate-400 hover:text-white text-2xl font-bold px-2">&times;</button>
       </div>
 
-      <form id="process-form" onsubmit="saveProcessForm(event)" class="space-y-3 text-xs">
+      <form id="process-form" onsubmit="saveProcessForm(event)" class="space-y-4 text-xs">
         <input type="hidden" id="form-id" />
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div>
-            <label class="text-[11px] text-slate-400 block mb-1">Número do Processo *</label>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <!-- BLOCO 1: Identificação -->
+          <div class="lg:col-span-2">
+            <label class="text-[11px] text-slate-400 block mb-1">Número do Processo (CNJ) *</label>
             <input id="form-cnj" type="text" required class="w-full glass-input rounded-xl px-3 py-2 text-xs font-mono" />
           </div>
           <div>
-            <label class="text-[11px] text-slate-400 block mb-1">Data de Vencimento do Prazo</label>
-            <input id="form-data" type="date" class="w-full glass-input rounded-xl px-3 py-2 text-xs" />
+            <label class="text-[11px] text-slate-400 block mb-1">Matéria (Área) *</label>
+            <select id="form-materia" class="w-full glass-input rounded-xl px-3 py-2 text-xs">
+              <option value="Cível">Cível</option>
+              <option value="Trabalhista">Trabalhista</option>
+              <option value="Tributário">Tributário</option>
+            </select>
           </div>
           <div>
+            <label class="text-[11px] text-slate-400 block mb-1">Tipo de Ação</label>
+            <select id="form-tipo-acao" class="w-full glass-input rounded-xl px-3 py-2 text-xs">
+              <option value="Conhecimento">Conhecimento</option>
+              <option value="Execução">Execução</option>
+              <option value="Recursão">Recursão</option>
+            </select>
+          </div>
+
+          <!-- BLOCO 2: Partes -->
+          <div class="lg:col-span-2">
             <label class="text-[11px] text-slate-400 block mb-1">Cliente Principal *</label>
             <input id="form-cliente" type="text" required class="w-full glass-input rounded-xl px-3 py-2 text-xs" />
           </div>
-          <div>
-            <label class="text-[11px] text-slate-400 block mb-1">Tipo de Ação / Matéria</label>
-            <input id="form-acao" type="text" class="w-full glass-input rounded-xl px-3 py-2 text-xs" />
-          </div>
-          <div>
-            <label class="text-[11px] text-slate-400 block mb-1">Contrário Principal</label>
+          <div class="lg:col-span-2">
+            <label class="text-[11px] text-slate-400 block mb-1">Parte Contrária</label>
             <input id="form-parte" type="text" class="w-full glass-input rounded-xl px-3 py-2 text-xs" />
           </div>
+
+          <!-- BLOCO 3: Dados Judiciais -->
           <div>
-            <label class="text-[11px] text-sky-300 font-semibold block mb-1">Responsável pelo Processo</label>
-            <input id="form-resp" type="text" value="Julia Linhares" class="w-full glass-input rounded-xl px-3 py-2 text-xs border-sky-400/40" />
+            <label class="text-[11px] text-slate-400 block mb-1">Juízo / Vara</label>
+            <input id="form-juizo" type="text" class="w-full glass-input rounded-xl px-3 py-2 text-xs" />
+          </div>
+          <div>
+            <label class="text-[11px] text-slate-400 block mb-1">Sistema Judicial</label>
+            <input id="form-sistema" type="text" placeholder="Ex: e-proc, PJe" class="w-full glass-input rounded-xl px-3 py-2 text-xs" />
           </div>
           <div>
             <label class="text-[11px] text-slate-400 block mb-1">Estado (UF)</label>
             <input id="form-uf" type="text" maxlength="2" class="w-full glass-input rounded-xl px-3 py-2 text-xs uppercase" />
           </div>
           <div>
-            <label class="text-[11px] text-slate-400 block mb-1">Cidade</label>
+            <label class="text-[11px] text-slate-400 block mb-1">Cidade / Comarca</label>
             <input id="form-comarca" type="text" class="w-full glass-input rounded-xl px-3 py-2 text-xs" />
+          </div>
+
+          <!-- BLOCO 4: Gestão e Prazos -->
+          <div>
+            <label class="text-[11px] text-slate-400 block mb-1">Data do Ajuizamento</label>
+            <input id="form-data-ajuizamento" type="date" class="w-full glass-input rounded-xl px-3 py-2 text-xs" />
+          </div>
+          <div>
+            <label class="text-[11px] text-slate-400 block mb-1">Valor da Causa (R$)</label>
+            <input id="form-valor" type="number" step="0.01" class="w-full glass-input rounded-xl px-3 py-2 text-xs" />
+          </div>
+          <div>
+            <label class="text-[11px] text-amber-300 font-semibold block mb-1">Vencimento do Prazo</label>
+            <input id="form-data" type="date" class="w-full glass-input rounded-xl px-3 py-2 text-xs border-amber-400/40" />
+          </div>
+          <div>
+            <label class="text-[11px] text-slate-400 block mb-1">Responsável</label>
+            <input id="form-resp" type="text" class="w-full glass-input rounded-xl px-3 py-2 text-xs" />
+          </div>
+
+          <!-- BLOCO 5: Status e Tags -->
+          <div>
+            <label class="text-[11px] text-slate-400 block mb-1">Habilitado?</label>
+            <select id="form-habilitado" class="w-full glass-input rounded-xl px-3 py-2 text-xs">
+              <option value="SIM">Sim</option>
+              <option value="NAO">Não</option>
+            </select>
           </div>
           <div>
             <label class="text-[11px] text-slate-400 block mb-1">Status Processual</label>
@@ -364,7 +399,7 @@
             </select>
           </div>
           <div>
-            <label class="text-[11px] text-emerald-300 font-semibold block mb-1">Finalizado pelo DA&B?</label>
+            <label class="text-[11px] text-emerald-300 font-semibold block mb-1">Finalizado DA&B?</label>
             <select id="form-dab" class="w-full glass-input rounded-xl px-3 py-2 text-xs border-emerald-400/40">
               <option value="NAO">Não</option>
               <option value="SIM">Sim</option>
@@ -372,9 +407,21 @@
           </div>
         </div>
 
-        <div class="flex justify-end gap-2 pt-3 border-t border-white/10">
-          <button type="button" onclick="closeModal()" class="px-4 py-2 rounded-xl text-xs bg-white/5 hover:bg-white/10 text-slate-300">Cancelar</button>
-          <button type="submit" class="px-4 py-2 rounded-xl text-xs font-bold bg-sky-500 hover:bg-sky-400 text-slate-950">Salvar Processo</button>
+        <!-- BLOCO 6: Textareas Ampliadas -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+          <div>
+            <label class="text-[11px] text-sky-300 font-bold block mb-1">Resumo da Ação</label>
+            <textarea id="form-resumo" rows="4" placeholder="Escreva um breve resumo do que se trata este processo..." class="w-full glass-input rounded-xl px-3 py-2 text-xs custom-scroll"></textarea>
+          </div>
+          <div>
+            <label class="text-[11px] text-sky-300 font-bold block mb-1">Andamento Processual / Observações</label>
+            <textarea id="form-andamento" rows="4" placeholder="Registre aqui os últimos andamentos, decisões e notas..." class="w-full glass-input rounded-xl px-3 py-2 text-xs custom-scroll"></textarea>
+          </div>
+        </div>
+
+        <div class="flex justify-end gap-2 pt-4 border-t border-white/10">
+          <button type="button" onclick="closeModal()" class="px-5 py-2.5 rounded-xl text-xs font-semibold bg-white/5 hover:bg-white/10 text-slate-300 transition">Cancelar</button>
+          <button type="submit" class="px-5 py-2.5 rounded-xl text-xs font-bold bg-sky-500 hover:bg-sky-400 text-slate-950 shadow-lg transition">💾 Salvar Alterações</button>
         </div>
       </form>
     </div>
@@ -382,7 +429,7 @@
 
   <script>
     function getInitialDataset() {
-      const saved = localStorage.getItem('ditalia_processes_v1_4');
+      const saved = localStorage.getItem('ditalia_processes_v1_5');
       if (saved) {
         try {
           const parsed = JSON.parse(saved);
@@ -390,15 +437,33 @@
         } catch(e) {}
       }
       
-      // Carrega os dados do ficheiro dados.js (DADOS_REAIS_DITALIA) padronizando os nomes das ações
       const baseData = typeof DADOS_REAIS_DITALIA !== 'undefined' ? [...DADOS_REAIS_DITALIA] : [];
+      
+      // Tratamento automático dos dados antigos para o padrão v1.5
       return baseData.map(p => {
-        // Padroniza as ações para os filtros e gráficos (Ex: Execução Fiscal, Cumprimento de Sentença)
-        let acaoFmt = p.acao ? p.acao.trim() : 'Não Informado';
-        if (acaoFmt === '') acaoFmt = 'Não Informado';
-        // Capitalizar a primeira letra de cada palavra para ficar bonito
-        p.acaoFmt = acaoFmt.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
-        return p;
+        let area = p.area || 'Cível';
+        if (area.toLowerCase().includes('reestruturação')) area = 'Cível';
+        
+        let oldAcao = (p.acao || '').toLowerCase();
+        let tipoAcao = 'Conhecimento';
+        if (oldAcao.includes('execuç') || oldAcao.includes('cumprimento') || oldAcao.includes('fiscal') || oldAcao.includes('falência')) {
+          tipoAcao = 'Execução';
+        } else if (oldAcao.includes('recurs') || oldAcao.includes('agravo') || oldAcao.includes('embargos')) {
+          tipoAcao = 'Recursão';
+        }
+
+        return {
+          ...p,
+          materia: area,
+          tipo_acao: tipoAcao,
+          habilitado: p.habilitado || 'NAO',
+          juizo: p.juizo || '',
+          sistema: p.sistema || '',
+          data_ajuizamento: p.data_ajuizamento || '',
+          valor: p.valor || 0,
+          resumo: p.resumo || '',
+          andamento: p.andamento || p.ult_and || ''
+        };
       });
     }
 
@@ -409,9 +474,11 @@
     let charts = {};
 
     function switchTab(tabName) {
-      ['executivo', 'prazos', 'importar'].forEach(t => {
-        document.getElementById(`btn-tab-${t}`).classList.toggle('active-tab', t === tabName);
-        document.getElementById(`view-${t}`).classList.toggle('hidden', t !== tabName);
+      ['executivo', 'importar'].forEach(t => {
+        const btn = document.getElementById(`btn-tab-${t}`);
+        const view = document.getElementById(`view-${t}`);
+        if(btn) btn.classList.toggle('active-tab', t === tabName);
+        if(view) view.classList.toggle('hidden', t !== tabName);
       });
     }
 
@@ -421,16 +488,8 @@
         ufs.map(u => `<option value="${u}">${u}</option>`).join('');
 
       const clientes = [...new Set(ALL_PROCESSES.map(p => p.cliente))].filter(Boolean).sort();
-      document.getElementById('filter-cliente').innerHTML = `<option value="ALL">Todas</option>` +
+      document.getElementById('filter-cliente').innerHTML = `<option value="ALL">Todos</option>` +
         clientes.map(c => `<option value="${c}">${c}</option>`).join('');
-
-      const resps = [...new Set(ALL_PROCESSES.map(p => p.resp))].filter(Boolean).sort();
-      document.getElementById('filter-resp').innerHTML = `<option value="ALL">Todos</option>` +
-        resps.map(r => `<option value="${r}" ${r==='Julia Linhares'?'selected':''}>${r}</option>`).join('');
-        
-      const acoes = [...new Set(ALL_PROCESSES.map(p => p.acaoFmt))].filter(Boolean).sort();
-      document.getElementById('filter-acao').innerHTML = `<option value="ALL">Todas</option>` +
-        acoes.map(a => `<option value="${a}">${a}</option>`).join('');
     }
 
     function onPrazoFilterChange() {
@@ -447,8 +506,9 @@
     function applyFilters() {
       const q = document.getElementById('filter-search').value.toLowerCase().trim();
       const cli = document.getElementById('filter-cliente').value;
+      const materia = document.getElementById('filter-materia').value;
       const acao = document.getElementById('filter-acao').value;
-      const resp = document.getElementById('filter-resp').value;
+      const hab = document.getElementById('filter-habilitado').value;
       const prazoFilter = document.getElementById('filter-prazo').value;
       const uf = document.getElementById('filter-uf').value;
       const statusProc = document.getElementById('filter-status-proc').value;
@@ -459,8 +519,9 @@
 
       FILTERED_PROCESSES = ALL_PROCESSES.filter(p => {
         if (cli !== 'ALL' && p.cliente !== cli) return false;
-        if (acao !== 'ALL' && p.acaoFmt !== acao) return false;
-        if (resp !== 'ALL' && p.resp !== resp) return false;
+        if (materia !== 'ALL' && p.materia !== materia) return false;
+        if (acao !== 'ALL' && p.tipo_acao !== acao) return false;
+        if (hab !== 'ALL' && p.habilitado !== hab) return false;
         if (uf !== 'ALL' && p.uf !== uf) return false;
         if (statusProc !== 'ALL' && p.status_proc !== statusProc) return false;
         if (dab !== 'ALL' && p.dab !== dab) return false;
@@ -485,16 +546,13 @@
         }
 
         if (q) {
-          const hay = `${p.cnj} ${p.parte} ${p.cliente} ${p.uf} ${p.comarca} ${p.acao} ${p.resp}`.toLowerCase();
+          const hay = `${p.cnj} ${p.parte} ${p.cliente} ${p.uf} ${p.comarca} ${p.juizo} ${p.resumo} ${p.andamento}`.toLowerCase();
           if (!hay.includes(q)) return false;
         }
         return true;
       });
 
-      if (currentSortColumn) {
-        sortFilteredList();
-      }
-
+      if (currentSortColumn) sortFilteredList();
       updateKPIs();
       renderTable();
     }
@@ -514,10 +572,8 @@
       FILTERED_PROCESSES.sort((a, b) => {
         let valA = a[currentSortColumn] || "";
         let valB = b[currentSortColumn] || "";
-
         if (typeof valA === 'string') valA = valA.toLowerCase();
         if (typeof valB === 'string') valB = valB.toLowerCase();
-
         if (valA < valB) return currentSortAsc ? -1 : 1;
         if (valA > valB) return currentSortAsc ? 1 : -1;
         return 0;
@@ -533,8 +589,9 @@
     function resetAllFilters() {
       document.getElementById('filter-search').value = '';
       document.getElementById('filter-cliente').value = 'ALL';
+      document.getElementById('filter-materia').value = 'ALL';
       document.getElementById('filter-acao').value = 'ALL';
-      document.getElementById('filter-resp').value = 'ALL';
+      document.getElementById('filter-habilitado').value = 'ALL';
       document.getElementById('filter-prazo').value = 'ALL';
       document.getElementById('custom-date-container').classList.add('hidden');
       document.getElementById('filter-uf').value = 'ALL';
@@ -582,14 +639,19 @@
             ${p.data_prazo ? `<strong class="text-sky-300">📅 ${p.data_prazo.split('-').reverse().join('/')}</strong>` : '<span class="text-slate-500">Sem prazo</span>'}
           </td>
           <td class="py-3 px-3 font-mono text-sky-300 whitespace-nowrap">${p.cnj}</td>
-          <td class="py-3 px-3 font-medium text-slate-200 whitespace-nowrap">${p.acaoFmt}</td>
+          <td class="py-3 px-3 font-medium text-slate-200 whitespace-nowrap">
+            <span class="block">${p.materia}</span>
+            <span class="text-[10px] text-slate-400 font-normal uppercase">${p.tipo_acao}</span>
+          </td>
           <td class="py-3 px-3 whitespace-nowrap">
             <span class="font-bold text-white">${p.uf}</span>
-            <span class="text-slate-400 text-[11px] block">${p.comarca || '—'}</span>
+            <span class="text-slate-400 text-[11px] block">${p.juizo || p.comarca || '—'}</span>
           </td>
           <td class="py-3 px-3 text-slate-200 truncate max-w-xs">${p.cliente}</td>
           <td class="py-3 px-3 max-w-xs truncate text-white">${p.parte}</td>
-          <td class="py-3 px-3 text-sky-300 font-semibold whitespace-nowrap">${p.resp}</td>
+          <td class="py-3 px-3 text-center">
+            ${p.habilitado === 'SIM' ? '<span class="text-emerald-400 font-bold">✓</span>' : '<span class="text-slate-500">-</span>'}
+          </td>
         </tr>
       `).join('');
     }
@@ -599,6 +661,7 @@
       document.getElementById('modal-title-header').textContent = 'Adicionar Novo Processo';
       document.getElementById('process-form').reset();
       document.getElementById('form-resp').value = 'Julia Linhares';
+      document.getElementById('form-habilitado').value = 'NAO';
       document.getElementById('process-modal').classList.remove('hidden');
     }
 
@@ -606,17 +669,25 @@
       const p = ALL_PROCESSES.find(item => item.id === id);
       if (!p) return;
       document.getElementById('form-id').value = p.id;
-      document.getElementById('modal-title-header').textContent = `Editar Processo: ${p.cnj}`;
+      document.getElementById('modal-title-header').textContent = `Ficha do Processo: ${p.cnj}`;
       document.getElementById('form-cnj').value = p.cnj;
-      document.getElementById('form-data').value = p.data_prazo || '';
+      document.getElementById('form-materia').value = p.materia;
+      document.getElementById('form-tipo-acao').value = p.tipo_acao;
       document.getElementById('form-cliente').value = p.cliente || '';
       document.getElementById('form-parte').value = p.parte || '';
+      document.getElementById('form-juizo').value = p.juizo || '';
+      document.getElementById('form-sistema').value = p.sistema || '';
       document.getElementById('form-uf').value = p.uf || '';
       document.getElementById('form-comarca').value = p.comarca || '';
+      document.getElementById('form-data-ajuizamento').value = p.data_ajuizamento || '';
+      document.getElementById('form-valor').value = p.valor || '';
+      document.getElementById('form-data').value = p.data_prazo || '';
+      document.getElementById('form-resp').value = p.resp || 'Julia Linhares';
+      document.getElementById('form-habilitado').value = p.habilitado || 'NAO';
       document.getElementById('form-status-proc').value = p.status_proc || 'Ativo';
       document.getElementById('form-dab').value = p.dab || 'NAO';
-      document.getElementById('form-resp').value = p.resp || 'Julia Linhares';
-      document.getElementById('form-acao').value = p.acaoFmt || '';
+      document.getElementById('form-resumo').value = p.resumo || '';
+      document.getElementById('form-andamento').value = p.andamento || '';
       document.getElementById('process-modal').classList.remove('hidden');
     }
 
@@ -627,21 +698,27 @@
     function saveProcessForm(event) {
       event.preventDefault();
       const id = document.getElementById('form-id').value;
-      const acaoClean = document.getElementById('form-acao').value.trim();
-      
       const dataObj = {
         id: id ? Number(id) : Date.now(),
         cnj: document.getElementById('form-cnj').value.trim(),
-        data_prazo: document.getElementById('form-data').value,
+        materia: document.getElementById('form-materia').value,
+        tipo_acao: document.getElementById('form-tipo-acao').value,
         cliente: document.getElementById('form-cliente').value.trim().toUpperCase(),
         parte: document.getElementById('form-parte').value.trim(),
+        juizo: document.getElementById('form-juizo').value.trim(),
+        sistema: document.getElementById('form-sistema').value.trim(),
         uf: document.getElementById('form-uf').value.trim().toUpperCase(),
         comarca: document.getElementById('form-comarca').value.trim().toUpperCase(),
+        data_ajuizamento: document.getElementById('form-data-ajuizamento').value,
+        valor: Number(document.getElementById('form-valor').value) || 0,
+        data_prazo: document.getElementById('form-data').value,
+        resp: document.getElementById('form-resp').value.trim() || 'Julia Linhares',
+        habilitado: document.getElementById('form-habilitado').value,
         status_proc: document.getElementById('form-status-proc').value,
         dab: document.getElementById('form-dab').value,
-        resp: document.getElementById('form-resp').value.trim() || 'Julia Linhares',
-        acao: acaoClean,
-        acaoFmt: acaoClean.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase())
+        resumo: document.getElementById('form-resumo').value.trim(),
+        andamento: document.getElementById('form-andamento').value.trim(),
+        esc: 'DA&B \\ núcleo de advocacia'
       };
 
       if (id) {
@@ -651,9 +728,9 @@
         ALL_PROCESSES.unshift(dataObj);
       }
 
-      localStorage.setItem('ditalia_processes_v1_4', JSON.stringify(ALL_PROCESSES));
+      localStorage.setItem('ditalia_processes_v1_5', JSON.stringify(ALL_PROCESSES));
       closeModal();
-      populateSelectFilters(); // Atualiza a lista de ações no select
+      populateSelectFilters();
       applyFilters();
       initCharts();
     }
@@ -675,20 +752,15 @@
         options: { responsive: true, maintainAspectRatio: false }
       });
 
-      // GRAFICO 2: Ação / Matéria (Substituindo o antigo gráfico de clientes)
-      const acaoCounts = {};
-      ALL_PROCESSES.forEach(p => { 
-        if(p.acaoFmt && p.acaoFmt !== 'Não Informado') {
-          acaoCounts[p.acaoFmt] = (acaoCounts[p.acaoFmt] || 0) + 1; 
-        }
-      });
-      const topAcoes = Object.entries(acaoCounts).sort((a,b)=>b[1]-a[1]).slice(0, 5);
-
-      charts.acao = new Chart(document.getElementById('chartAcao'), {
+      // GRAFICO 2: Volume por Matéria (Apenas Tributário, Trabalhista, Cível)
+      const matCounts = { 'Cível': 0, 'Trabalhista': 0, 'Tributário': 0 };
+      ALL_PROCESSES.forEach(p => { if(matCounts[p.materia] !== undefined) matCounts[p.materia]++; });
+      
+      charts.materia = new Chart(document.getElementById('chartMateria'), {
         type: 'bar',
         data: {
-          labels: topAcoes.map(c => c[0].length > 20 ? c[0].substring(0, 20) + '...' : c[0]),
-          datasets: [{ data: topAcoes.map(c => c[1]), backgroundColor: '#ec4899', borderRadius: 6 }]
+          labels: ['Cível', 'Trabalhista', 'Tributário'],
+          datasets: [{ data: [matCounts['Cível'], matCounts['Trabalhista'], matCounts['Tributário']], backgroundColor: '#ec4899', borderRadius: 6 }]
         },
         options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
       });
@@ -712,7 +784,7 @@
       const ws = XLSX.utils.json_to_sheet(FILTERED_PROCESSES);
       const wb = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(wb, ws, "Processos_Ditalia");
-      XLSX.writeFile(wb, "Relatorio_Processos_Julia_v14.xlsx");
+      XLSX.writeFile(wb, "Relatorio_Processos_Julia_v15.xlsx");
     }
 
     function handleExcelUpload(event) {
@@ -723,9 +795,7 @@
         const data = new Uint8Array(e.target.result);
         const workbook = XLSX.read(data, { type: 'array' });
         const rows = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]]);
-        if (rows.length > 0) {
-          alert(`Planilha "${file.name}" carregada com sucesso (${rows.length} registros)!`);
-        }
+        if (rows.length > 0) alert(`Planilha carregada (${rows.length} registros)!`);
       };
       reader.readAsArrayBuffer(file);
     }
