@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ditália Legal Analytics — Dashboard v1.6.5</title>
+  <title>Ditália Legal Analytics — Dashboard v1.7.2</title>
   
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -84,7 +84,7 @@
           <h1 class="text-xl font-bold tracking-tight font-serif text-gray-900 dark:text-white">Ditália Legal Analytics</h1>
           <p class="text-[13px] font-medium text-gray-500 dark:text-gray-400">
             Gestão de Processos — Dra. Julia Linhares 
-            <span class="ml-2 px-1.5 py-0.5 rounded-full bg-gray-200 dark:bg-white/10 text-gray-700 dark:text-gray-300 text-[10px] font-bold">v1.6.5</span>
+            <span class="ml-2 px-1.5 py-0.5 rounded-full bg-gray-200 dark:bg-white/10 text-gray-700 dark:text-gray-300 text-[10px] font-bold">v1.7.2</span>
           </p>
         </div>
       </div>
@@ -112,32 +112,43 @@
   <main class="max-w-[1600px] mx-auto px-8 pt-8 space-y-8">
 
     <div id="view-executivo" class="space-y-8">
-      <section class="grid grid-cols-1 md:grid-cols-4 gap-5">
+      <!-- 5 KPIs NO TOPO -->
+      <section class="grid grid-cols-1 md:grid-cols-5 gap-5">
         <div class="taste-card p-5">
           <div class="text-[12px] font-medium uppercase tracking-wider mb-2 text-gray-500 dark:text-gray-400">Total na Base</div>
           <div id="kpi-total" class="text-3xl font-bold text-gray-900 dark:text-white">0</div>
         </div>
+        
         <div class="taste-card p-5 border-l-4 border-emerald-400 dark:border-emerald-300">
           <div class="text-[12px] font-medium uppercase tracking-wider mb-2 text-emerald-600 dark:text-emerald-400">Ativos (Andamento)</div>
           <div id="kpi-ativo" class="text-3xl font-bold text-gray-900 dark:text-white">0</div>
         </div>
-        <div onclick="filterWeekDeadlines()" class="taste-card p-5 border-l-4 border-red-400 cursor-pointer hover:shadow-md transition">
-          <div class="flex items-center justify-between">
-            <div class="text-[12px] font-medium uppercase tracking-wider mb-2 text-red-500 dark:text-red-400">Vence em 7 dias</div>
-            <span class="w-2 h-2 rounded-full bg-red-500 dark:bg-red-400 animate-pulse"></span>
-          </div>
-          <div id="kpi-semana" class="text-3xl font-bold text-gray-900 dark:text-white">0</div>
+        
+        <div class="taste-card p-5 border-l-4 border-blue-400 dark:border-blue-300">
+          <div class="text-[12px] font-medium uppercase tracking-wider mb-2 text-blue-500 dark:text-blue-400">Habilitados (SIM)</div>
+          <div id="kpi-habilitado" class="text-3xl font-bold text-gray-900 dark:text-white">0</div>
         </div>
+
+        <div class="taste-card p-5 border-l-4 border-red-400 dark:border-red-300">
+          <div class="text-[12px] font-medium uppercase tracking-wider mb-2 text-red-500 dark:text-red-400">Não Habilitados (NÃO)</div>
+          <div id="kpi-nao-habilitado" class="text-3xl font-bold text-gray-900 dark:text-white">0</div>
+        </div>
+
         <div class="taste-card p-5 border-l-4 border-orange-400 dark:border-orange-300">
           <div class="text-[12px] font-medium uppercase tracking-wider mb-2 text-orange-500 dark:text-orange-400">Baixados</div>
           <div id="kpi-baixado" class="text-3xl font-bold text-gray-900 dark:text-white">0</div>
         </div>
       </section>
 
-      <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <!-- 4 GRÁFICOS (GRELHA 2x2) -->
+      <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div class="taste-card p-6">
           <h3 class="text-sm font-semibold mb-6 text-gray-900 dark:text-white">Status Processual</h3>
           <div class="h-64"><canvas id="chartStatus"></canvas></div>
+        </div>
+        <div class="taste-card p-6">
+          <h3 class="text-sm font-semibold mb-6 text-gray-900 dark:text-white">Distribuição por Tipo de Ação</h3>
+          <div class="h-64"><canvas id="chartAcao"></canvas></div>
         </div>
         <div class="taste-card p-6">
           <h3 class="text-sm font-semibold mb-6 text-gray-900 dark:text-white">Volume por Matéria</h3>
@@ -149,6 +160,7 @@
         </div>
       </section>
 
+      <!-- TABELA DE PROCESSOS -->
       <section id="section-tabela" class="taste-card p-6 space-y-6">
         <div class="flex flex-wrap items-center justify-between gap-4 border-b pb-4 border-gray-100 dark:border-white/10">
           <div>
@@ -186,7 +198,7 @@
               <option value="ALL">Todas</option>
               <option value="Conhecimento">Conhecimento</option>
               <option value="Execução">Execução</option>
-              <option value="Recursão">Recursão</option>
+              <option value="Recursal">Recursal</option>
             </select>
           </div>
           <div class="flex-1 min-w-[90px]">
@@ -247,14 +259,6 @@
               <option value="Ativo">Ativo</option>
               <option value="Suspenso">Suspenso</option>
               <option value="Baixado">Baixado</option>
-            </select>
-          </div>
-          <div class="flex-1 min-w-[90px]">
-            <label class="text-[11px] font-semibold uppercase tracking-wide block mb-1.5 text-gray-500 dark:text-gray-400">DA&B</label>
-            <select id="filter-dab" onchange="applyFilters()" class="w-full taste-input px-3 py-2.5 text-[13px]">
-              <option value="ALL">Todos</option>
-              <option value="SIM">Sim</option>
-              <option value="NAO">Não</option>
             </select>
           </div>
           <div class="flex-1 min-w-[90px]">
@@ -409,7 +413,7 @@
             <select id="form-tipo-acao" class="w-full taste-input px-3 py-2.5">
               <option value="Conhecimento">Conhecimento</option>
               <option value="Execução">Execução</option>
-              <option value="Recursão">Recursão</option>
+              <option value="Recursal">Recursal</option>
             </select>
           </div>
 
@@ -473,11 +477,8 @@
             </select>
           </div>
           <div>
-            <label class="font-semibold block mb-1.5 text-gray-700 dark:text-gray-300">DA&B?</label>
-            <select id="form-dab" class="w-full taste-input px-3 py-2.5">
-              <option value="NAO">Não</option>
-              <option value="SIM">Sim</option>
-            </select>
+            <!-- Removida a seleção DA&B para manter tudo alinhado -->
+            <input type="hidden" id="form-dab" value="NAO" />
           </div>
         </div>
 
@@ -507,7 +508,8 @@
     }
 
     function getInitialDataset() {
-      const saved = localStorage.getItem('ditalia_processes_v1_6_5_master');
+      // Nova chave de armazenamento (v1_7_2) limpa o cache forçando a leitura da nova variável do dados.js
+      const saved = localStorage.getItem('ditalia_processes_v1_7_2');
       if (saved) {
         try {
           const parsed = JSON.parse(saved);
@@ -515,7 +517,42 @@
         } catch(e) {}
       }
       
-      return typeof DADOS_REAIS_DITALIA !== 'undefined' ? [...DADOS_REAIS_DITALIA] : [];
+      const baseData = typeof DADOS_REAIS_DITALIA !== 'undefined' ? [...DADOS_REAIS_DITALIA] : [];
+      
+      return baseData.map(p => {
+        let area = 'Cível';
+        if (p.cnj && p.cnj.includes('.5.')) area = 'Trabalhista';
+        else if (p.acao && p.acao.toLowerCase().includes('fiscal')) area = 'Tributário';
+        else if (p.materia) area = p.materia;
+        
+        let oldAcao = (p.acao || '').toLowerCase();
+        let tipoAcao = p.tipo_acao || 'Conhecimento';
+        if (oldAcao.includes('execuç') || oldAcao.includes('cumprimento') || oldAcao.includes('fiscal') || oldAcao.includes('falência')) {
+          tipoAcao = 'Execução';
+        } else if (oldAcao.includes('recurs') || oldAcao.includes('agravo') || oldAcao.includes('embargos')) {
+          tipoAcao = 'Recursal';
+        }
+        if (tipoAcao === 'Recursão') tipoAcao = 'Recursal';
+
+        // Regra solicitada: Se o processo estiver "Baixado" ou for de "Reestruturação", força a habilitação como "NDA" na interface
+        let habStatus = p.habilitado || 'NDA';
+        if (p.status_proc === 'Baixado' || area === 'Reestruturação') {
+          habStatus = 'NDA';
+        }
+
+        return {
+          ...p,
+          materia: area,
+          tipo_acao: tipoAcao,
+          habilitado: habStatus,
+          juizo: p.juizo || '',
+          sistema: p.sistema || '',
+          data_ajuizamento: p.data_ajuizamento || '',
+          valor: p.valor || 0,
+          resumo: p.resumo || '',
+          andamento: p.andamento || p.ult_and || ''
+        };
+      });
     }
 
     let ALL_PROCESSES = getInitialDataset();
@@ -640,7 +677,6 @@
       const prazoFilter = getVal('filter-prazo');
       const uf = getVal('filter-uf');
       const statusProc = getVal('filter-status-proc');
-      const dab = getVal('filter-dab');
 
       const todayStr = new Date().toISOString().split('T')[0];
       const todayDate = new Date(todayStr + 'T00:00:00');
@@ -653,7 +689,6 @@
         if (hab !== 'ALL' && p.habilitado !== hab) return false;
         if (uf !== 'ALL' && p.uf !== uf) return false;
         if (statusProc !== 'ALL' && p.status_proc !== statusProc) return false;
-        if (dab !== 'ALL' && p.dab !== dab) return false;
 
         if (prazoFilter !== 'ALL') {
           if (!p.data_prazo) return false;
@@ -709,14 +744,6 @@
       });
     }
 
-    function filterWeekDeadlines() {
-      const el = document.getElementById('filter-prazo');
-      if(el) el.value = '7dias';
-      onPrazoFilterChange();
-      const tbl = document.getElementById('section-tabela');
-      if(tbl) tbl.scrollIntoView({ behavior: 'smooth' });
-    }
-
     function resetAllFilters() {
       resetVal('filter-search', '');
       resetVal('filter-cliente');
@@ -727,7 +754,6 @@
       resetVal('filter-prazo');
       resetVal('filter-uf');
       resetVal('filter-status-proc');
-      resetVal('filter-dab');
       
       const customDiv = document.getElementById('custom-date-container');
       if (customDiv) customDiv.classList.add('hidden');
@@ -739,20 +765,15 @@
     function updateKPIs() {
       const total = FILTERED_PROCESSES.length;
       const ativos = ALL_PROCESSES.filter(p => p.status_proc === 'Ativo').length;
-
-      const todayStr = new Date().toISOString().split('T')[0];
-      const todayDate = new Date(todayStr + 'T00:00:00');
-      const semanaCount = ALL_PROCESSES.filter(p => {
-        if (!p.data_prazo) return false;
-        const pd = new Date(p.data_prazo + 'T00:00:00');
-        const diff = Math.round((pd - todayDate) / (1000 * 60 * 60 * 24));
-        return diff >= 0 && diff <= 7;
-      }).length;
+      const habSimCount = ALL_PROCESSES.filter(p => p.habilitado === 'SIM').length;
+      const habNaoCount = ALL_PROCESSES.filter(p => p.habilitado === 'NAO').length;
+      const baixados = ALL_PROCESSES.filter(p => p.status_proc === 'Baixado').length;
 
       if(document.getElementById('kpi-total')) document.getElementById('kpi-total').textContent = ALL_PROCESSES.length;
       if(document.getElementById('kpi-ativo')) document.getElementById('kpi-ativo').textContent = ativos;
-      if(document.getElementById('kpi-semana')) document.getElementById('kpi-semana').textContent = semanaCount;
-      if(document.getElementById('kpi-baixado')) document.getElementById('kpi-baixado').textContent = ALL_PROCESSES.filter(p => p.status_proc === 'Baixado').length;
+      if(document.getElementById('kpi-habilitado')) document.getElementById('kpi-habilitado').textContent = habSimCount;
+      if(document.getElementById('kpi-nao-habilitado')) document.getElementById('kpi-nao-habilitado').textContent = habNaoCount;
+      if(document.getElementById('kpi-baixado')) document.getElementById('kpi-baixado').textContent = baixados;
       if(document.getElementById('results-counter')) document.getElementById('results-counter').textContent = `${total} processos encontrados`;
     }
 
@@ -819,7 +840,6 @@
       resetVal('form-resp', p.resp || 'Julia Linhares');
       resetVal('form-habilitado', p.habilitado || 'NDA');
       resetVal('form-status-proc', p.status_proc || 'Ativo');
-      resetVal('form-dab', p.dab || 'NAO');
       resetVal('form-resumo', p.resumo || '');
       resetVal('form-andamento', p.andamento || '');
       
@@ -852,7 +872,6 @@
         resp: getVal('form-resp', 'Julia Linhares').trim() || 'Julia Linhares',
         habilitado: getVal('form-habilitado', 'NDA'),
         status_proc: getVal('form-status-proc', 'Ativo'),
-        dab: getVal('form-dab', 'NAO'),
         resumo: getVal('form-resumo', '').trim(),
         andamento: getVal('form-andamento', '').trim(),
         esc: 'DA&B \\ núcleo de advocacia'
@@ -865,7 +884,7 @@
         ALL_PROCESSES.unshift(dataObj);
       }
 
-      localStorage.setItem('ditalia_processes_v1_6_5_master', JSON.stringify(ALL_PROCESSES));
+      localStorage.setItem('ditalia_processes_v1_7_2', JSON.stringify(ALL_PROCESSES));
       closeModal();
       populateSelectFilters();
       applyFilters();
@@ -883,6 +902,7 @@
       
       Object.values(charts).forEach(c => c && c.destroy());
 
+      // 1. Gráfico de Status Processual
       const statusCounts = { Ativo: 0, Suspenso: 0, Baixado: 0 };
       ALL_PROCESSES.forEach(p => { if(statusCounts[p.status_proc] !== undefined) statusCounts[p.status_proc]++; });
 
@@ -902,6 +922,31 @@
         });
       }
 
+      // 2. Gráfico de Distribuição por Tipo de Ação (Novo)
+      const acaoCounts = {};
+      ALL_PROCESSES.forEach(p => {
+        const t = p.tipo_acao || 'Outros';
+        acaoCounts[t] = (acaoCounts[t] || 0) + 1;
+      });
+      const sortedAcoes = Object.entries(acaoCounts).sort((a,b) => b[1] - a[1]);
+
+      const elChartAcao = document.getElementById('chartAcao');
+      if (elChartAcao) {
+        charts.acao = new Chart(elChartAcao, {
+          type: 'doughnut',
+          data: {
+            labels: sortedAcoes.map(x => x[0]),
+            datasets: [{ 
+              data: sortedAcoes.map(x => x[1]), 
+              backgroundColor: ['#bfdbfe', '#ddd6fe', '#fbcfe8', '#a7f3d0', '#fef08a', '#fed7aa'], 
+              borderWidth: 0 
+            }]
+          },
+          options: { responsive: true, maintainAspectRatio: false, cutout: '75%' }
+        });
+      }
+
+      // 3. Gráfico de Volume por Matéria
       const matCounts = { 'Cível': 0, 'Trabalhista': 0, 'Tributário': 0, 'Reestruturação': 0 };
       ALL_PROCESSES.forEach(p => { if(matCounts[p.materia] !== undefined) matCounts[p.materia]++; });
       
@@ -930,6 +975,7 @@
         });
       }
 
+      // 4. Gráfico de Distribuição Geográfica (UF)
       const ufCounts = {};
       ALL_PROCESSES.forEach(p => { if(p.uf) ufCounts[p.uf] = (ufCounts[p.uf] || 0) + 1; });
       const topUFs = Object.entries(ufCounts).sort((a,b)=>b[1]-a[1]).slice(0, 6);
