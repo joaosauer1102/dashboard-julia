@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ditália Legal Analytics — Dashboard v1.6.2</title>
+  <title>Ditália Legal Analytics — Dashboard v1.6.3</title>
   
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -84,7 +84,7 @@
           <h1 class="text-xl font-bold tracking-tight font-serif text-gray-900 dark:text-white">Ditália Legal Analytics</h1>
           <p class="text-[13px] font-medium text-gray-500 dark:text-gray-400">
             Gestão de Processos — Dra. Julia Linhares 
-            <span class="ml-2 px-1.5 py-0.5 rounded-full bg-gray-200 dark:bg-white/10 text-gray-700 dark:text-gray-300 text-[10px] font-bold">v1.6.2</span>
+            <span class="ml-2 px-1.5 py-0.5 rounded-full bg-gray-200 dark:bg-white/10 text-gray-700 dark:text-gray-300 text-[10px] font-bold">v1.6.3</span>
           </p>
         </div>
       </div>
@@ -117,10 +117,12 @@
           <div class="text-[12px] font-medium uppercase tracking-wider mb-2 text-gray-500 dark:text-gray-400">Total na Base</div>
           <div id="kpi-total" class="text-3xl font-bold text-gray-900 dark:text-white">0</div>
         </div>
+        
         <div class="taste-card p-5 border-l-4 border-emerald-400 dark:border-emerald-300">
-          <div class="text-[12px] font-medium uppercase tracking-wider mb-2 text-emerald-600 dark:text-emerald-400">Ativos (Andamento)</div>
-          <div id="kpi-ativo" class="text-3xl font-bold text-gray-900 dark:text-white">0</div>
+          <div class="text-[12px] font-medium uppercase tracking-wider mb-2 text-emerald-600 dark:text-emerald-400">Habilitados (SIM)</div>
+          <div id="kpi-habilitado" class="text-3xl font-bold text-gray-900 dark:text-white">0</div>
         </div>
+
         <div onclick="filterWeekDeadlines()" class="taste-card p-5 border-l-4 border-red-400 cursor-pointer hover:shadow-md transition">
           <div class="flex items-center justify-between">
             <div class="text-[12px] font-medium uppercase tracking-wider mb-2 text-red-500 dark:text-red-400">Vence em 7 dias</div>
@@ -128,13 +130,15 @@
           </div>
           <div id="kpi-semana" class="text-3xl font-bold text-gray-900 dark:text-white">0</div>
         </div>
+
         <div class="taste-card p-5 border-l-4 border-orange-400 dark:border-orange-300">
-          <div class="text-[12px] font-medium uppercase tracking-wider mb-2 text-orange-500 dark:text-orange-400">Baixados</div>
-          <div id="kpi-baixado" class="text-3xl font-bold text-gray-900 dark:text-white">0</div>
+          <div class="text-[12px] font-medium uppercase tracking-wider mb-2 text-orange-500 dark:text-orange-400">Em Andamento</div>
+          <div id="kpi-ativo" class="text-3xl font-bold text-gray-900 dark:text-white">0</div>
         </div>
-        <div class="taste-card p-5 border-l-4 border-blue-400 dark:border-blue-300">
-          <div class="text-[12px] font-medium uppercase tracking-wider mb-2 text-blue-500 dark:text-blue-400">Finalizados DA&B</div>
-          <div id="kpi-dab" class="text-3xl font-bold text-gray-900 dark:text-white">0</div>
+
+        <div class="taste-card p-5 border-l-4 border-gray-400 dark:border-gray-500">
+          <div class="text-[12px] font-medium uppercase tracking-wider mb-2 text-gray-500 dark:text-gray-400">Baixados</div>
+          <div id="kpi-baixado" class="text-3xl font-bold text-gray-900 dark:text-white">0</div>
         </div>
       </section>
 
@@ -250,14 +254,6 @@
               <option value="Ativo">Ativo</option>
               <option value="Suspenso">Suspenso</option>
               <option value="Baixado">Baixado</option>
-            </select>
-          </div>
-          <div class="flex-1 min-w-[90px]">
-            <label class="text-[11px] font-semibold uppercase tracking-wide block mb-1.5 text-gray-500 dark:text-gray-400">DA&B</label>
-            <select id="filter-dab" onchange="applyFilters()" class="w-full taste-input px-3 py-2.5 text-[13px]">
-              <option value="ALL">Todos</option>
-              <option value="SIM">Sim</option>
-              <option value="NAO">Não</option>
             </select>
           </div>
           <div class="flex-1 min-w-[90px]">
@@ -509,8 +505,8 @@
     }
 
     function getInitialDataset() {
-      // Nova chave de armazenamento (v1_6_2_final) limpa o cache forçando a leitura da nova variável do dados.js
-      const saved = localStorage.getItem('ditalia_processes_v1_6_2_final');
+      // Nova chave de armazenamento (v1_6_3_final) limpa o cache forçando a leitura da nova variável do dados.js
+      const saved = localStorage.getItem('ditalia_processes_v1_6_3_final');
       if (saved) {
         try {
           const parsed = JSON.parse(saved);
@@ -769,7 +765,7 @@
     function updateKPIs() {
       const total = FILTERED_PROCESSES.length;
       const ativos = ALL_PROCESSES.filter(p => p.status_proc === 'Ativo').length;
-      const dabCount = ALL_PROCESSES.filter(p => p.dab === 'SIM').length;
+      const habCount = ALL_PROCESSES.filter(p => p.habilitado === 'SIM').length;
 
       const todayStr = new Date().toISOString().split('T')[0];
       const todayDate = new Date(todayStr + 'T00:00:00');
@@ -782,9 +778,9 @@
 
       if(document.getElementById('kpi-total')) document.getElementById('kpi-total').textContent = ALL_PROCESSES.length;
       if(document.getElementById('kpi-ativo')) document.getElementById('kpi-ativo').textContent = ativos;
+      if(document.getElementById('kpi-habilitado')) document.getElementById('kpi-habilitado').textContent = habCount;
       if(document.getElementById('kpi-semana')) document.getElementById('kpi-semana').textContent = semanaCount;
       if(document.getElementById('kpi-baixado')) document.getElementById('kpi-baixado').textContent = ALL_PROCESSES.filter(p => p.status_proc === 'Baixado').length;
-      if(document.getElementById('kpi-dab')) document.getElementById('kpi-dab').textContent = dabCount;
       if(document.getElementById('results-counter')) document.getElementById('results-counter').textContent = `${total} processos encontrados`;
     }
 
@@ -798,7 +794,6 @@
             <span class="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide ${p.status_proc === 'Ativo' ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-500/20 dark:text-emerald-300' : (p.status_proc === 'Baixado' ? 'bg-orange-100 text-orange-800 dark:bg-orange-500/20 dark:text-orange-300' : 'bg-yellow-100 text-yellow-800 dark:bg-yellow-500/20 dark:text-yellow-300')}">
               ${p.status_proc}
             </span>
-            ${p.dab === 'SIM' ? '<span class="ml-1 px-1.5 py-0.5 rounded bg-blue-100 text-blue-800 dark:bg-blue-500/20 dark:text-blue-300 text-[9px] font-bold">DA&B</span>' : ''}
           </td>
           <td class="py-3.5 px-4 whitespace-nowrap">
             ${p.data_prazo ? `<strong class="text-red-600 dark:text-red-400 font-semibold">${p.data_prazo.split('-').reverse().join('/')}</strong>` : '<span class="text-gray-400 dark:text-gray-600">—</span>'}
@@ -898,7 +893,7 @@
         ALL_PROCESSES.unshift(dataObj);
       }
 
-      localStorage.setItem('ditalia_processes_v1_6_2_final', JSON.stringify(ALL_PROCESSES));
+      localStorage.setItem('ditalia_processes_v1_6_3_final', JSON.stringify(ALL_PROCESSES));
       closeModal();
       populateSelectFilters();
       applyFilters();
@@ -951,7 +946,7 @@
             responsive: true, 
             maintainAspectRatio: false, 
             plugins: { legend: { display: false } }, 
-            layout: { padding: { left: 15 } }, // Ajuste cirúrgico para a letra T do Trabalhista não cortar
+            layout: { padding: { left: 15 } },
             scales: { 
               x: { grid: { color: gridColor, drawBorder: false } }, 
               y: { grid: { display: false } } 
