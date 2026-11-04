@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ditália Legal Analytics — Dashboard v1.7.2</title>
+  <title>Ditália Legal Analytics — Dashboard v1.7.3</title>
   
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -84,7 +84,7 @@
           <h1 class="text-xl font-bold tracking-tight font-serif text-gray-900 dark:text-white">Ditália Legal Analytics</h1>
           <p class="text-[13px] font-medium text-gray-500 dark:text-gray-400">
             Gestão de Processos — Dra. Julia Linhares 
-            <span class="ml-2 px-1.5 py-0.5 rounded-full bg-gray-200 dark:bg-white/10 text-gray-700 dark:text-gray-300 text-[10px] font-bold">v1.7.2</span>
+            <span class="ml-2 px-1.5 py-0.5 rounded-full bg-gray-200 dark:bg-white/10 text-gray-700 dark:text-gray-300 text-[10px] font-bold">v1.7.3</span>
           </p>
         </div>
       </div>
@@ -148,7 +148,8 @@
         </div>
         <div class="taste-card p-6">
           <h3 class="text-sm font-semibold mb-6 text-gray-900 dark:text-white">Distribuição por Tipo de Ação</h3>
-          <div class="h-64"><canvas id="chartAcao"></canvas></div>
+          <!-- Gráfico agora em barra horizontal -->
+          <div class="h-64 pl-2"><canvas id="chartAcao"></canvas></div>
         </div>
         <div class="taste-card p-6">
           <h3 class="text-sm font-semibold mb-6 text-gray-900 dark:text-white">Volume por Matéria</h3>
@@ -198,7 +199,8 @@
               <option value="ALL">Todas</option>
               <option value="Conhecimento">Conhecimento</option>
               <option value="Execução">Execução</option>
-              <option value="Recursal">Recursal</option>
+              <option value="Recurso">Recurso</option>
+              <option value="Cumprimento de Sentença">Cumprimento de Sentença</option>
             </select>
           </div>
           <div class="flex-1 min-w-[90px]">
@@ -413,7 +415,8 @@
             <select id="form-tipo-acao" class="w-full taste-input px-3 py-2.5">
               <option value="Conhecimento">Conhecimento</option>
               <option value="Execução">Execução</option>
-              <option value="Recursal">Recursal</option>
+              <option value="Recurso">Recurso</option>
+              <option value="Cumprimento de Sentença">Cumprimento de Sentença</option>
             </select>
           </div>
 
@@ -477,7 +480,7 @@
             </select>
           </div>
           <div>
-            <!-- Removida a seleção DA&B para manter tudo alinhado -->
+            <!-- Removido DA&B para o layout ficar equilibrado com a remoção dele no topo -->
             <input type="hidden" id="form-dab" value="NAO" />
           </div>
         </div>
@@ -508,8 +511,8 @@
     }
 
     function getInitialDataset() {
-      // Nova chave de armazenamento (v1_7_2) limpa o cache forçando a leitura da nova variável do dados.js
-      const saved = localStorage.getItem('ditalia_processes_v1_7_2');
+      // Chave limpa para forçar o cache a ler a nova estrutura do dados.js (v1_7_3)
+      const saved = localStorage.getItem('ditalia_processes_v1_7_3_clean');
       if (saved) {
         try {
           const parsed = JSON.parse(saved);
@@ -525,16 +528,9 @@
         else if (p.acao && p.acao.toLowerCase().includes('fiscal')) area = 'Tributário';
         else if (p.materia) area = p.materia;
         
-        let oldAcao = (p.acao || '').toLowerCase();
         let tipoAcao = p.tipo_acao || 'Conhecimento';
-        if (oldAcao.includes('execuç') || oldAcao.includes('cumprimento') || oldAcao.includes('fiscal') || oldAcao.includes('falência')) {
-          tipoAcao = 'Execução';
-        } else if (oldAcao.includes('recurs') || oldAcao.includes('agravo') || oldAcao.includes('embargos')) {
-          tipoAcao = 'Recursal';
-        }
-        if (tipoAcao === 'Recursão') tipoAcao = 'Recursal';
+        if (tipoAcao === 'Recursão' || tipoAcao === 'Recursal') tipoAcao = 'Recurso';
 
-        // Regra solicitada: Se o processo estiver "Baixado" ou for de "Reestruturação", força a habilitação como "NDA" na interface
         let habStatus = p.habilitado || 'NDA';
         if (p.status_proc === 'Baixado' || area === 'Reestruturação') {
           habStatus = 'NDA';
@@ -655,16 +651,6 @@
       }
     }
 
-    function onPrazoFilterChange() {
-      const val = getVal('filter-prazo');
-      const customDiv = document.getElementById('custom-date-container');
-      if (customDiv) {
-        if (val === 'personalizado') customDiv.classList.remove('hidden');
-        else customDiv.classList.add('hidden');
-      }
-      applyFilters();
-    }
-
     function applyFilters() {
       const elSearch = document.getElementById('filter-search');
       const q = elSearch ? elSearch.value.toLowerCase().trim() : '';
@@ -674,12 +660,8 @@
       const materia = getVal('filter-materia');
       const acao = getVal('filter-acao');
       const hab = getVal('filter-habilitado');
-      const prazoFilter = getVal('filter-prazo');
       const uf = getVal('filter-uf');
       const statusProc = getVal('filter-status-proc');
-
-      const todayStr = new Date().toISOString().split('T')[0];
-      const todayDate = new Date(todayStr + 'T00:00:00');
 
       FILTERED_PROCESSES = ALL_PROCESSES.filter(p => {
         if (cli !== 'ALL' && p.cliente !== cli) return false;
@@ -689,25 +671,6 @@
         if (hab !== 'ALL' && p.habilitado !== hab) return false;
         if (uf !== 'ALL' && p.uf !== uf) return false;
         if (statusProc !== 'ALL' && p.status_proc !== statusProc) return false;
-
-        if (prazoFilter !== 'ALL') {
-          if (!p.data_prazo) return false;
-          const pDate = new Date(p.data_prazo + 'T00:00:00');
-          const diffDays = Math.round((pDate - todayDate) / (1000 * 60 * 60 * 24));
-
-          if (prazoFilter === 'hoje' && diffDays !== 0) return false;
-          if (prazoFilter === 'amanha' && diffDays !== 1) return false;
-          if (prazoFilter === '7dias' && (diffDays < 0 || diffDays > 7)) return false;
-          if (prazoFilter === '15dias' && (diffDays < 0 || diffDays > 15)) return false;
-          if (prazoFilter === '30dias' && (diffDays < 0 || diffDays > 30)) return false;
-          
-          if (prazoFilter === 'personalizado') {
-            const startStr = getVal('filter-date-start', '');
-            const endStr = getVal('filter-date-end', '');
-            if (startStr && p.data_prazo < startStr) return false;
-            if (endStr && p.data_prazo > endStr) return false;
-          }
-        }
 
         if (q) {
           const hay = `${p.cnj} ${p.parte} ${p.cliente} ${p.uf} ${p.comarca} ${p.juizo} ${p.resumo} ${p.andamento}`.toLowerCase();
@@ -751,7 +714,6 @@
       resetVal('filter-materia');
       resetVal('filter-acao');
       resetVal('filter-habilitado');
-      resetVal('filter-prazo');
       resetVal('filter-uf');
       resetVal('filter-status-proc');
       
@@ -884,7 +846,7 @@
         ALL_PROCESSES.unshift(dataObj);
       }
 
-      localStorage.setItem('ditalia_processes_v1_7_2', JSON.stringify(ALL_PROCESSES));
+      localStorage.setItem('ditalia_processes_v1_7_3_clean', JSON.stringify(ALL_PROCESSES));
       closeModal();
       populateSelectFilters();
       applyFilters();
@@ -922,27 +884,39 @@
         });
       }
 
-      // 2. Gráfico de Distribuição por Tipo de Ação (Novo)
-      const acaoCounts = {};
-      ALL_PROCESSES.forEach(p => {
-        const t = p.tipo_acao || 'Outros';
-        acaoCounts[t] = (acaoCounts[t] || 0) + 1;
+      // 2. Gráfico de Distribuição por Tipo de Ação (Agora em Barras)
+      const acaoCounts = { 'Conhecimento': 0, 'Execução': 0, 'Recurso': 0, 'Cumprimento de Sentença': 0 };
+      ALL_PROCESSES.forEach(p => { 
+        if(acaoCounts[p.tipo_acao] !== undefined) acaoCounts[p.tipo_acao]++; 
       });
-      const sortedAcoes = Object.entries(acaoCounts).sort((a,b) => b[1] - a[1]);
-
+      
       const elChartAcao = document.getElementById('chartAcao');
       if (elChartAcao) {
         charts.acao = new Chart(elChartAcao, {
-          type: 'doughnut',
+          type: 'bar',
           data: {
-            labels: sortedAcoes.map(x => x[0]),
+            labels: ['Conhecimento', 'Execução', 'Recurso', 'Cumprimento de Sentença'],
             datasets: [{ 
-              data: sortedAcoes.map(x => x[1]), 
-              backgroundColor: ['#bfdbfe', '#ddd6fe', '#fbcfe8', '#a7f3d0', '#fef08a', '#fed7aa'], 
-              borderWidth: 0 
+              data: [acaoCounts['Conhecimento'], acaoCounts['Execução'], acaoCounts['Recurso'], acaoCounts['Cumprimento de Sentença']], 
+              backgroundColor: barColor, 
+              borderRadius: 8, 
+              barThickness: 24 
             }]
           },
-          options: { responsive: true, maintainAspectRatio: false, cutout: '75%' }
+          options: { 
+            indexAxis: 'y', 
+            responsive: true, 
+            maintainAspectRatio: false, 
+            plugins: { legend: { display: false } }, 
+            layout: { padding: { left: 15 } },
+            scales: { 
+              x: { grid: { color: gridColor, drawBorder: false } }, 
+              y: { 
+                grid: { display: false },
+                ticks: { padding: 10, font: { weight: '500' } } 
+              } 
+            } 
+          }
         });
       }
 
@@ -997,7 +971,7 @@
       const ws = XLSX.utils.json_to_sheet(FILTERED_PROCESSES);
       const wb = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(wb, ws, "Processos");
-      XLSX.writeFile(wb, "Relatorio_Ditalia.xlsx");
+      XLSX.writeFile(wb, "Relatorio_Ditalia_Dash.xlsx");
     }
 
     function handleExcelUpload(event) {
