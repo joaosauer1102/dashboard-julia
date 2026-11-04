@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ditália Legal Analytics — Dashboard v1.6.1</title>
+  <title>Ditália Legal Analytics — Dashboard v1.6.2</title>
   
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -84,7 +84,7 @@
           <h1 class="text-xl font-bold tracking-tight font-serif text-gray-900 dark:text-white">Ditália Legal Analytics</h1>
           <p class="text-[13px] font-medium text-gray-500 dark:text-gray-400">
             Gestão de Processos — Dra. Julia Linhares 
-            <span class="ml-2 px-1.5 py-0.5 rounded-full bg-gray-200 dark:bg-white/10 text-gray-700 dark:text-gray-300 text-[10px] font-bold">v1.6.1</span>
+            <span class="ml-2 px-1.5 py-0.5 rounded-full bg-gray-200 dark:bg-white/10 text-gray-700 dark:text-gray-300 text-[10px] font-bold">v1.6.2</span>
           </p>
         </div>
       </div>
@@ -145,7 +145,7 @@
         </div>
         <div class="taste-card p-6">
           <h3 class="text-sm font-semibold mb-6 text-gray-900 dark:text-white">Volume por Matéria</h3>
-          <div class="h-64"><canvas id="chartMateria"></canvas></div>
+          <div class="h-64 pl-2"><canvas id="chartMateria"></canvas></div>
         </div>
         <div class="taste-card p-6">
           <h3 class="text-sm font-semibold mb-6 text-gray-900 dark:text-white">Distribuição Geográfica</h3>
@@ -287,7 +287,7 @@
       </section>
     </div>
 
-    <!-- ÁREA 2: CALCULADORA CPC 25 -->
+    <!-- CALCULADORA CPC 25 -->
     <div id="view-calculadora" class="hidden space-y-6">
       <div class="taste-card p-8 max-w-4xl mx-auto">
         <div class="border-b border-gray-100 dark:border-white/10 pb-5 mb-6 text-center">
@@ -360,7 +360,7 @@
       </div>
     </div>
 
-    <!-- ÁREA 3: IMPORTAR/EXPORTAR -->
+    <!-- IMPORTAR/EXPORTAR -->
     <div id="view-importar" class="hidden space-y-6">
       <div class="taste-card p-8 text-center max-w-2xl mx-auto">
         <h2 class="text-xl font-serif font-bold mb-2 text-gray-900 dark:text-white">Gestão de Ficheiros</h2>
@@ -509,7 +509,8 @@
     }
 
     function getInitialDataset() {
-      const saved = localStorage.getItem('ditalia_processes_v1_6_1');
+      // Nova chave de armazenamento (v1_6_2_final) limpa o cache forçando a leitura da nova variável do dados.js
+      const saved = localStorage.getItem('ditalia_processes_v1_6_2_final');
       if (saved) {
         try {
           const parsed = JSON.parse(saved);
@@ -897,7 +898,7 @@
         ALL_PROCESSES.unshift(dataObj);
       }
 
-      localStorage.setItem('ditalia_processes_v1_6_1', JSON.stringify(ALL_PROCESSES));
+      localStorage.setItem('ditalia_processes_v1_6_2_final', JSON.stringify(ALL_PROCESSES));
       closeModal();
       populateSelectFilters();
       applyFilters();
@@ -950,12 +951,10 @@
             responsive: true, 
             maintainAspectRatio: false, 
             plugins: { legend: { display: false } }, 
+            layout: { padding: { left: 15 } }, // Ajuste cirúrgico para a letra T do Trabalhista não cortar
             scales: { 
               x: { grid: { color: gridColor, drawBorder: false } }, 
-              y: { 
-                grid: { display: false },
-                ticks: { padding: 10, font: { weight: '500' } } // Adiciona padding para evitar cortes no texto
-              } 
+              y: { grid: { display: false } } 
             } 
           }
         });
