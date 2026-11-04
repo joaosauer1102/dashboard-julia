@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ditália Legal Analytics — Dashboard v1.7.4</title>
+  <title>Ditália Legal Analytics — Dashboard v1.7.5</title>
   
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -84,7 +84,7 @@
           <h1 class="text-xl font-bold tracking-tight font-serif text-gray-900 dark:text-white">Ditália Legal Analytics</h1>
           <p class="text-[13px] font-medium text-gray-500 dark:text-gray-400">
             Gestão de Processos — Dra. Julia Linhares 
-            <span class="ml-2 px-1.5 py-0.5 rounded-full bg-gray-200 dark:bg-white/10 text-gray-700 dark:text-gray-300 text-[10px] font-bold">v1.7.4</span>
+            <span class="ml-2 px-1.5 py-0.5 rounded-full bg-gray-200 dark:bg-white/10 text-gray-700 dark:text-gray-300 text-[10px] font-bold">v1.7.5</span>
           </p>
         </div>
       </div>
@@ -506,7 +506,8 @@
     }
 
     function getInitialDataset() {
-      const saved = localStorage.getItem('ditalia_processes_v1_7_4');
+      // Nova chave forçando a quebra de cache para a versão 1.7.5 com 718 processos
+      const saved = localStorage.getItem('ditalia_processes_v1_7_5_master');
       if (saved) {
         try {
           const parsed = JSON.parse(saved);
@@ -840,7 +841,7 @@
         ALL_PROCESSES.unshift(dataObj);
       }
 
-      localStorage.setItem('ditalia_processes_v1_7_4', JSON.stringify(ALL_PROCESSES));
+      localStorage.setItem('ditalia_processes_v1_7_5_master', JSON.stringify(ALL_PROCESSES));
       closeModal();
       populateSelectFilters();
       applyFilters();
