@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ditália Legal Analytics — Dashboard v1.6.3</title>
+  <title>Ditália Legal Analytics — Dashboard v1.6.1</title>
   
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -84,7 +84,7 @@
           <h1 class="text-xl font-bold tracking-tight font-serif text-gray-900 dark:text-white">Ditália Legal Analytics</h1>
           <p class="text-[13px] font-medium text-gray-500 dark:text-gray-400">
             Gestão de Processos — Dra. Julia Linhares 
-            <span class="ml-2 px-1.5 py-0.5 rounded-full bg-gray-200 dark:bg-white/10 text-gray-700 dark:text-gray-300 text-[10px] font-bold">v1.6.3</span>
+            <span class="ml-2 px-1.5 py-0.5 rounded-full bg-gray-200 dark:bg-white/10 text-gray-700 dark:text-gray-300 text-[10px] font-bold">v1.6.1</span>
           </p>
         </div>
       </div>
@@ -132,10 +132,9 @@
           <div class="text-[12px] font-medium uppercase tracking-wider mb-2 text-orange-500 dark:text-orange-400">Baixados</div>
           <div id="kpi-baixado" class="text-3xl font-bold text-gray-900 dark:text-white">0</div>
         </div>
-        <!-- NOVO KPI DA v1.6.3: Habilitados -->
         <div class="taste-card p-5 border-l-4 border-blue-400 dark:border-blue-300">
-          <div class="text-[12px] font-medium uppercase tracking-wider mb-2 text-blue-500 dark:text-blue-400">Habilitados (SIM)</div>
-          <div id="kpi-habilitado" class="text-3xl font-bold text-gray-900 dark:text-white">0</div>
+          <div class="text-[12px] font-medium uppercase tracking-wider mb-2 text-blue-500 dark:text-blue-400">Finalizados DA&B</div>
+          <div id="kpi-dab" class="text-3xl font-bold text-gray-900 dark:text-white">0</div>
         </div>
       </section>
 
@@ -146,7 +145,7 @@
         </div>
         <div class="taste-card p-6">
           <h3 class="text-sm font-semibold mb-6 text-gray-900 dark:text-white">Volume por Matéria</h3>
-          <div class="h-64 pl-2"><canvas id="chartMateria"></canvas></div>
+          <div class="h-64"><canvas id="chartMateria"></canvas></div>
         </div>
         <div class="taste-card p-6">
           <h3 class="text-sm font-semibold mb-6 text-gray-900 dark:text-white">Distribuição Geográfica</h3>
@@ -288,7 +287,7 @@
       </section>
     </div>
 
-    <!-- CALCULADORA CPC 25 -->
+    <!-- ÁREA 2: CALCULADORA CPC 25 -->
     <div id="view-calculadora" class="hidden space-y-6">
       <div class="taste-card p-8 max-w-4xl mx-auto">
         <div class="border-b border-gray-100 dark:border-white/10 pb-5 mb-6 text-center">
@@ -361,7 +360,7 @@
       </div>
     </div>
 
-    <!-- IMPORTAR/EXPORTAR -->
+    <!-- ÁREA 3: IMPORTAR/EXPORTAR -->
     <div id="view-importar" class="hidden space-y-6">
       <div class="taste-card p-8 text-center max-w-2xl mx-auto">
         <h2 class="text-xl font-serif font-bold mb-2 text-gray-900 dark:text-white">Gestão de Ficheiros</h2>
@@ -510,8 +509,7 @@
     }
 
     function getInitialDataset() {
-      // Chave limpa para a versão 1.6.3
-      const saved = localStorage.getItem('ditalia_processes_v1_6_3');
+      const saved = localStorage.getItem('ditalia_processes_v1_6_1');
       if (saved) {
         try {
           const parsed = JSON.parse(saved);
@@ -534,17 +532,11 @@
           tipoAcao = 'Recursão';
         }
 
-        // Regra solicitada: Se o processo estiver "Baixado", força a habilitação como "NDA" na interface
-        let habStatus = p.habilitado || 'NDA';
-        if (p.status_proc === 'Baixado') {
-          habStatus = 'NDA';
-        }
-
         return {
           ...p,
           materia: area,
           tipo_acao: tipoAcao,
-          habilitado: habStatus,
+          habilitado: p.habilitado || 'NDA',
           juizo: p.juizo || '',
           sistema: p.sistema || '',
           data_ajuizamento: p.data_ajuizamento || '',
@@ -776,7 +768,7 @@
     function updateKPIs() {
       const total = FILTERED_PROCESSES.length;
       const ativos = ALL_PROCESSES.filter(p => p.status_proc === 'Ativo').length;
-      const habCount = ALL_PROCESSES.filter(p => p.habilitado === 'SIM').length;
+      const dabCount = ALL_PROCESSES.filter(p => p.dab === 'SIM').length;
 
       const todayStr = new Date().toISOString().split('T')[0];
       const todayDate = new Date(todayStr + 'T00:00:00');
@@ -789,9 +781,9 @@
 
       if(document.getElementById('kpi-total')) document.getElementById('kpi-total').textContent = ALL_PROCESSES.length;
       if(document.getElementById('kpi-ativo')) document.getElementById('kpi-ativo').textContent = ativos;
-      if(document.getElementById('kpi-habilitado')) document.getElementById('kpi-habilitado').textContent = habCount;
       if(document.getElementById('kpi-semana')) document.getElementById('kpi-semana').textContent = semanaCount;
       if(document.getElementById('kpi-baixado')) document.getElementById('kpi-baixado').textContent = ALL_PROCESSES.filter(p => p.status_proc === 'Baixado').length;
+      if(document.getElementById('kpi-dab')) document.getElementById('kpi-dab').textContent = dabCount;
       if(document.getElementById('results-counter')) document.getElementById('results-counter').textContent = `${total} processos encontrados`;
     }
 
@@ -805,6 +797,7 @@
             <span class="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide ${p.status_proc === 'Ativo' ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-500/20 dark:text-emerald-300' : (p.status_proc === 'Baixado' ? 'bg-orange-100 text-orange-800 dark:bg-orange-500/20 dark:text-orange-300' : 'bg-yellow-100 text-yellow-800 dark:bg-yellow-500/20 dark:text-yellow-300')}">
               ${p.status_proc}
             </span>
+            ${p.dab === 'SIM' ? '<span class="ml-1 px-1.5 py-0.5 rounded bg-blue-100 text-blue-800 dark:bg-blue-500/20 dark:text-blue-300 text-[9px] font-bold">DA&B</span>' : ''}
           </td>
           <td class="py-3.5 px-4 whitespace-nowrap">
             ${p.data_prazo ? `<strong class="text-red-600 dark:text-red-400 font-semibold">${p.data_prazo.split('-').reverse().join('/')}</strong>` : '<span class="text-gray-400 dark:text-gray-600">—</span>'}
@@ -904,7 +897,7 @@
         ALL_PROCESSES.unshift(dataObj);
       }
 
-      localStorage.setItem('ditalia_processes_v1_6_3', JSON.stringify(ALL_PROCESSES));
+      localStorage.setItem('ditalia_processes_v1_6_1', JSON.stringify(ALL_PROCESSES));
       closeModal();
       populateSelectFilters();
       applyFilters();
@@ -959,7 +952,10 @@
             plugins: { legend: { display: false } }, 
             scales: { 
               x: { grid: { color: gridColor, drawBorder: false } }, 
-              y: { grid: { display: false } } 
+              y: { 
+                grid: { display: false },
+                ticks: { padding: 10, font: { weight: '500' } } // Adiciona padding para evitar cortes no texto
+              } 
             } 
           }
         });
@@ -986,7 +982,7 @@
       const ws = XLSX.utils.json_to_sheet(FILTERED_PROCESSES);
       const wb = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(wb, ws, "Processos");
-      XLSX.writeFile(wb, "Relatorio_Ditalia.xlsx");
+      XLSX.writeFile(wb, "Relatorio_Ditalia_Taste.xlsx");
     }
 
     function handleExcelUpload(event) {
