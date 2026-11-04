@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ditália Legal Analytics — Dashboard v1.7.5</title>
+  <title>Ditália Legal Analytics — Dashboard v1.7.7</title>
   
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -84,7 +84,7 @@
           <h1 class="text-xl font-bold tracking-tight font-serif text-gray-900 dark:text-white">Ditália Legal Analytics</h1>
           <p class="text-[13px] font-medium text-gray-500 dark:text-gray-400">
             Gestão de Processos — Dra. Julia Linhares 
-            <span class="ml-2 px-1.5 py-0.5 rounded-full bg-gray-200 dark:bg-white/10 text-gray-700 dark:text-gray-300 text-[10px] font-bold">v1.7.5</span>
+            <span class="ml-2 px-1.5 py-0.5 rounded-full bg-gray-200 dark:bg-white/10 text-gray-700 dark:text-gray-300 text-[10px] font-bold">v1.7.7</span>
           </p>
         </div>
       </div>
@@ -506,8 +506,8 @@
     }
 
     function getInitialDataset() {
-      // Nova chave para limpar o cache do Chrome e carregar os 97 habilitados
-      const saved = localStorage.getItem('ditalia_processes_v1_7_6_hab_fix');
+      // Nova chave v1_7_7 para forçar o navegador a limpar o cache corrompido anterior
+      const saved = localStorage.getItem('ditalia_processes_v1_7_7_fix');
       if (saved) {
         try {
           const parsed = JSON.parse(saved);
@@ -526,48 +526,11 @@
         let tipoAcao = p.tipo_acao || 'Conhecimento';
         if (tipoAcao === 'Recursão' || tipoAcao === 'Recursal') tipoAcao = 'Recurso';
 
-        // Respeita se o processo já vier marcado como SIM do dados.js
-        let habStatus = p.habilitado || 'NDA';
-        if (habStatus !== 'SIM' && (p.status_proc === 'Baixado' || area === 'Reestruturação')) {
-          habStatus = 'NDA';
-        }
-
         return {
           ...p,
           materia: area,
           tipo_acao: tipoAcao,
-          habilitado: habStatus,
-          juizo: p.juizo || '',
-          sistema: p.sistema || '',
-          data_ajuizamento: p.data_ajuizamento || '',
-          valor: p.valor || 0,
-          resumo: p.resumo || '',
-          andamento: p.andamento || p.ult_and || ''
-        };
-      });
-    }
-      
-      const baseData = typeof DADOS_REAIS_DITALIA !== 'undefined' ? [...DADOS_REAIS_DITALIA] : [];
-      
-      return baseData.map(p => {
-        let area = 'Cível';
-        if (p.cnj && p.cnj.includes('.5.')) area = 'Trabalhista';
-        else if (p.acao && p.acao.toLowerCase().includes('fiscal')) area = 'Tributário';
-        else if (p.materia) area = p.materia;
-        
-        let tipoAcao = p.tipo_acao || 'Conhecimento';
-        if (tipoAcao === 'Recursão' || tipoAcao === 'Recursal') tipoAcao = 'Recurso';
-
-        let habStatus = p.habilitado || 'NDA';
-        if (p.status_proc === 'Baixado' || area === 'Reestruturação') {
-          habStatus = 'NDA';
-        }
-
-        return {
-          ...p,
-          materia: area,
-          tipo_acao: tipoAcao,
-          habilitado: habStatus,
+          habilitado: p.habilitado || 'NDA',
           juizo: p.juizo || '',
           sistema: p.sistema || '',
           data_ajuizamento: p.data_ajuizamento || '',
@@ -873,7 +836,7 @@
         ALL_PROCESSES.unshift(dataObj);
       }
 
-      localStorage.setItem('ditalia_processes_v1_7_5_master', JSON.stringify(ALL_PROCESSES));
+      localStorage.setItem('ditalia_processes_v1_7_7_fix', JSON.stringify(ALL_PROCESSES));
       closeModal();
       populateSelectFilters();
       applyFilters();
@@ -911,7 +874,7 @@
         });
       }
 
-      // 2. Gráfico de Distribuição por Tipo de Ação (Agora em Barras)
+      // 2. Gráfico de Distribuição por Tipo de Ação
       const acaoCounts = { 'Conhecimento': 0, 'Execução': 0, 'Recurso': 0, 'Cumprimento de Sentença': 0 };
       ALL_PROCESSES.forEach(p => { 
         if(acaoCounts[p.tipo_acao] !== undefined) acaoCounts[p.tipo_acao]++; 
