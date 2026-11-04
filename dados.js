@@ -13,7 +13,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 2,
@@ -29,7 +30,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 3,
@@ -45,7 +47,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 4,
@@ -61,7 +64,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 5,
@@ -77,7 +81,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 6,
@@ -93,7 +98,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 7,
@@ -109,7 +115,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 8,
@@ -125,7 +132,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 9,
@@ -141,7 +149,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 10,
@@ -157,7 +166,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 11,
@@ -173,7 +183,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 12,
@@ -189,7 +200,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 13,
@@ -205,7 +217,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 14,
@@ -221,7 +234,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 15,
@@ -237,7 +251,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 16,
@@ -253,7 +268,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 17,
@@ -269,7 +285,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 18,
@@ -285,7 +302,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 19,
@@ -301,7 +319,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 20,
@@ -317,7 +336,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 21,
@@ -333,7 +353,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 22,
@@ -349,7 +370,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 23,
@@ -365,7 +387,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 24,
@@ -381,7 +404,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 25,
@@ -397,7 +421,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 26,
@@ -413,7 +438,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 27,
@@ -429,7 +455,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 28,
@@ -445,7 +472,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 29,
@@ -461,7 +489,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 30,
@@ -477,7 +506,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 31,
@@ -493,7 +523,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 32,
@@ -509,7 +540,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 33,
@@ -525,7 +557,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 34,
@@ -541,7 +574,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 35,
@@ -557,7 +591,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 36,
@@ -573,7 +608,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 37,
@@ -589,7 +625,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 38,
@@ -605,7 +642,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 39,
@@ -621,7 +659,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 40,
@@ -637,7 +676,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 41,
@@ -653,7 +693,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 42,
@@ -669,7 +710,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 43,
@@ -685,7 +727,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 44,
@@ -701,7 +744,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 45,
@@ -717,7 +761,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 46,
@@ -733,7 +778,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 47,
@@ -749,7 +795,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 48,
@@ -765,7 +812,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 49,
@@ -781,7 +829,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 50,
@@ -797,7 +846,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 51,
@@ -813,7 +863,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 52,
@@ -829,7 +880,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 53,
@@ -845,7 +897,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 54,
@@ -861,7 +914,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 55,
@@ -877,7 +931,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 56,
@@ -893,7 +948,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 57,
@@ -909,7 +965,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 58,
@@ -925,7 +982,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 59,
@@ -941,7 +999,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 60,
@@ -957,7 +1016,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 61,
@@ -973,7 +1033,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 62,
@@ -989,7 +1050,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 63,
@@ -1005,7 +1067,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 64,
@@ -1021,7 +1084,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 65,
@@ -1037,7 +1101,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 66,
@@ -1053,7 +1118,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 67,
@@ -1069,7 +1135,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 68,
@@ -1085,7 +1152,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 69,
@@ -1101,7 +1169,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 70,
@@ -1117,7 +1186,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 71,
@@ -1133,7 +1203,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 72,
@@ -1149,7 +1220,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 73,
@@ -1165,7 +1237,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 74,
@@ -1181,7 +1254,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 75,
@@ -1197,7 +1271,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 76,
@@ -1213,7 +1288,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 77,
@@ -1229,7 +1305,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 78,
@@ -1245,7 +1322,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 79,
@@ -1261,7 +1339,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 80,
@@ -1277,7 +1356,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 81,
@@ -1293,7 +1373,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 82,
@@ -1309,7 +1390,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 83,
@@ -1325,7 +1407,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 84,
@@ -1341,7 +1424,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 85,
@@ -1357,7 +1441,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 86,
@@ -1373,7 +1458,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 87,
@@ -1389,7 +1475,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 88,
@@ -1405,7 +1492,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 89,
@@ -1421,7 +1509,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 90,
@@ -1437,7 +1526,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 91,
@@ -1453,7 +1543,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 92,
@@ -1469,7 +1560,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 93,
@@ -1485,7 +1577,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 94,
@@ -1501,7 +1594,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 95,
@@ -1517,7 +1611,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 96,
@@ -1533,7 +1628,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 97,
@@ -1549,7 +1645,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 98,
@@ -1565,7 +1662,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 99,
@@ -1581,7 +1679,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 100,
@@ -1597,7 +1696,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 101,
@@ -1613,7 +1713,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 102,
@@ -1629,7 +1730,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 103,
@@ -1645,7 +1747,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 104,
@@ -1661,7 +1764,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 105,
@@ -1677,7 +1781,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 106,
@@ -1693,7 +1798,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 107,
@@ -1709,7 +1815,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 108,
@@ -1725,7 +1832,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 109,
@@ -1741,7 +1849,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 110,
@@ -1757,7 +1866,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 111,
@@ -1773,7 +1883,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 112,
@@ -1789,7 +1900,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 113,
@@ -1805,7 +1917,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 114,
@@ -1821,7 +1934,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 115,
@@ -1837,7 +1951,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 116,
@@ -1853,7 +1968,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 117,
@@ -1869,7 +1985,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 118,
@@ -1885,7 +2002,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 119,
@@ -1901,7 +2019,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 120,
@@ -1917,7 +2036,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 121,
@@ -1933,7 +2053,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 122,
@@ -1949,7 +2070,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 123,
@@ -1965,7 +2087,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 124,
@@ -1981,7 +2104,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 125,
@@ -1997,7 +2121,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 126,
@@ -2013,7 +2138,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 127,
@@ -2029,7 +2155,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 128,
@@ -2045,7 +2172,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 129,
@@ -2061,7 +2189,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 130,
@@ -2077,7 +2206,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 131,
@@ -2093,7 +2223,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 132,
@@ -2109,7 +2240,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 133,
@@ -2125,7 +2257,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 134,
@@ -2141,7 +2274,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 135,
@@ -2157,7 +2291,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 136,
@@ -2173,7 +2308,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 137,
@@ -2189,7 +2325,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 138,
@@ -2205,7 +2342,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 139,
@@ -2221,7 +2359,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 140,
@@ -2237,7 +2376,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 141,
@@ -2253,7 +2393,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 142,
@@ -2269,7 +2410,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 143,
@@ -2285,7 +2427,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 144,
@@ -2301,7 +2444,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 145,
@@ -2317,7 +2461,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 146,
@@ -2333,7 +2478,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 147,
@@ -2349,7 +2495,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 148,
@@ -2365,7 +2512,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 149,
@@ -2381,7 +2529,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 150,
@@ -2397,7 +2546,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 151,
@@ -2413,7 +2563,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 152,
@@ -2429,7 +2580,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 153,
@@ -2445,7 +2597,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 154,
@@ -2461,7 +2614,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 155,
@@ -2477,7 +2631,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 156,
@@ -2493,7 +2648,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 157,
@@ -2509,7 +2665,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 158,
@@ -2525,7 +2682,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 159,
@@ -2541,7 +2699,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 160,
@@ -2557,7 +2716,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 161,
@@ -2573,7 +2733,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 162,
@@ -2589,7 +2750,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 163,
@@ -2605,7 +2767,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 164,
@@ -2621,7 +2784,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 165,
@@ -2637,7 +2801,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 166,
@@ -2653,7 +2818,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 167,
@@ -2669,7 +2835,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 168,
@@ -2685,7 +2852,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 169,
@@ -2701,7 +2869,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 170,
@@ -2717,7 +2886,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 171,
@@ -2733,7 +2903,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 172,
@@ -2749,7 +2920,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 173,
@@ -2765,7 +2937,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 174,
@@ -2781,7 +2954,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 175,
@@ -2797,7 +2971,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 176,
@@ -2813,7 +2988,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 177,
@@ -2829,7 +3005,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 178,
@@ -2845,7 +3022,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 179,
@@ -2861,7 +3039,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 180,
@@ -2877,7 +3056,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 181,
@@ -2893,7 +3073,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 182,
@@ -2909,7 +3090,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 183,
@@ -2925,7 +3107,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 184,
@@ -2941,7 +3124,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 185,
@@ -2957,7 +3141,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 186,
@@ -2973,7 +3158,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 187,
@@ -2989,7 +3175,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 188,
@@ -3005,7 +3192,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 189,
@@ -3021,7 +3209,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 190,
@@ -3037,7 +3226,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 191,
@@ -3053,7 +3243,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 192,
@@ -3069,7 +3260,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 193,
@@ -3085,7 +3277,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 194,
@@ -3101,7 +3294,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 195,
@@ -3117,7 +3311,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 196,
@@ -3133,7 +3328,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 197,
@@ -3149,7 +3345,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 198,
@@ -3165,7 +3362,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 199,
@@ -3181,7 +3379,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 200,
@@ -3197,7 +3396,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 201,
@@ -3213,7 +3413,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 202,
@@ -3229,7 +3430,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 203,
@@ -3245,7 +3447,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 204,
@@ -3261,7 +3464,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 205,
@@ -3277,7 +3481,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 206,
@@ -3293,7 +3498,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 207,
@@ -3309,7 +3515,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 208,
@@ -3325,7 +3532,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 209,
@@ -3341,7 +3549,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 210,
@@ -3357,7 +3566,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 211,
@@ -3373,7 +3583,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 212,
@@ -3389,7 +3600,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 213,
@@ -3405,7 +3617,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 214,
@@ -3421,7 +3634,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 215,
@@ -3437,7 +3651,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 216,
@@ -3453,7 +3668,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 217,
@@ -3469,7 +3685,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 218,
@@ -3485,7 +3702,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 219,
@@ -3501,7 +3719,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 220,
@@ -3517,7 +3736,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 221,
@@ -3533,7 +3753,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 222,
@@ -3549,7 +3770,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 223,
@@ -3565,7 +3787,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 224,
@@ -3581,7 +3804,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 225,
@@ -3597,7 +3821,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 226,
@@ -3613,7 +3838,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 227,
@@ -3629,7 +3855,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 228,
@@ -3645,7 +3872,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 229,
@@ -3661,7 +3889,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 230,
@@ -3677,7 +3906,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 231,
@@ -3693,7 +3923,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 232,
@@ -3709,7 +3940,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 233,
@@ -3725,7 +3957,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 234,
@@ -3741,7 +3974,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 235,
@@ -3757,7 +3991,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 236,
@@ -3773,7 +4008,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 237,
@@ -3789,7 +4025,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 238,
@@ -3805,7 +4042,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 239,
@@ -3821,7 +4059,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 240,
@@ -3837,7 +4076,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 241,
@@ -3853,7 +4093,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 242,
@@ -3869,7 +4110,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 243,
@@ -3885,7 +4127,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 244,
@@ -3901,7 +4144,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 245,
@@ -3917,7 +4161,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 246,
@@ -3933,7 +4178,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 247,
@@ -3949,7 +4195,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 248,
@@ -3965,7 +4212,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 249,
@@ -3981,7 +4229,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 250,
@@ -3997,7 +4246,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 251,
@@ -4013,7 +4263,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 252,
@@ -4029,7 +4280,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 253,
@@ -4045,7 +4297,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 254,
@@ -4061,7 +4314,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 255,
@@ -4077,7 +4331,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 256,
@@ -4093,7 +4348,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 257,
@@ -4109,7 +4365,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 258,
@@ -4125,7 +4382,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 259,
@@ -4141,7 +4399,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 260,
@@ -4157,7 +4416,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 261,
@@ -4173,7 +4433,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 262,
@@ -4189,7 +4450,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 263,
@@ -4205,7 +4467,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 264,
@@ -4221,7 +4484,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 265,
@@ -4237,7 +4501,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 266,
@@ -4253,7 +4518,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 267,
@@ -4269,7 +4535,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 268,
@@ -4285,7 +4552,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 269,
@@ -4301,7 +4569,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 270,
@@ -4317,7 +4586,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 271,
@@ -4333,7 +4603,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 272,
@@ -4349,7 +4620,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 273,
@@ -4365,7 +4637,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 274,
@@ -4381,7 +4654,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 275,
@@ -4397,7 +4671,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 276,
@@ -4413,7 +4688,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 277,
@@ -4429,7 +4705,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 278,
@@ -4445,7 +4722,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 279,
@@ -4461,7 +4739,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 280,
@@ -4477,7 +4756,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 281,
@@ -4493,7 +4773,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 282,
@@ -4509,7 +4790,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 283,
@@ -4525,7 +4807,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 284,
@@ -4541,7 +4824,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 285,
@@ -4557,7 +4841,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 286,
@@ -4573,7 +4858,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 287,
@@ -4589,7 +4875,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 288,
@@ -4605,7 +4892,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 289,
@@ -4621,7 +4909,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 290,
@@ -4637,7 +4926,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 291,
@@ -4653,7 +4943,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 292,
@@ -4669,7 +4960,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 293,
@@ -4685,7 +4977,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 294,
@@ -4701,7 +4994,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 295,
@@ -4717,7 +5011,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 296,
@@ -4733,7 +5028,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 297,
@@ -4749,7 +5045,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 298,
@@ -4765,7 +5062,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 299,
@@ -4781,7 +5079,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 300,
@@ -4797,7 +5096,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 301,
@@ -4813,7 +5113,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 302,
@@ -4829,7 +5130,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 303,
@@ -4845,7 +5147,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 304,
@@ -4861,7 +5164,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 305,
@@ -4877,7 +5181,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 306,
@@ -4893,7 +5198,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 307,
@@ -4909,7 +5215,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 308,
@@ -4925,7 +5232,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 309,
@@ -4941,7 +5249,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 310,
@@ -4957,7 +5266,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 311,
@@ -4973,7 +5283,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 312,
@@ -4989,7 +5300,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 313,
@@ -5005,7 +5317,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 314,
@@ -5021,7 +5334,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 315,
@@ -5037,7 +5351,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 316,
@@ -5053,7 +5368,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 317,
@@ -5069,7 +5385,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 318,
@@ -5085,7 +5402,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 319,
@@ -5101,7 +5419,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 320,
@@ -5117,7 +5436,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 321,
@@ -5133,7 +5453,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 322,
@@ -5149,7 +5470,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 323,
@@ -5165,7 +5487,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 324,
@@ -5181,7 +5504,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 325,
@@ -5197,7 +5521,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 326,
@@ -5213,7 +5538,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 327,
@@ -5229,7 +5555,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 328,
@@ -5245,7 +5572,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 329,
@@ -5261,7 +5589,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 330,
@@ -5277,7 +5606,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 331,
@@ -5293,7 +5623,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 332,
@@ -5309,7 +5640,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 333,
@@ -5325,7 +5657,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 334,
@@ -5341,7 +5674,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 335,
@@ -5357,7 +5691,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 336,
@@ -5373,7 +5708,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 337,
@@ -5389,7 +5725,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 338,
@@ -5405,7 +5742,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 339,
@@ -5421,7 +5759,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 340,
@@ -5437,7 +5776,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 341,
@@ -5453,7 +5793,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 342,
@@ -5469,7 +5810,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 343,
@@ -5485,7 +5827,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 344,
@@ -5501,7 +5844,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 345,
@@ -5517,7 +5861,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 346,
@@ -5533,7 +5878,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 347,
@@ -5549,7 +5895,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 348,
@@ -5565,7 +5912,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 349,
@@ -5581,7 +5929,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 350,
@@ -5597,7 +5946,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 351,
@@ -5613,7 +5963,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 352,
@@ -5629,7 +5980,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 353,
@@ -5645,7 +5997,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 354,
@@ -5661,7 +6014,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 355,
@@ -5677,7 +6031,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 356,
@@ -5693,7 +6048,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 357,
@@ -5709,7 +6065,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 358,
@@ -5725,7 +6082,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 359,
@@ -5741,7 +6099,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 360,
@@ -5757,7 +6116,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 361,
@@ -5773,7 +6133,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 362,
@@ -5789,7 +6150,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 363,
@@ -5805,7 +6167,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 364,
@@ -5821,7 +6184,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 365,
@@ -5837,7 +6201,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 366,
@@ -5853,7 +6218,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 367,
@@ -5869,7 +6235,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 368,
@@ -5885,7 +6252,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 369,
@@ -5901,7 +6269,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 370,
@@ -5917,7 +6286,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 371,
@@ -5933,7 +6303,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 372,
@@ -5949,7 +6320,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 373,
@@ -5965,7 +6337,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 374,
@@ -5981,7 +6354,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 375,
@@ -5997,7 +6371,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 376,
@@ -6013,7 +6388,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 377,
@@ -6029,7 +6405,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 378,
@@ -6045,7 +6422,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 379,
@@ -6061,7 +6439,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 380,
@@ -6077,7 +6456,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 381,
@@ -6093,7 +6473,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 382,
@@ -6109,7 +6490,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 383,
@@ -6125,7 +6507,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 384,
@@ -6141,7 +6524,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 385,
@@ -6157,7 +6541,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 386,
@@ -6173,7 +6558,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 387,
@@ -6189,7 +6575,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 388,
@@ -6205,7 +6592,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 389,
@@ -6221,7 +6609,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 390,
@@ -6237,7 +6626,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 391,
@@ -6253,7 +6643,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 392,
@@ -6269,7 +6660,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 393,
@@ -6285,7 +6677,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 394,
@@ -6301,7 +6694,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 395,
@@ -6317,7 +6711,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 396,
@@ -6333,7 +6728,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 397,
@@ -6349,7 +6745,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 398,
@@ -6365,7 +6762,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 399,
@@ -6381,7 +6779,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 400,
@@ -6397,7 +6796,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 401,
@@ -6413,7 +6813,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 402,
@@ -6429,7 +6830,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 403,
@@ -6445,7 +6847,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 404,
@@ -6461,7 +6864,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 405,
@@ -6477,7 +6881,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 406,
@@ -6493,7 +6898,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 407,
@@ -6509,7 +6915,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 408,
@@ -6525,7 +6932,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 409,
@@ -6541,7 +6949,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 410,
@@ -6557,7 +6966,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 411,
@@ -6573,7 +6983,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 412,
@@ -6589,7 +7000,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 413,
@@ -6605,7 +7017,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 414,
@@ -6621,7 +7034,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 415,
@@ -6637,7 +7051,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 416,
@@ -6653,7 +7068,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 417,
@@ -6669,7 +7085,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 418,
@@ -6685,7 +7102,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 419,
@@ -6701,7 +7119,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 420,
@@ -6717,7 +7136,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 421,
@@ -6733,7 +7153,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 422,
@@ -6749,7 +7170,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 423,
@@ -6765,7 +7187,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 424,
@@ -6781,7 +7204,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 425,
@@ -6797,7 +7221,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 426,
@@ -6813,7 +7238,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 427,
@@ -6829,7 +7255,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 428,
@@ -6845,7 +7272,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 429,
@@ -6861,7 +7289,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 430,
@@ -6877,7 +7306,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 431,
@@ -6893,7 +7323,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 432,
@@ -6909,7 +7340,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 433,
@@ -6925,7 +7357,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 434,
@@ -6941,7 +7374,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 435,
@@ -6957,7 +7391,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 436,
@@ -6973,7 +7408,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 437,
@@ -6989,7 +7425,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 438,
@@ -7005,7 +7442,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 439,
@@ -7021,7 +7459,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 440,
@@ -7037,7 +7476,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 441,
@@ -7053,7 +7493,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 442,
@@ -7069,7 +7510,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 443,
@@ -7085,7 +7527,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 444,
@@ -7101,7 +7544,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 445,
@@ -7117,7 +7561,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 446,
@@ -7133,7 +7578,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 447,
@@ -7149,7 +7595,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 448,
@@ -7165,7 +7612,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 449,
@@ -7181,7 +7629,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 450,
@@ -7197,7 +7646,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 451,
@@ -7213,7 +7663,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 452,
@@ -7229,7 +7680,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 453,
@@ -7245,7 +7697,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 454,
@@ -7261,7 +7714,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 455,
@@ -7277,7 +7731,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 456,
@@ -7293,7 +7748,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 457,
@@ -7309,7 +7765,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 458,
@@ -7325,7 +7782,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 459,
@@ -7341,7 +7799,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 460,
@@ -7357,7 +7816,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 461,
@@ -7373,7 +7833,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 462,
@@ -7389,7 +7850,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 463,
@@ -7405,7 +7867,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 464,
@@ -7421,7 +7884,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 465,
@@ -7437,7 +7901,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 466,
@@ -7453,7 +7918,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 467,
@@ -7469,7 +7935,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 468,
@@ -7485,7 +7952,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 469,
@@ -7501,7 +7969,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 470,
@@ -7517,7 +7986,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 471,
@@ -7533,7 +8003,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 472,
@@ -7549,7 +8020,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 473,
@@ -7565,7 +8037,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 474,
@@ -7581,7 +8054,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 475,
@@ -7597,7 +8071,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 476,
@@ -7613,7 +8088,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 477,
@@ -7629,7 +8105,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 478,
@@ -7645,7 +8122,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 479,
@@ -7661,7 +8139,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 480,
@@ -7677,7 +8156,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NAO"
   },
   {
     "id": 481,
@@ -7693,7 +8173,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 482,
@@ -7709,7 +8190,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 483,
@@ -7725,7 +8207,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 484,
@@ -7741,7 +8224,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 485,
@@ -7757,7 +8241,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "DA&B \\ núcleo de advocacia",
     "dab": "NAO",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "SIM"
   },
   {
     "id": 486,
@@ -7773,7 +8258,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": "2022-09-02"
+    "data_prazo": "2022-09-02",
+    "habilitado": "NDA"
   },
   {
     "id": 487,
@@ -7789,7 +8275,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 488,
@@ -7805,7 +8292,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": "2024-02-01"
+    "data_prazo": "2024-02-01",
+    "habilitado": "NDA"
   },
   {
     "id": 489,
@@ -7821,7 +8309,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 490,
@@ -7837,7 +8326,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": "2023-07-03"
+    "data_prazo": "2023-07-03",
+    "habilitado": "NDA"
   },
   {
     "id": 491,
@@ -7853,7 +8343,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": "2023-04-20"
+    "data_prazo": "2023-04-20",
+    "habilitado": "NDA"
   },
   {
     "id": 492,
@@ -7869,7 +8360,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": "2024-10-02"
+    "data_prazo": "2024-10-02",
+    "habilitado": "NDA"
   },
   {
     "id": 493,
@@ -7885,7 +8377,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 494,
@@ -7901,7 +8394,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 495,
@@ -7917,7 +8411,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": "2025-01-23"
+    "data_prazo": "2025-01-23",
+    "habilitado": "NDA"
   },
   {
     "id": 496,
@@ -7933,7 +8428,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 497,
@@ -7949,7 +8445,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": "2025-08-01"
+    "data_prazo": "2025-08-01",
+    "habilitado": "NDA"
   },
   {
     "id": 498,
@@ -7965,7 +8462,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 499,
@@ -7981,7 +8479,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 500,
@@ -7997,7 +8496,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 501,
@@ -8013,7 +8513,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": "2025-07-08"
+    "data_prazo": "2025-07-08",
+    "habilitado": "NDA"
   },
   {
     "id": 502,
@@ -8029,7 +8530,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 503,
@@ -8045,7 +8547,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 504,
@@ -8061,7 +8564,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": "2024-12-23"
+    "data_prazo": "2024-12-23",
+    "habilitado": "NDA"
   },
   {
     "id": 505,
@@ -8077,7 +8581,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 506,
@@ -8093,7 +8598,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": "2023-03-29"
+    "data_prazo": "2023-03-29",
+    "habilitado": "NDA"
   },
   {
     "id": 507,
@@ -8109,7 +8615,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": "2025-02-18"
+    "data_prazo": "2025-02-18",
+    "habilitado": "NDA"
   },
   {
     "id": 508,
@@ -8125,7 +8632,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 509,
@@ -8141,7 +8649,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 510,
@@ -8157,7 +8666,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 511,
@@ -8173,7 +8683,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": "2023-08-08"
+    "data_prazo": "2023-08-08",
+    "habilitado": "NDA"
   },
   {
     "id": 512,
@@ -8189,7 +8700,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 513,
@@ -8205,7 +8717,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": "2025-01-06"
+    "data_prazo": "2025-01-06",
+    "habilitado": "NDA"
   },
   {
     "id": 514,
@@ -8221,7 +8734,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 515,
@@ -8237,7 +8751,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 516,
@@ -8253,7 +8768,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 517,
@@ -8269,7 +8785,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": "2025-09-04"
+    "data_prazo": "2025-09-04",
+    "habilitado": "NDA"
   },
   {
     "id": 518,
@@ -8285,7 +8802,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": "2025-02-28"
+    "data_prazo": "2025-02-28",
+    "habilitado": "NDA"
   },
   {
     "id": 519,
@@ -8301,7 +8819,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": "2023-09-13"
+    "data_prazo": "2023-09-13",
+    "habilitado": "NDA"
   },
   {
     "id": 520,
@@ -8317,7 +8836,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": "2024-01-05"
+    "data_prazo": "2024-01-05",
+    "habilitado": "NDA"
   },
   {
     "id": 521,
@@ -8333,7 +8853,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 522,
@@ -8349,7 +8870,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 523,
@@ -8365,7 +8887,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 524,
@@ -8381,7 +8904,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 525,
@@ -8397,7 +8921,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 526,
@@ -8413,7 +8938,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": "2024-09-04"
+    "data_prazo": "2024-09-04",
+    "habilitado": "NDA"
   },
   {
     "id": 527,
@@ -8429,7 +8955,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 528,
@@ -8445,7 +8972,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": "2024-07-16"
+    "data_prazo": "2024-07-16",
+    "habilitado": "NDA"
   },
   {
     "id": 529,
@@ -8461,7 +8989,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 530,
@@ -8477,7 +9006,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": "2025-02-04"
+    "data_prazo": "2025-02-04",
+    "habilitado": "NDA"
   },
   {
     "id": 531,
@@ -8493,7 +9023,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": "2024-10-09"
+    "data_prazo": "2024-10-09",
+    "habilitado": "NDA"
   },
   {
     "id": 532,
@@ -8509,7 +9040,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": "2024-10-28"
+    "data_prazo": "2024-10-28",
+    "habilitado": "NDA"
   },
   {
     "id": 533,
@@ -8525,7 +9057,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 534,
@@ -8541,7 +9074,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": "2024-08-20"
+    "data_prazo": "2024-08-20",
+    "habilitado": "NDA"
   },
   {
     "id": 535,
@@ -8557,7 +9091,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": "2024-09-24"
+    "data_prazo": "2024-09-24",
+    "habilitado": "NDA"
   },
   {
     "id": 536,
@@ -8573,7 +9108,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 537,
@@ -8589,7 +9125,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 538,
@@ -8605,7 +9142,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 539,
@@ -8621,7 +9159,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 540,
@@ -8637,7 +9176,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 541,
@@ -8653,7 +9193,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 542,
@@ -8669,7 +9210,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 543,
@@ -8685,7 +9227,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": "2025-08-22"
+    "data_prazo": "2025-08-22",
+    "habilitado": "NDA"
   },
   {
     "id": 544,
@@ -8701,7 +9244,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 545,
@@ -8717,7 +9261,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": "2024-09-11"
+    "data_prazo": "2024-09-11",
+    "habilitado": "NDA"
   },
   {
     "id": 546,
@@ -8733,7 +9278,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 547,
@@ -8749,7 +9295,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 548,
@@ -8765,7 +9312,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 549,
@@ -8781,7 +9329,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 550,
@@ -8797,7 +9346,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 551,
@@ -8813,7 +9363,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 552,
@@ -8829,7 +9380,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 553,
@@ -8845,7 +9397,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 554,
@@ -8861,7 +9414,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 555,
@@ -8877,7 +9431,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 556,
@@ -8893,7 +9448,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 557,
@@ -8909,7 +9465,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 558,
@@ -8925,7 +9482,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 559,
@@ -8941,7 +9499,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 560,
@@ -8957,7 +9516,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 561,
@@ -8973,7 +9533,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 562,
@@ -8989,7 +9550,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 563,
@@ -9005,7 +9567,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 564,
@@ -9021,7 +9584,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 565,
@@ -9037,7 +9601,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 566,
@@ -9053,7 +9618,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 567,
@@ -9069,7 +9635,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 568,
@@ -9085,7 +9652,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 569,
@@ -9101,7 +9669,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 570,
@@ -9117,7 +9686,8 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   },
   {
     "id": 571,
@@ -9133,6 +9703,7 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "esc": "Não informado",
     "dab": "SIM",
-    "data_prazo": ""
+    "data_prazo": "",
+    "habilitado": "NDA"
   }
 ];
