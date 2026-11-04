@@ -506,14 +506,46 @@
     }
 
     function getInitialDataset() {
-      // Nova chave forçando a quebra de cache para a versão 1.7.5 com 718 processos
-      const saved = localStorage.getItem('ditalia_processes_v1_7_5_master');
+      // Nova chave para limpar o cache do Chrome e carregar os 97 habilitados
+      const saved = localStorage.getItem('ditalia_processes_v1_7_6_hab_fix');
       if (saved) {
         try {
           const parsed = JSON.parse(saved);
           if (Array.isArray(parsed) && parsed.length > 0) return parsed;
         } catch(e) {}
       }
+      
+      const baseData = typeof DADOS_REAIS_DITALIA !== 'undefined' ? [...DADOS_REAIS_DITALIA] : [];
+      
+      return baseData.map(p => {
+        let area = 'Cível';
+        if (p.cnj && p.cnj.includes('.5.')) area = 'Trabalhista';
+        else if (p.acao && p.acao.toLowerCase().includes('fiscal')) area = 'Tributário';
+        else if (p.materia) area = p.materia;
+        
+        let tipoAcao = p.tipo_acao || 'Conhecimento';
+        if (tipoAcao === 'Recursão' || tipoAcao === 'Recursal') tipoAcao = 'Recurso';
+
+        // Respeita se o processo já vier marcado como SIM do dados.js
+        let habStatus = p.habilitado || 'NDA';
+        if (habStatus !== 'SIM' && (p.status_proc === 'Baixado' || area === 'Reestruturação')) {
+          habStatus = 'NDA';
+        }
+
+        return {
+          ...p,
+          materia: area,
+          tipo_acao: tipoAcao,
+          habilitado: habStatus,
+          juizo: p.juizo || '',
+          sistema: p.sistema || '',
+          data_ajuizamento: p.data_ajuizamento || '',
+          valor: p.valor || 0,
+          resumo: p.resumo || '',
+          andamento: p.andamento || p.ult_and || ''
+        };
+      });
+    }
       
       const baseData = typeof DADOS_REAIS_DITALIA !== 'undefined' ? [...DADOS_REAIS_DITALIA] : [];
       

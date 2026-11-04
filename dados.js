@@ -4825,7 +4825,7 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "dab": "NAO",
     "data_prazo": "",
-    "habilitado": "NDA",
+    "habilitado": "SIM",
     "resumo": "",
     "andamento": ""
   },
@@ -4846,7 +4846,7 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "dab": "NAO",
     "data_prazo": "",
-    "habilitado": "NDA",
+    "habilitado": "SIM",
     "resumo": "",
     "andamento": ""
   },
@@ -4867,7 +4867,7 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "dab": "NAO",
     "data_prazo": "",
-    "habilitado": "NDA",
+    "habilitado": "SIM",
     "resumo": "",
     "andamento": ""
   },
@@ -4888,7 +4888,7 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "dab": "NAO",
     "data_prazo": "",
-    "habilitado": "NDA",
+    "habilitado": "SIM",
     "resumo": "",
     "andamento": ""
   },
@@ -14212,7 +14212,7 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "dab": "NAO",
     "data_prazo": "",
-    "habilitado": "NDA",
+    "habilitado": "SIM",
     "resumo": "",
     "andamento": ""
   },
@@ -15115,7 +15115,7 @@ const DADOS_REAIS_DITALIA = [
     "resp": "Julia Linhares",
     "dab": "NAO",
     "data_prazo": "",
-    "habilitado": "NAO",
+    "habilitado": "SIM",
     "resumo": "",
     "andamento": ""
   },
