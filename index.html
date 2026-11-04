@@ -117,12 +117,10 @@
           <div class="text-[12px] font-medium uppercase tracking-wider mb-2 text-gray-500 dark:text-gray-400">Total na Base</div>
           <div id="kpi-total" class="text-3xl font-bold text-gray-900 dark:text-white">0</div>
         </div>
-        
         <div class="taste-card p-5 border-l-4 border-emerald-400 dark:border-emerald-300">
-          <div class="text-[12px] font-medium uppercase tracking-wider mb-2 text-emerald-600 dark:text-emerald-400">Habilitados (SIM)</div>
-          <div id="kpi-habilitado" class="text-3xl font-bold text-gray-900 dark:text-white">0</div>
+          <div class="text-[12px] font-medium uppercase tracking-wider mb-2 text-emerald-600 dark:text-emerald-400">Ativos (Andamento)</div>
+          <div id="kpi-ativo" class="text-3xl font-bold text-gray-900 dark:text-white">0</div>
         </div>
-
         <div onclick="filterWeekDeadlines()" class="taste-card p-5 border-l-4 border-red-400 cursor-pointer hover:shadow-md transition">
           <div class="flex items-center justify-between">
             <div class="text-[12px] font-medium uppercase tracking-wider mb-2 text-red-500 dark:text-red-400">Vence em 7 dias</div>
@@ -130,15 +128,14 @@
           </div>
           <div id="kpi-semana" class="text-3xl font-bold text-gray-900 dark:text-white">0</div>
         </div>
-
         <div class="taste-card p-5 border-l-4 border-orange-400 dark:border-orange-300">
-          <div class="text-[12px] font-medium uppercase tracking-wider mb-2 text-orange-500 dark:text-orange-400">Em Andamento</div>
-          <div id="kpi-ativo" class="text-3xl font-bold text-gray-900 dark:text-white">0</div>
-        </div>
-
-        <div class="taste-card p-5 border-l-4 border-gray-400 dark:border-gray-500">
-          <div class="text-[12px] font-medium uppercase tracking-wider mb-2 text-gray-500 dark:text-gray-400">Baixados</div>
+          <div class="text-[12px] font-medium uppercase tracking-wider mb-2 text-orange-500 dark:text-orange-400">Baixados</div>
           <div id="kpi-baixado" class="text-3xl font-bold text-gray-900 dark:text-white">0</div>
+        </div>
+        <!-- NOVO KPI DA v1.6.3: Habilitados -->
+        <div class="taste-card p-5 border-l-4 border-blue-400 dark:border-blue-300">
+          <div class="text-[12px] font-medium uppercase tracking-wider mb-2 text-blue-500 dark:text-blue-400">Habilitados (SIM)</div>
+          <div id="kpi-habilitado" class="text-3xl font-bold text-gray-900 dark:text-white">0</div>
         </div>
       </section>
 
@@ -254,6 +251,14 @@
               <option value="Ativo">Ativo</option>
               <option value="Suspenso">Suspenso</option>
               <option value="Baixado">Baixado</option>
+            </select>
+          </div>
+          <div class="flex-1 min-w-[90px]">
+            <label class="text-[11px] font-semibold uppercase tracking-wide block mb-1.5 text-gray-500 dark:text-gray-400">DA&B</label>
+            <select id="filter-dab" onchange="applyFilters()" class="w-full taste-input px-3 py-2.5 text-[13px]">
+              <option value="ALL">Todos</option>
+              <option value="SIM">Sim</option>
+              <option value="NAO">Não</option>
             </select>
           </div>
           <div class="flex-1 min-w-[90px]">
@@ -505,8 +510,8 @@
     }
 
     function getInitialDataset() {
-      // Nova chave de armazenamento (v1_6_3_final) limpa o cache forçando a leitura da nova variável do dados.js
-      const saved = localStorage.getItem('ditalia_processes_v1_6_3_final');
+      // Chave limpa para a versão 1.6.3
+      const saved = localStorage.getItem('ditalia_processes_v1_6_3');
       if (saved) {
         try {
           const parsed = JSON.parse(saved);
@@ -529,11 +534,17 @@
           tipoAcao = 'Recursão';
         }
 
+        // Regra solicitada: Se o processo estiver "Baixado", força a habilitação como "NDA" na interface
+        let habStatus = p.habilitado || 'NDA';
+        if (p.status_proc === 'Baixado') {
+          habStatus = 'NDA';
+        }
+
         return {
           ...p,
           materia: area,
           tipo_acao: tipoAcao,
-          habilitado: p.habilitado || 'NDA',
+          habilitado: habStatus,
           juizo: p.juizo || '',
           sistema: p.sistema || '',
           data_ajuizamento: p.data_ajuizamento || '',
@@ -893,7 +904,7 @@
         ALL_PROCESSES.unshift(dataObj);
       }
 
-      localStorage.setItem('ditalia_processes_v1_6_3_final', JSON.stringify(ALL_PROCESSES));
+      localStorage.setItem('ditalia_processes_v1_6_3', JSON.stringify(ALL_PROCESSES));
       closeModal();
       populateSelectFilters();
       applyFilters();
@@ -946,7 +957,6 @@
             responsive: true, 
             maintainAspectRatio: false, 
             plugins: { legend: { display: false } }, 
-            layout: { padding: { left: 15 } },
             scales: { 
               x: { grid: { color: gridColor, drawBorder: false } }, 
               y: { grid: { display: false } } 
@@ -976,7 +986,7 @@
       const ws = XLSX.utils.json_to_sheet(FILTERED_PROCESSES);
       const wb = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(wb, ws, "Processos");
-      XLSX.writeFile(wb, "Relatorio_Ditalia_Taste.xlsx");
+      XLSX.writeFile(wb, "Relatorio_Ditalia.xlsx");
     }
 
     function handleExcelUpload(event) {
