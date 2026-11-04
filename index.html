@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ditália Legal Analytics — Dashboard v1.6.4</title>
+  <title>Ditália Legal Analytics — Dashboard v1.6.5</title>
   
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -84,7 +84,7 @@
           <h1 class="text-xl font-bold tracking-tight font-serif text-gray-900 dark:text-white">Ditália Legal Analytics</h1>
           <p class="text-[13px] font-medium text-gray-500 dark:text-gray-400">
             Gestão de Processos — Dra. Julia Linhares 
-            <span class="ml-2 px-1.5 py-0.5 rounded-full bg-gray-200 dark:bg-white/10 text-gray-700 dark:text-gray-300 text-[10px] font-bold">v1.6.4</span>
+            <span class="ml-2 px-1.5 py-0.5 rounded-full bg-gray-200 dark:bg-white/10 text-gray-700 dark:text-gray-300 text-[10px] font-bold">v1.6.5</span>
           </p>
         </div>
       </div>
@@ -247,6 +247,14 @@
               <option value="Ativo">Ativo</option>
               <option value="Suspenso">Suspenso</option>
               <option value="Baixado">Baixado</option>
+            </select>
+          </div>
+          <div class="flex-1 min-w-[90px]">
+            <label class="text-[11px] font-semibold uppercase tracking-wide block mb-1.5 text-gray-500 dark:text-gray-400">DA&B</label>
+            <select id="filter-dab" onchange="applyFilters()" class="w-full taste-input px-3 py-2.5 text-[13px]">
+              <option value="ALL">Todos</option>
+              <option value="SIM">Sim</option>
+              <option value="NAO">Não</option>
             </select>
           </div>
           <div class="flex-1 min-w-[90px]">
@@ -499,7 +507,7 @@
     }
 
     function getInitialDataset() {
-      const saved = localStorage.getItem('ditalia_processes_v1_6_4_fix');
+      const saved = localStorage.getItem('ditalia_processes_v1_6_5_master');
       if (saved) {
         try {
           const parsed = JSON.parse(saved);
@@ -857,7 +865,7 @@
         ALL_PROCESSES.unshift(dataObj);
       }
 
-      localStorage.setItem('ditalia_processes_v1_6_4_fix', JSON.stringify(ALL_PROCESSES));
+      localStorage.setItem('ditalia_processes_v1_6_5_master', JSON.stringify(ALL_PROCESSES));
       closeModal();
       populateSelectFilters();
       applyFilters();
