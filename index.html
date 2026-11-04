@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ditália Legal Analytics — Dashboard v1.7.3</title>
+  <title>Ditália Legal Analytics — Dashboard v1.7.4</title>
   
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -84,7 +84,7 @@
           <h1 class="text-xl font-bold tracking-tight font-serif text-gray-900 dark:text-white">Ditália Legal Analytics</h1>
           <p class="text-[13px] font-medium text-gray-500 dark:text-gray-400">
             Gestão de Processos — Dra. Julia Linhares 
-            <span class="ml-2 px-1.5 py-0.5 rounded-full bg-gray-200 dark:bg-white/10 text-gray-700 dark:text-gray-300 text-[10px] font-bold">v1.7.3</span>
+            <span class="ml-2 px-1.5 py-0.5 rounded-full bg-gray-200 dark:bg-white/10 text-gray-700 dark:text-gray-300 text-[10px] font-bold">v1.7.4</span>
           </p>
         </div>
       </div>
@@ -112,7 +112,6 @@
   <main class="max-w-[1600px] mx-auto px-8 pt-8 space-y-8">
 
     <div id="view-executivo" class="space-y-8">
-      <!-- 5 KPIs NO TOPO -->
       <section class="grid grid-cols-1 md:grid-cols-5 gap-5">
         <div class="taste-card p-5">
           <div class="text-[12px] font-medium uppercase tracking-wider mb-2 text-gray-500 dark:text-gray-400">Total na Base</div>
@@ -140,7 +139,6 @@
         </div>
       </section>
 
-      <!-- 4 GRÁFICOS (GRELHA 2x2) -->
       <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div class="taste-card p-6">
           <h3 class="text-sm font-semibold mb-6 text-gray-900 dark:text-white">Status Processual</h3>
@@ -148,7 +146,6 @@
         </div>
         <div class="taste-card p-6">
           <h3 class="text-sm font-semibold mb-6 text-gray-900 dark:text-white">Distribuição por Tipo de Ação</h3>
-          <!-- Gráfico agora em barra horizontal -->
           <div class="h-64 pl-2"><canvas id="chartAcao"></canvas></div>
         </div>
         <div class="taste-card p-6">
@@ -161,7 +158,6 @@
         </div>
       </section>
 
-      <!-- TABELA DE PROCESSOS -->
       <section id="section-tabela" class="taste-card p-6 space-y-6">
         <div class="flex flex-wrap items-center justify-between gap-4 border-b pb-4 border-gray-100 dark:border-white/10">
           <div>
@@ -480,7 +476,6 @@
             </select>
           </div>
           <div>
-            <!-- Removido DA&B para o layout ficar equilibrado com a remoção dele no topo -->
             <input type="hidden" id="form-dab" value="NAO" />
           </div>
         </div>
@@ -511,8 +506,7 @@
     }
 
     function getInitialDataset() {
-      // Chave limpa para forçar o cache a ler a nova estrutura do dados.js (v1_7_3)
-      const saved = localStorage.getItem('ditalia_processes_v1_7_3_clean');
+      const saved = localStorage.getItem('ditalia_processes_v1_7_4');
       if (saved) {
         try {
           const parsed = JSON.parse(saved);
@@ -846,7 +840,7 @@
         ALL_PROCESSES.unshift(dataObj);
       }
 
-      localStorage.setItem('ditalia_processes_v1_7_3_clean', JSON.stringify(ALL_PROCESSES));
+      localStorage.setItem('ditalia_processes_v1_7_4', JSON.stringify(ALL_PROCESSES));
       closeModal();
       populateSelectFilters();
       applyFilters();
@@ -895,7 +889,7 @@
         charts.acao = new Chart(elChartAcao, {
           type: 'bar',
           data: {
-            labels: ['Conhecimento', 'Execução', 'Recurso', 'Cumprimento de Sentença'],
+            labels: ['Conhecimento', 'Execução', 'Recurso', ['Cumprimento', 'de Sentença']],
             datasets: [{ 
               data: [acaoCounts['Conhecimento'], acaoCounts['Execução'], acaoCounts['Recurso'], acaoCounts['Cumprimento de Sentença']], 
               backgroundColor: barColor, 
@@ -908,7 +902,7 @@
             responsive: true, 
             maintainAspectRatio: false, 
             plugins: { legend: { display: false } }, 
-            layout: { padding: { left: 15 } },
+            layout: { padding: { left: 45 } },
             scales: { 
               x: { grid: { color: gridColor, drawBorder: false } }, 
               y: { 
@@ -937,7 +931,7 @@
             responsive: true, 
             maintainAspectRatio: false, 
             plugins: { legend: { display: false } }, 
-            layout: { padding: { left: 15 } },
+            layout: { padding: { left: 45 } },
             scales: { 
               x: { grid: { color: gridColor, drawBorder: false } }, 
               y: { 
