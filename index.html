@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ditália Legal Analytics — Dashboard v1.7.7</title>
+  <title>Ditália Legal Analytics — Dashboard v1.7.9</title>
   
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -84,7 +84,7 @@
           <h1 class="text-xl font-bold tracking-tight font-serif text-gray-900 dark:text-white">Ditália Legal Analytics</h1>
           <p class="text-[13px] font-medium text-gray-500 dark:text-gray-400">
             Gestão de Processos — Dra. Julia Linhares 
-            <span class="ml-2 px-1.5 py-0.5 rounded-full bg-gray-200 dark:bg-white/10 text-gray-700 dark:text-gray-300 text-[10px] font-bold">v1.7.7</span>
+            <span class="ml-2 px-1.5 py-0.5 rounded-full bg-gray-200 dark:bg-white/10 text-gray-700 dark:text-gray-300 text-[10px] font-bold">v1.7.9</span>
           </p>
         </div>
       </div>
@@ -267,17 +267,17 @@
         </div>
 
         <div class="max-h-[600px] overflow-y-auto overflow-x-auto custom-scroll border rounded-xl border-gray-200 dark:border-white/10">
-          <table class="w-full text-left border-collapse min-w-[1100px]">
+          <table class="w-full text-left border-collapse min-w-[1200px] table-fixed">
             <thead class="sticky top-0 z-20 text-[11px] uppercase tracking-wider border-b bg-gray-50 text-gray-500 border-gray-200 dark:bg-black dark:text-gray-400 dark:border-white/10">
               <tr>
-                <th class="py-3 px-4 sortable font-semibold" onclick="sortData('status_proc')">Status ↕</th>
-                <th class="py-3 px-4 sortable font-semibold" onclick="sortData('data_prazo')">Prazo / Venc. ↕</th>
-                <th class="py-3 px-4 sortable font-semibold" onclick="sortData('cnj')">Nº do Processo ↕</th>
-                <th class="py-3 px-4 sortable font-semibold" onclick="sortData('materia')">Matéria / Tipo ↕</th>
-                <th class="py-3 px-4 sortable font-semibold" onclick="sortData('uf')">UF / Vara ↕</th>
+                <th class="py-3 px-4 sortable font-semibold w-[90px]" onclick="sortData('status_proc')">Status ↕</th>
+                <th class="py-3 px-4 sortable font-semibold w-[110px]" onclick="sortData('data_prazo')">Prazo / Venc. ↕</th>
+                <th class="py-3 px-4 sortable font-semibold w-[200px]" onclick="sortData('cnj')">Nº do Processo ↕</th>
+                <th class="py-3 px-4 sortable font-semibold w-[140px]" onclick="sortData('materia')">Matéria / Tipo ↕</th>
+                <th class="py-3 px-4 sortable font-semibold w-[180px]" onclick="sortData('uf')">UF / Vara ↕</th>
                 <th class="py-3 px-4 sortable font-semibold" onclick="sortData('cliente')">Cliente ↕</th>
                 <th class="py-3 px-4 sortable font-semibold" onclick="sortData('parte')">Parte Contrária ↕</th>
-                <th class="py-3 px-4 sortable font-semibold text-center" onclick="sortData('habilitado')">Hab ↕</th>
+                <th class="py-3 px-4 sortable font-semibold text-center w-[70px]" onclick="sortData('habilitado')">Hab ↕</th>
               </tr>
             </thead>
             <tbody id="process-table-body" class="divide-y text-[13px] bg-white divide-gray-100 dark:bg-[#0a0a0a] dark:divide-white/5"></tbody>
@@ -506,8 +506,8 @@
     }
 
     function getInitialDataset() {
-      // Nova chave v1_7_7 para forçar o navegador a limpar o cache corrompido anterior
-      const saved = localStorage.getItem('ditalia_processes_v1_7_7_fix');
+      // Nova chave v1_7_9
+      const saved = localStorage.getItem('ditalia_processes_v1_7_9');
       if (saved) {
         try {
           const parsed = JSON.parse(saved);
@@ -526,11 +526,16 @@
         let tipoAcao = p.tipo_acao || 'Conhecimento';
         if (tipoAcao === 'Recursão' || tipoAcao === 'Recursal') tipoAcao = 'Recurso';
 
+        let habStatus = p.habilitado || 'NDA';
+        if (habStatus !== 'SIM' && (p.status_proc === 'Baixado' || area === 'Reestruturação')) {
+          habStatus = 'NDA';
+        }
+
         return {
           ...p,
           materia: area,
           tipo_acao: tipoAcao,
-          habilitado: p.habilitado || 'NDA',
+          habilitado: habStatus,
           juizo: p.juizo || '',
           sistema: p.sistema || '',
           data_ajuizamento: p.data_ajuizamento || '',
@@ -735,25 +740,25 @@
       
       tbody.innerHTML = FILTERED_PROCESSES.map(p => `
         <tr onclick="openEditModal(${p.id})" class="hover:bg-gray-50 dark:hover:bg-white/5 cursor-pointer transition">
-          <td class="py-3.5 px-4 whitespace-nowrap">
+          <td class="py-3.5 px-4 whitespace-nowrap truncate">
             <span class="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide ${p.status_proc === 'Ativo' ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-500/20 dark:text-emerald-300' : (p.status_proc === 'Baixado' ? 'bg-orange-100 text-orange-800 dark:bg-orange-500/20 dark:text-orange-300' : 'bg-yellow-100 text-yellow-800 dark:bg-yellow-500/20 dark:text-yellow-300')}">
               ${p.status_proc}
             </span>
           </td>
-          <td class="py-3.5 px-4 whitespace-nowrap">
+          <td class="py-3.5 px-4 whitespace-nowrap truncate">
             ${p.data_prazo ? `<strong class="text-red-600 dark:text-red-400 font-semibold">${p.data_prazo.split('-').reverse().join('/')}</strong>` : '<span class="text-gray-400 dark:text-gray-600">—</span>'}
           </td>
-          <td class="py-3.5 px-4 font-mono font-medium whitespace-nowrap text-gray-900 dark:text-gray-200">${p.cnj}</td>
-          <td class="py-3.5 px-4 whitespace-nowrap">
+          <td class="py-3.5 px-4 font-mono font-medium whitespace-nowrap truncate text-gray-900 dark:text-gray-200" title="${p.cnj}">${p.cnj}</td>
+          <td class="py-3.5 px-4 whitespace-nowrap truncate">
             <span class="block font-semibold text-gray-900 dark:text-gray-200">${p.materia}</span>
             <span class="text-[10px] font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">${p.tipo_acao}</span>
           </td>
-          <td class="py-3.5 px-4 whitespace-nowrap">
+          <td class="py-3.5 px-4 whitespace-nowrap truncate" title="${p.uf} - ${p.juizo || p.comarca || ''}">
             <span class="font-bold text-gray-900 dark:text-gray-200">${p.uf}</span>
-            <span class="text-[11px] block text-gray-500 dark:text-gray-400">${p.juizo || p.comarca || '—'}</span>
+            <span class="text-[11px] block text-gray-500 dark:text-gray-400 truncate">${p.juizo || p.comarca || '—'}</span>
           </td>
-          <td class="py-3.5 px-4 truncate max-w-xs text-gray-700 dark:text-gray-300">${p.cliente}</td>
-          <td class="py-3.5 px-4 max-w-xs truncate font-medium text-gray-900 dark:text-gray-200">${p.parte}</td>
+          <td class="py-3.5 px-4 truncate text-gray-700 dark:text-gray-300" title="${p.cliente}">${p.cliente}</td>
+          <td class="py-3.5 px-4 truncate font-medium text-gray-900 dark:text-gray-200" title="${p.parte}">${p.parte}</td>
           <td class="py-3.5 px-4 text-center">
             ${p.habilitado === 'SIM' ? '<span class="text-emerald-600 dark:text-emerald-400 font-bold text-base">✓</span>' : (p.habilitado === 'NAO' ? '<span class="text-red-500 font-bold text-base">✕</span>' : '<span class="text-gray-400 text-xs">NDA</span>')}
           </td>
@@ -836,7 +841,7 @@
         ALL_PROCESSES.unshift(dataObj);
       }
 
-      localStorage.setItem('ditalia_processes_v1_7_7_fix', JSON.stringify(ALL_PROCESSES));
+      localStorage.setItem('ditalia_processes_v1_7_9', JSON.stringify(ALL_PROCESSES));
       closeModal();
       populateSelectFilters();
       applyFilters();
